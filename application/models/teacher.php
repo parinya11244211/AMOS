@@ -6,7 +6,7 @@ class Teacher extends CI_Model {
     }
 
 ######  Attribute  ###### 
-    var $teaId ; ######  ลำดับ  ######
+    var $teaId ; ######  ลำดับ  #####
     var $teaUsername ; ######  ชื่อเข้าระบบ  ######
     var $teaPassword ; ######  รหัสเข้าระบบ  ######
     var $teaCode ; ######  รหัสประจำตัว  ######
