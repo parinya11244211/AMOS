@@ -1,0 +1,77 @@
+.slide{
+	z-index:98;
+	float:left;
+	display:block ;
+	overflow:hidden;
+	height:*;
+	list-style-type: none;	
+	transition-property: margin-left;
+	transition-duration: 0.5s;
+	-webkit-transition-property: margin-left; /* Safari */
+	-webkit-transition-duration: 0.5s; /* Safari */
+	border-radius:5px;
+}
+.imgside{
+	z-index:99;
+	height:inherit;
+	display:block ;
+	float:left;
+	list-style-type: none;
+	margin-left:0px;
+	margin-top:0px;
+	margin-bottom:-20px;
+	margin-right:0px;
+	float:left; 
+	border-radius:5px;
+}
+.slidebaorder{
+	position:relative;
+	margin-left:0px;
+	display:block ;
+	height:*;
+	overflow:hidden;
+	float:left;
+	border-radius:5px;
+}
+.body-side{
+	border-radius:5px;
+	box-shadow:0px 0px 1px 1px #333333;
+	z-index:101;
+	float:left;
+	width:inherit;
+	border-radius:5px;
+}
+.body-side p{
+	display:none;
+	width:300px;
+	float:left;
+	margin-left:0px;
+	
+}
+#l{
+	position:absolute;
+	z-index:1000;
+	margin-left:0px;
+	margin-right:0px;
+	height:80px;
+	width:20px;
+}
+#r{
+	position:absolute;
+	z-index:1000;
+	margin-left:920px;
+	height:80px;
+	width:20px;
+}
+#limg{
+	 -webkit-transform: rotate(180deg);
+	 -moz-transform: rotate(180deg);
+	 filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+}
+.arrroww{
+	box-shadow:0px 0px 0px 0px #000;
+	border-radius:100%;
+}
+.imgside img{
+	border-radius:5;
+}
