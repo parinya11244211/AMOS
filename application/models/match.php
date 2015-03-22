@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 class Match extends CI_Model {
 
     function __construct(){

@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -163,7 +163,12 @@ body{
     <div class="herderTop">
 	<div id="innerTop">
          <a href="<?php echo base_url();?>index.php/home/logout"> <input id="logout" name="" type="Button" value="Logout" class="myButton"> </a>
-    </div>
+    &nbsp;&nbsp;&nbsp;&nbsp;<?php
+	$loginData=$this->session->userdata('loginData');
+	 echo $loginData['name']; ?>
+	&nbsp;&nbsp;&nbsp;&nbsp;<?php if( $loginData['status']=='s'){
+		echo 'Student';
+		} ?></div>
 	</div>
     <div id="herderBody">	
         <img src="<?php echo base_url();?>img/ncuIcon2.png">
@@ -179,9 +184,9 @@ body{
     </div>
     
     <div id="bodyInfo">
-   <form id="form1" name="form1" method="post" action="<?php echo base_url(); ?>index.php/students/stueditaction">
+   <form id="form1" name="form1" method="post" action="<?php echo base_url(); ?>index.php/students/stuEditAction">
 	<?php foreach($stuedit as $s){ ?><br><br>
-<table width="200" border="0" align="center">
+<table width="500" border="0" align="center">
   <tr>
     <td>ชื่อ:</td>
     <td>
@@ -206,6 +211,19 @@ body{
     <td>อีเมล์:</td>
     <td><input type="text" name="stuEmail" id="stuEmail" value="<?php echo $s['stuEmail'];?>" /></td>
   </tr>
+   <tr>
+    <td>รหัสผ่านเดิม&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td><input type="text" name="password1" id="password1" /></td>
+  </tr>
+   <tr>
+    <td>รหัสผ่านใหม่&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td><input type="text" name="password2" id="password2" /></td>
+  </tr>
+   <tr>
+    <td>ยืนยันรหัสผ่านใหม่&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td><input type="text" name="password3" id="password3" /></td>
+  </tr>
+  <tr>
   <tr>
     <td>&nbsp;</td>
     <td>

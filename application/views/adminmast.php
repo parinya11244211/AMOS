@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -168,7 +168,12 @@ body{
     <div class="herderTop">
 	<div id="innerTop">
          <a href="<?php echo base_url();?>index.php/home/logout"> <input id="logout" name="" type="Button" value="Logout" class="myButton"> </a>
-    </div>
+    &nbsp;&nbsp;&nbsp;&nbsp;<?php
+	$loginData=$this->session->userdata('loginData');
+	 echo $loginData['name']; ?>
+	&nbsp;&nbsp;&nbsp;&nbsp;<?php if( $loginData['status']=='a'){
+		echo 'Admin';
+		} ?></div>
 	</div>
 
     <div id="herderBody">	
@@ -187,8 +192,9 @@ body{
     <div id="bodyteainfo">
  <h2 align="center">   เลือกอาจารย์ที่ปรึกษา </h2>
  <br>
-    <table width="100%" height="63" border="1" align="center">
+    <table width="100%" height="63" border="1" align="center" bordercolor="#000000" cellpadding="0" cellspacing="0">
   <tr>
+  	<td align="center"><strong>รหัสอาจารย์ที่ปรึกษา</strong></td>
     <td align="center"><strong>ชื่ออาจารย์ที่ปรึกษา</strong></td>
     <td align="center"><strong>นามสกุลอาจารย์ที่ปรึกษา</strong></td>
     <td align="center"><strong>สาขาอาจารย์ที่ปรึกษา</strong></td>
@@ -197,10 +203,11 @@ body{
   </tr>
   <?php foreach($teainfo as $t){?>
   <tr>
-    <td align="right"><br><?php echo $t['teaName']?></td>
-    <td align="right"><br><?php echo $t['teaLastname']?></td>
-    <td align="right"><br><?php echo $t['teaBraName']?></td>
-    <td align="right"><br><?php echo $t['teaFacName']?></td>
+  	<td align="center"><br><?php echo $t['teaCode']?></td>
+    <td align="left"><br><?php echo $t['teaName']?></td>
+    <td align="left"><br><?php echo $t['teaLastname']?></td>
+    <td align="center"><br><?php echo $t['teaBraName']?></td>
+    <td align="center"><br><?php echo $t['teaFacName']?></td>
     <td align="center"><a href="<?php echo base_url();?>index.php/matchs/matching/<?php echo $t['teaId']?>">เลือก</a></td>
   </tr>
   <?php }?>

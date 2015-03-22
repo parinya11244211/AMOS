@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+﻿<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Matchs extends CI_Controller {
 
 	function index()
@@ -11,7 +11,8 @@ class Matchs extends CI_Controller {
 		$data['teacher'] = $this->Teacher->getByPk();
 		$data['match'] = $this->Admin->adminGetMatch();
 		$data['student'] = $this->Admin->adminGetAllStu();
-		
+		$data['student2'] = $this->Admin->adminGetMatchByTeacher($teaId);
+		if ($data['student']&&$data['student2']){
 		for($i=0; $i<count($data['student']); $i++)
 			{
 				for($ii=0; $ii<count($data['match']); $ii++)
@@ -29,7 +30,7 @@ class Matchs extends CI_Controller {
 			}
 				
 		sort($data['student']);
-		
+		}
 		$this->load->view('adminmaststu',$data);
 		
 		
@@ -40,6 +41,15 @@ class Matchs extends CI_Controller {
 		$this->Match->setStuId($stuId);
 		$this->Match->addMatch();
 		$this->matching($teaId);
+	}
+	function delStu($teaId,$id)
+	{
+		$this->Admin->delmatch($id);
+		echo "<script>
+
+    window.location.href='".base_url()."index.php/matchs/matching/".$teaId."';
+</script>";
+		
 	}
 }
 ?>

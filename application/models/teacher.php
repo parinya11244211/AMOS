@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 class Teacher extends CI_Model {
 
     function __construct(){
@@ -212,6 +212,7 @@ class Teacher extends CI_Model {
 	}
 	function teaUpdate(){
 		$data = array(
+		'teaPassword' => MD5($this->getTeaPassword()),
 		'teaName' => $this->getTeaName(),
 		'teaLastname' => $this->getTeaLastname(),
 		'teaAddress' => $this->getTeaAddress(),

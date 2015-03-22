@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -163,7 +163,12 @@ body{
     <div class="herderTop">
 	<div id="innerTop">
          <a href="<?php echo base_url();?>index.php/home/logout"> <input id="logout" name="" type="Button" value="Logout" class="myButton"> </a>
-    </div>
+    &nbsp;&nbsp;&nbsp;&nbsp;<?php
+	$loginData=$this->session->userdata('loginData');
+	 echo $loginData['name']; ?>
+	&nbsp;&nbsp;&nbsp;&nbsp;<?php if( $loginData['status']=='s'){
+		echo 'Student';
+		} ?></div>
 	</div>
     <div id="herderBody">	
         <img src="<?php echo base_url();?>img/ncuIcon2.png">
@@ -178,24 +183,24 @@ body{
 	</div>	
     </div>
     
-    <div id="bodyInfo">
-    <table width="71%" height="63" border="0" align="center">
+    <div id="bodyInfo"><br><br>
+    <table width="71%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
   <tr>
-    <td>Code</td>
-    <td>Name</td>
-    <td>Lastname</td>
-    <td>Address</td>
-    <td>Tel</td>
-    <td>Email</td>
+    <td align="center">รหัสอาจารย์ที่ปรึกษา</td>
+    <td align="center">ชื่ออาจารย์ที่ปรึกษา</td>
+    <td align="center">นามสกุลอาจารย์ที่ปรึกษา</td>
+    <td align="center">ที่อยู่อาจารย์ที่ปรึกษา</td>
+    <td align="center">เบอร์โทรอาจารย์ที่ปรึกษา</td>
+    <td align="center">อีเมล์</td>
   </tr>
   <?php foreach($stuinfo as $s){?>
   <tr>
-    <td><br><?php echo $s['teaCode']?></td>
-    <td><br><?php echo $s['teaName']?></td>
-    <td><br><?php echo $s['teaLastname']?></td>
-    <td><br><?php echo $s['teaAddress']?></td>
-    <td><br><?php echo $s['teaTel']?></td>
-    <td><br><?php echo $s['teaEmail']?></td>
+    <td align="center"><br><?php echo $s['teaCode']?></td>
+    <td align="left"><br><?php echo $s['teaName']?></td>
+    <td align="left"><br><?php echo $s['teaLastname']?></td>
+    <td align="center"><br><?php echo $s['teaAddress']?></td>
+    <td align="center"><br><?php echo $s['teaTel']?></td>
+    <td align="center"><br><a href="mailto:"><?php echo $s['teaEmail']?></td>
   </tr>
   <?php }?>
 </table>

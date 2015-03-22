@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 class Admin extends CI_Model {
 
     function __construct(){
@@ -164,6 +164,14 @@ class Admin extends CI_Model {
 		$data = $this->db->get('student')->result_array();
 		return $data;
 	}
+	function adminGetMatchByTeacher($id)
+	{
+		$this->db->join('match','match.stuId = student.stuId');
+		$this->db->where('match.teaId',$id);
+		$this->db->group_by('student.stuId');
+		$data = $this->db->get('student')->result_array();
+		return $data;
+	}
 	function adminGetAllStu()
 	{
 		$data = $this->db->get('student')->result_array();
@@ -172,6 +180,11 @@ class Admin extends CI_Model {
 	function adminGetStuInfo()
 	{
 		return $this->db->get('student')->result_array();
+	}
+		function delmatch($id)
+	{
+		$this->db->where('match.matchId',$id);
+		return $this->db->delete('match');
 	}
 }
 ?>

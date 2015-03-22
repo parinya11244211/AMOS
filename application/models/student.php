@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 class Student extends CI_Model {
 
     function __construct(){
@@ -212,6 +212,7 @@ class Student extends CI_Model {
 	}
 	function stuUpdate(){
 		$data = array(
+		'stuPassword' => MD5($this->getStuPassword()),
 		'stuName' => $this->getStuName(),
 		'stuLastname' => $this->getStuLastname(),
 		'stuAddress' => $this->getStuAddress(),

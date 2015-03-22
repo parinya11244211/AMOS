@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -161,7 +161,12 @@ body{
     <div class="herderTop">
 	<div id="innerTop">
          <a href="<?php echo base_url();?>index.php/home/logout"> <input id="logout" name="" type="Button" value="Logout" class="myButton"> </a>
-    </div>
+    &nbsp;&nbsp;&nbsp;&nbsp;<?php
+	$loginData=$this->session->userdata('loginData');
+	 echo $loginData['name']; ?>
+	&nbsp;&nbsp;&nbsp;&nbsp;<?php if( $loginData['status']=='a'){
+		echo 'Admin';
+		} ?></div>
 	</div>
 
     <div id="herderBody">	
@@ -178,7 +183,7 @@ body{
     
     <div id="bodyInfo">
         <div id="wlecome">
-        	ยินดีต้อนรับแอดมินเข้าสู่<br>ระบบอาจารย์ที่ปรึกษาออนไลน์<br><br>
+        	ยินดีต้อนรับเข้าสู่<br>ระบบอาจารย์ที่ปรึกษาออนไลน์<br><br>
             <img src="<?php echo base_url();?>img/ncuview9.jpg">
         </div>
     </div>

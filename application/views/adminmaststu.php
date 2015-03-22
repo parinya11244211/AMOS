@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -164,7 +164,12 @@ body{
     <div class="herderTop">
 	<div id="innerTop">
          <a href="<?php echo base_url();?>index.php/home/logout"> <input id="logout" name="" type="Button" value="Logout" class="myButton"> </a>
-    </div>
+    &nbsp;&nbsp;&nbsp;&nbsp;<?php
+	$loginData=$this->session->userdata('loginData');
+	 echo $loginData['name']; ?>
+	&nbsp;&nbsp;&nbsp;&nbsp;<?php if( $loginData['status']=='a'){
+		echo 'Admin';
+		} ?></div>
 	</div>
 
     <div id="herderBody">	
@@ -184,7 +189,7 @@ body{
     <hr>
    <h2 align="center"> อาจารย์ที่เลือก</h2>
    <br>
-      <table width="1000" border="0" align="center">
+      <table width="1000" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
         <tr>
             <td align="center"><strong>รหัสอาจารย์ที่ปรึกษา</strong></td>
             <td align="center"><strong>ชื่ออาจารย์ที่ปรึกษา</strong></td>
@@ -195,24 +200,46 @@ body{
         <?php foreach($teacher as $t){?>
         <tr>
           <td align="center"><br><?php echo $t['teaCode']?></td>
-    	  <td align="center"><br><?php echo $t['teaName']?></td>
-          <td align="center"><br><?php echo $t['teaLastname']?></td>
+    	  <td align="left"><br><?php echo $t['teaName']?></td>
+          <td align="left"><br><?php echo $t['teaLastname']?></td>
           <td align="center"><br><?php echo $t['teaTel']?></td>
-          <td align="center"><br><?php echo $t['teaEmail']?></td>
+          <td align="center"><a href="mailto:"><br><?php echo $t['teaEmail']?></td>
         </tr>
         <?php }?>
       </table>
       <br>
+      <h2 align="center">นักศึกษาปัจจุบัน</h2><br>
+         <table width="60%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0" >
+  <tr>
+    <td align="center"><strong>รหัสนักษา</strong></td>
+    <td align="center"><strong>ชื่อนักศึกษา</strong></td>
+     <td align="center"><strong>นามสกุลนักศึกษา</strong></td>
+     <td align="center"><strong>ยกเลิกการเป็นที่ปรึกษา</strong></td>
+  </tr>
+  <?php
+  
+   foreach($student2 as $s){?>
+  <tr>
+  	<td align="center"><br><?php echo $s['stuCode']?></td>
+    <td align="left"><br><?php echo $s['stuName']?></td>
+    <td align="left"><br><?php echo $s['stuLastname']?></td>
+   <td align="center"><a href="<?php echo base_url();?>index.php/matchs/delStu/<?php echo $teacher[0]['teaId'];?>/<?php echo $s['matchId']?>">เลือก</a> </td>
+  </tr>
+  <?php }?>
+</table>
+      <br>
       <h2 align="center">เลือกนักศึกษา</h2>
       <br>
-      <table width="30%" height="63" border="1" align="center">
+      <table width="60%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0" >
   <tr>
+    <td align="center"><strong>รหัสนักษา</strong></td>
     <td align="center"><strong>ชื่อนักศึกษา</strong></td>
-    <td align="center"><strong>นามสกุลนักศึกษา</strong></td>
+     <td align="center"><strong>นามสกุลนักศึกษา</strong></td>
      <td align="center"><strong>เลือกนักศึกษา</strong></td>
   </tr>
   <?php foreach($student as $s){?>
   <tr>
+  	<td align="center"><br><?php echo $s['stuCode']?></td>
     <td align="right"><br><?php echo $s['stuName']?></td>
     <td align="right"><br><?php echo $s['stuLastname']?></td>
    <td align="center"><a href="<?php echo base_url();?>index.php/matchs/matchstutotea/<?php echo $teacher[0]['teaId'];?>/<?php echo $s['stuId']?>">เลือก</a> </td>

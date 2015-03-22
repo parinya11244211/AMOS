@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+﻿<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Teachers extends CI_Controller {
 
 	function index()
@@ -10,7 +10,7 @@ class Teachers extends CI_Controller {
 		$datalogin = $this->session->userdata('loginData');
 		$this->Teacher->setTeaId($datalogin['id']);
 		$data['teainfo'] = $this->Teacher->getByPk();
-		$this->load->view('teainfo',$data);
+		$this->teaedit($data['teainfo'][0]['teaId']);
 	}
 	function teaInfoMatch()
 	{
@@ -54,17 +54,27 @@ class Teachers extends CI_Controller {
 		$teaAddress = $this->input->post('teaAddress');
 		$teaTel = $this->input->post('teaTel');
 		$teaEmail = $this->input->post('teaEmail');
+		$password1 = $this->input->post('password1');
+		$password2 = $this->input->post('password2');
+		$password3 = $this->input->post('password3');
+		$this->Teacher->setTeaId($teaId);
+		$passwordResult=$this->Teacher->getByPk();
 		
+		if($password2==$password3&&$passwordResult[0]['teaPassword']==MD5($password1)){
 		$this->Teacher->setTeaId($teaId);
 		$this->Teacher->setTeaName($teaName);
 		$this->Teacher->setTeaLastname($teaLastname);
 		$this->Teacher->setTeaAddress($teaAddress);
 		$this->Teacher->setTeaTel($teaTel);
 		$this->Teacher->setTeaEmail($teaEmail);
+		$this->Teacher->setTeaPassword($password2);
 		
 		$this->Teacher->teaUpdate();
 		$this->teaInfo();
+		}else {
+			echo "<script>alert('Password is NOT');</script>";
+			$this->teaEdit($teaId);
+			}
 	}
-	
 }
 ?>

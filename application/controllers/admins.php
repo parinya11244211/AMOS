@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+﻿<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Admins extends CI_Controller {
 
  function __construct()
@@ -9,10 +9,12 @@ class Admins extends CI_Controller {
 
 	function index()
 	{
+		
 		$this->load->view('homeadmin');
 	}
 	function importTea()
 	{
+		
 		$this->load->view('adminimporttea');
 	}
 	function fromImport(){
@@ -66,7 +68,8 @@ class Admins extends CI_Controller {
 							
 							}	
 				}
-				$this->load->view('adminimporttea');	
+				$this->load->view('adminimporttea');
+				echo "<script>alert('Password is NOT');</script>";	
 	}
 	
 	function importStu()

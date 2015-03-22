@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -158,13 +158,18 @@ body{
     <div class="herderTop">
 	<div id="innerTop">
        <a href="<?php echo base_url();?>index.php/home/logout"> <input id="logout" name="" type="Button" value="Logout" class="myButton"> </a>
-    </div>
+    &nbsp;&nbsp;&nbsp;&nbsp;<?php
+	$loginData=$this->session->userdata('loginData');
+	 echo $loginData['name']; ?>
+	&nbsp;&nbsp;&nbsp;&nbsp;<?php if( $loginData['status']=='t'){
+		echo 'Teacher';
+		} ?></div>
 	</div>
     <div id="herderBody">	
         <img src="<?php echo base_url();?>img/ncuIcon2.png">
     <div id='cssmenu'>
 		<ul>
-      		<li><a href='<?php echo base_url();?>index.php/teachers'>หน้าแรก</a></li>
+			<li><a href='<?php echo base_url();?>index.php/teachers'>หน้าแรก</a></li>
 			<li><a href='<?php echo base_url();?>index.php/teachers/teainfo'>ข้อมูลส่วนตัว</a></li>
 			<li><a href='<?php echo base_url();?>index.php/teachers/teainfomatch'>ข้อมูลนักศึกษา</a></li>
 			<li><a href='<?php echo base_url();?>index.php/teachers/teatime'>เวลานัดหมาย</a></li>

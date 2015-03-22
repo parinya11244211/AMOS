@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -158,7 +158,12 @@ body{
     <div class="herderTop">
 	<div id="innerTop">
        <a href="<?php echo base_url();?>index.php/home/logout"> <input id="logout" name="" type="Button" value="Logout" class="myButton"> </a>
-    </div>
+    &nbsp;&nbsp;&nbsp;&nbsp;<?php
+	$loginData=$this->session->userdata('loginData');
+	 echo $loginData['name']; ?>
+	&nbsp;&nbsp;&nbsp;&nbsp;<?php if( $loginData['status']=='t'){
+		echo 'Teacher';
+		} ?></div>
 	</div>
     <div id="herderBody">	
         <img src="<?php echo base_url();?>img/ncuIcon2.png">
@@ -175,24 +180,28 @@ body{
 	</div>	
     </div>
     
-    <div id="bodyInfo">
-    <table width="71%" height="63" border="0" align="center">
+    <div id="bodyInfo"><br><br>
+    <h2 align="center">ค้นหานักศึกษา<br></h2>
+    <h5 align="center"><input type="text" name="password1" id="password1" />&nbsp;&nbsp;
+    <input type="button" value="ค้นหา" /></h5>
+	<br>
+    <table width="71%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
   <tr>
-    <td>Code</td>
-    <td>Name</td>
-    <td>Lastname</td>
-    <td>Address</td>
-    <td>Tel</td>
-    <td>Email</td>
+    <td align="center">รหัสนักศึกษา</td>
+    <td align="center">ชื่อนักศึกษา</td>
+    <td align="center">นามสกุลนักศึกษา</td>
+    <td align="center">ที่อยู่นักศึกษา</td>
+    <td align="center">เบอร์โทรนักศึกษา</td>
+    <td align="center">อีเมล์นักศึกษา</td>
   </tr>
   <?php foreach($teainfo as $t){?>
   <tr>
-    <td><br><?php echo $t['stuCode']?></td>
-    <td><br><?php echo $t['stuName']?></td>
-    <td><br><?php echo $t['stuLastname']?></td>
-    <td><br><?php echo $t['stuAddress']?></td>
-    <td><br><?php echo $t['stuTel']?></td>
-    <td><br><?php echo $t['stuEmail']?></td>
+    <td align="center"><br><?php echo $t['stuCode']?></td>
+    <td align="left"><br><?php echo $t['stuName']?></td>
+    <td align="left"><br><?php echo $t['stuLastname']?></td>
+    <td align="center"><br><?php echo $t['stuAddress']?></td>
+    <td align="center"><br><?php echo $t['stuTel']?></td>
+    <td align="center"><br><a href="mailto:"><?php echo $t['stuEmail']?></td>
   </tr>
   <?php }?>
 </table>

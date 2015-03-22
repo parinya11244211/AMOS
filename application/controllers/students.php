@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+﻿<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Students extends CI_Controller {
 
 	function index()
@@ -10,7 +10,7 @@ class Students extends CI_Controller {
 		$datalogin = $this->session->userdata('loginData');
 		$this->Student->setStuId($datalogin['id']);
 		$data['stuinfo'] = $this->Student->getByPk();
-		$this->load->view('stuinfo',$data);
+		$this->stuedit($data['stuinfo'][0]['stuId']);
 	}
 	function stuInfoMatch()
 	{
@@ -39,23 +39,34 @@ class Students extends CI_Controller {
 		$this->load->view('stuedit',$data);
 	}
 	function stuEditAction(){
-	
+
 		$stuId = $this->input->post('stuId');
 		$stuName = $this->input->post('stuName');
 		$stuLastname = $this->input->post('stuLastname');
 		$stuAddress = $this->input->post('stuAddress');
 		$stuTel = $this->input->post('stuTel');
 		$stuEmail = $this->input->post('stuEmail');
+		$password1 = $this->input->post('password1');
+		$password2 = $this->input->post('password2');
+		$password3 = $this->input->post('password3');
+		$this->Student->setStuId($stuId);
+		$passwordResult=$this->Student->getByPk();
 		
+		if($password2==$password3&&$passwordResult[0]['stuPassword']==MD5($password1)){
 		$this->Student->setStuId($stuId);
 		$this->Student->setStuName($stuName);
 		$this->Student->setStuLastname($stuLastname);
 		$this->Student->setStuAddress($stuAddress);
 		$this->Student->setStuTel($stuTel);
 		$this->Student->setStuEmail($stuEmail);
+		$this->Student->setStuPassword($password2);
 		
 		$this->Student->stuUpdate();
 		$this->stuInfo();
+		}else {
+			echo "<script>alert('Password is NOT');</script>";
+			$this->stuEdit($stuId);
+			}
 	}
 }
 ?>
