@@ -159,12 +159,14 @@ body{
 
 <body>
     <div class="herderTop">
-	<div id="innerTop">
-         <a href="<?php echo base_url();?>index.php/home/logout"> <input id="logout" name="" type="Button" value="Logout" class="myButton"> </a>
+	<a href="<?php echo base_url();?>index.php/home/logout"> <input id="logout" name="" type="Button" value="Logout" class="myButton"> </a>
     &nbsp;&nbsp;&nbsp;&nbsp;<?php
 	$loginData=$this->session->userdata('loginData');
+	 echo "ยินดีต้อนรับคุณ&nbsp;&nbsp;&nbsp;";
 	 echo $loginData['name']; ?>
-	&nbsp;&nbsp;&nbsp;&nbsp;<?php if( $loginData['status']=='a'){
+	&nbsp;&nbsp;&nbsp;&nbsp;<?php 
+		echo "สถานะ&nbsp;&nbsp;&nbsp;";
+	if( $loginData['status']=='a'){
 		echo 'Admin';
 		} ?></div>
 	</div>

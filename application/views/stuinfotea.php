@@ -165,8 +165,10 @@ body{
          <a href="<?php echo base_url();?>index.php/home/logout"> <input id="logout" name="" type="Button" value="Logout" class="myButton"> </a>
     &nbsp;&nbsp;&nbsp;&nbsp;<?php
 	$loginData=$this->session->userdata('loginData');
+	echo "ยินดีต้อนรับนักศึกษา&nbsp;&nbsp;&nbsp;";
 	 echo $loginData['name']; ?>
 	&nbsp;&nbsp;&nbsp;&nbsp;<?php if( $loginData['status']=='s'){
+	echo "สถานะ&nbsp;&nbsp;&nbsp;";
 		echo 'Student';
 		} ?></div>
 	</div>
@@ -200,7 +202,7 @@ body{
     <td align="left"><br><?php echo $s['teaLastname']?></td>
     <td align="center"><br><?php echo $s['teaAddress']?></td>
     <td align="center"><br><?php echo $s['teaTel']?></td>
-    <td align="center"><br><a href="mailto:"><?php echo $s['teaEmail']?></td>
+    <td align="center"><br><a href="mailto:<?php $s['teaEmail'] ?>"><?php echo $s['teaEmail']?></td>
   </tr>
   <?php }?>
 </table>

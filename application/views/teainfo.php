@@ -163,8 +163,10 @@ body{
        <a href="<?php echo base_url();?>index.php/home/logout"> <input id="logout" name="" type="Button" value="Logout" class="myButton"> </a>
     &nbsp;&nbsp;&nbsp;&nbsp;<?php
 	$loginData=$this->session->userdata('loginData');
+	echo "ยินดีต้อนรับอาจารย์&nbsp;&nbsp;&nbsp;";
 	 echo $loginData['name']; ?>
 	&nbsp;&nbsp;&nbsp;&nbsp;<?php if( $loginData['status']=='t'){
+	echo "สถานะ&nbsp;&nbsp;&nbsp;";
 		echo 'Teacher';
 		} ?></div>
 	</div>

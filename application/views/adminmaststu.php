@@ -166,8 +166,11 @@ body{
          <a href="<?php echo base_url();?>index.php/home/logout"> <input id="logout" name="" type="Button" value="Logout" class="myButton"> </a>
     &nbsp;&nbsp;&nbsp;&nbsp;<?php
 	$loginData=$this->session->userdata('loginData');
+	 echo "ยินดีต้อนรับคุณ&nbsp;&nbsp;&nbsp;";
 	 echo $loginData['name']; ?>
-	&nbsp;&nbsp;&nbsp;&nbsp;<?php if( $loginData['status']=='a'){
+	&nbsp;&nbsp;&nbsp;&nbsp;<?php 
+		echo "สถานะ&nbsp;&nbsp;&nbsp;";
+	if( $loginData['status']=='a'){
 		echo 'Admin';
 		} ?></div>
 	</div>
@@ -240,8 +243,8 @@ body{
   <?php foreach($student as $s){?>
   <tr>
   	<td align="center"><br><?php echo $s['stuCode']?></td>
-    <td align="right"><br><?php echo $s['stuName']?></td>
-    <td align="right"><br><?php echo $s['stuLastname']?></td>
+    <td align="left"><br><?php echo $s['stuName']?></td>
+    <td align="left"><br><?php echo $s['stuLastname']?></td>
    <td align="center"><a href="<?php echo base_url();?>index.php/matchs/matchstutotea/<?php echo $teacher[0]['teaId'];?>/<?php echo $s['stuId']?>">เลือก</a> </td>
   </tr>
   <?php }?>

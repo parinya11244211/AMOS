@@ -9,12 +9,10 @@ class Admins extends CI_Controller {
 
 	function index()
 	{
-		
 		$this->load->view('homeadmin');
 	}
 	function importTea()
 	{
-		
 		$this->load->view('adminimporttea');
 	}
 	function fromImport(){
