@@ -9,8 +9,7 @@ class Home extends CI_Controller {
 	function logout()
 	{
 		$this->session->unset_userdata('loginData');
-		header( 'Location: '.base_url().'index.php/home/index/--LogoutComplese--' );
+		header( 'Location: '.base_url().'index.php/home/index/--Logout_Complese--' );
 	}
-	
 }
 ?>

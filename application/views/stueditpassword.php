@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Wlecome Teacher</title>
+<title>Wlecome Student</title>
     <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 	<script src="<?php echo base_url()?>js/jquery-1.11.1.min.js" type="text/javascript"></script>
     <script src="<?php echo base_url()?>js/script.js"></script>
@@ -78,6 +78,10 @@ input[type=text]:hover,input[type=text]:focus{
 	margin-left:-200px;
 	margin-right:5%;
 }
+#logout{
+		margin-top:15px;
+		margin-left:5px;
+	}
 </style>
 
 <script>
@@ -120,9 +124,9 @@ body{
 		margin-left:10%;
 		margin-right:10%;
 		min-width:1000px;
+		border-radius:7px;
 		background-color:#FFF;
 		opacity:0.9;
-		border-radius:7px;
 	}
 	
 #herderBody{
@@ -148,67 +152,66 @@ body{
 		margin-top:-70px;
 		margin-left:157px;
 	}
-#logout{
-		margin-top:15px;
-		margin-left:5px;
+#wlecome{
+		font-size:24px;
+		color:#F09;
+		padding:10px;
 	}
 </style>
 
 <body>
     <div class="herderTop">
 	<div id="innerTop">
-       <a href="<?php echo base_url();?>index.php/home/logout"> <input id="logout" name="" type="Button" value="Logout" class="myButton"> </a>
+         <a href="<?php echo base_url();?>index.php/home/logout"> <input id="logout" name="" type="Button" value="Logout" class="myButton"> </a>
     &nbsp;&nbsp;&nbsp;&nbsp;<?php
 	$loginData=$this->session->userdata('loginData');
-	echo "ยินดีต้อนรับอาจารย์&nbsp;&nbsp;&nbsp;";
+	echo "ยินดีต้อนรับนักศึกษา&nbsp;&nbsp;&nbsp;";
 	 echo $loginData['name']; ?>
-	&nbsp;&nbsp;&nbsp;&nbsp;<?php if( $loginData['status']=='t'){
+	&nbsp;&nbsp;&nbsp;&nbsp;<?php if( $loginData['status']=='s'){
 	echo "สถานะ&nbsp;&nbsp;&nbsp;";
-		echo 'Teacher';
+		echo 'Student';
 		} ?></div>
 	</div>
     <div id="herderBody">	
         <img src="<?php echo base_url();?>img/ncuIcon2.png">
     <div id='cssmenu'>
 		<ul>
-      		<li><a href='<?php echo base_url();?>index.php/teachers'>หน้าแรก</a></li>
-			<li><a href='<?php echo base_url();?>index.php/teachers/teainfo'>ข้อมูลส่วนตัว</a></li>
-			<li><a href='<?php echo base_url();?>index.php/teachers/teainfomatch'>ข้อมูลนักศึกษา</a></li>
-			<li><a href='<?php echo base_url();?>index.php/teachers/teatime'>เวลานัดหมาย</a></li>
-            <li><a href='<?php echo base_url();?>index.php/teachers/teaevent'>การนัดหมายของนักศึกษา</a></li>
-            <li><a href='<?php echo base_url();?>index.php/teachers/teadetail'>ใส่รายละเอียดข้อมูลการให้ปรึกษา</a></li>
-            <li><a href='<?php echo base_url();?>index.php/teachers/teareport'>รายงาน</a></li>
+       		<li><a href='<?php echo base_url();?>index.php/students'>หน้าแรก</a></li>
+			<li><a href='<?php echo base_url();?>index.php/students/stuinfo'>ข้อมูลส่วนตัว</a></li>
+			<li><a href='<?php echo base_url();?>index.php/students/stuinfomatch'>ข้อมูลอาจารย์ที่ปรึกษา</a></li>
+			<li><a href='<?php echo base_url();?>index.php/students/stuevent'>ทำรายการการนัดหมาย</a></li>
+            <li><a href='<?php echo base_url();?>index.php/students/stuscore'>ให้คะแนน</a></li>
 		</ul>
 	</div>	
     </div>
     
-    <div id="bodyInfo"><br><br>
-    <h2 align="center">ค้นหานักศึกษา<br></h2>
-    <form method="post" action="<?php echo base_url();?>index.php/teachers/teaSearch">
-    <h5 align="center">
-    <input type="text" name="teaSearch" id="teaSearch" />&nbsp;&nbsp;
-    <input type="submit" value="ค้นหา" /></h5></form>
-	<br>
-    <table width="71%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
-  <tr>
-    <td align="center">รหัสนักศึกษา</td>
-    <td align="center">ชื่อนักศึกษา</td>
-    <td align="center">นามสกุลนักศึกษา</td>
-    <td align="center">ที่อยู่นักศึกษา</td>
-    <td align="center">เบอร์โทรนักศึกษา</td>
-    <td align="center">อีเมล์นักศึกษา</td>
+    <div id="bodyInfo">
+    <br><br>
+   <form id="form1" name="form1" method="post" action="<?php echo base_url(); ?>index.php/students/stuEditPass">
+   <input type="hidden" name="stuId" id="stuId" value="<?php echo $id;?>" />
+	<br><br>
+<table width="500" border="0" align="center">
+   <tr>
+    <td>รหัสผ่านเดิม&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td><input type="text" name="password1" id="password1" /></td>
   </tr>
-  <?php foreach($teainfo as $t){?>
-  <tr>
-    <td align="center"><br><?php echo $t['stuCode']?></td>
-    <td align="left"><br><?php echo $t['stuName']?></td>
-    <td align="left"><br><?php echo $t['stuLastname']?></td>
-    <td align="center"><br><?php echo $t['stuAddress']?></td>
-    <td align="center"><br><?php echo $t['stuTel']?></td>
-    <td align="center"><br><a href="mailto:"><?php echo $t['stuEmail']?></td>
+   <tr>
+    <td>รหัสผ่านใหม่&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td><input type="text" name="password2" id="password2" /></td>
   </tr>
-  <?php }?>
+   <tr>
+    <td>ยืนยันรหัสผ่านใหม่&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td><input type="text" name="password3" id="password3" /></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>
+    <br><input type="submit" name="button" id="button" value="ยืนยัน" />
+    </td>
+  </tr>
 </table>
+
+</form>
     </div>
 </body>
 </html>

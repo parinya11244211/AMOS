@@ -212,12 +212,18 @@ class Teacher extends CI_Model {
 	}
 	function teaUpdate(){
 		$data = array(
-		'teaPassword' => MD5($this->getTeaPassword()),
 		'teaName' => $this->getTeaName(),
 		'teaLastname' => $this->getTeaLastname(),
 		'teaAddress' => $this->getTeaAddress(),
 		'teaTel' => $this->getTeaTel(),
 		'teaEmail' => $this->getTeaEmail());
+		
+		$this->db->where('teaId',$this->getTeaId());
+		$this->db->update('teacher',$data);
+	}
+	function teaUpdatePassword(){
+		$data = array(
+		'teaPassword' => MD5($this->getTeaPassword()));
 		
 		$this->db->where('teaId',$this->getTeaId());
 		$this->db->update('teacher',$data);

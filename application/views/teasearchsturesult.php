@@ -183,12 +183,7 @@ body{
     </div>
     
     <div id="bodyInfo"><br><br>
-    <h2 align="center">ค้นหานักศึกษา<br></h2>
-    <form method="post" action="<?php echo base_url();?>index.php/teachers/teaSearch">
-    <h5 align="center">
-    <input type="text" name="teaSearch" id="teaSearch" />&nbsp;&nbsp;
-    <input type="submit" value="ค้นหา" /></h5></form>
-	<br>
+    
     <table width="71%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
   <tr>
     <td align="center">รหัสนักศึกษา</td>
@@ -198,14 +193,14 @@ body{
     <td align="center">เบอร์โทรนักศึกษา</td>
     <td align="center">อีเมล์นักศึกษา</td>
   </tr>
-  <?php foreach($teainfo as $t){?>
+  <?php foreach($stuName as $n){?>
   <tr>
-    <td align="center"><br><?php echo $t['stuCode']?></td>
-    <td align="left"><br><?php echo $t['stuName']?></td>
-    <td align="left"><br><?php echo $t['stuLastname']?></td>
-    <td align="center"><br><?php echo $t['stuAddress']?></td>
-    <td align="center"><br><?php echo $t['stuTel']?></td>
-    <td align="center"><br><a href="mailto:"><?php echo $t['stuEmail']?></td>
+    <td align="center"><br><?php echo $n['stuCode']?></td>
+    <td align="left"><br><?php echo $n['stuName']?></td>
+    <td align="left"><br><?php echo $n['stuLastname']?></td>
+    <td align="center"><br><?php echo $n['stuAddress']?></td>
+    <td align="center"><br><?php echo $n['stuTel']?></td>
+    <td align="center"><br><a href="mailto:"><?php echo $n['stuEmail']?></td>
   </tr>
   <?php }?>
 </table>

@@ -212,7 +212,6 @@ class Student extends CI_Model {
 	}
 	function stuUpdate(){
 		$data = array(
-		'stuPassword' => MD5($this->getStuPassword()),
 		'stuName' => $this->getStuName(),
 		'stuLastname' => $this->getStuLastname(),
 		'stuAddress' => $this->getStuAddress(),
@@ -222,6 +221,14 @@ class Student extends CI_Model {
 		$this->db->where('stuId',$this->getStuId());
 		$this->db->update('student',$data);
 	}
+	function stuUpdatePassword(){
+		$data = array(
+		'stuPassword' => MD5($this->getStuPassword()));
+		
+		$this->db->where('stuId',$this->getStuId());
+		$this->db->update('student',$data);
+	}
+	
 	function addStu(){
 	 $data = array(
 	 	'stuUsername' => $this->getStuUsername(),
@@ -250,5 +257,11 @@ class Student extends CI_Model {
      }
 	return $insert;
  }
+  function stuSearch()
+	{	
+		$this->db->like('stuName',$this->getStuName());
+		$query = $this->db->get('student')->result_array();
+		return $query;
+	}
 }
 ?>

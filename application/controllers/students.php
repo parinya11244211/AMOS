@@ -46,27 +46,47 @@ class Students extends CI_Controller {
 		$stuAddress = $this->input->post('stuAddress');
 		$stuTel = $this->input->post('stuTel');
 		$stuEmail = $this->input->post('stuEmail');
-		$password1 = $this->input->post('password1');
-		$password2 = $this->input->post('password2');
-		$password3 = $this->input->post('password3');
-		$this->Student->setStuId($stuId);
-		$passwordResult=$this->Student->getByPk();
 		
-		if($password2==$password3&&$passwordResult[0]['stuPassword']==MD5($password1)){
+
 		$this->Student->setStuId($stuId);
 		$this->Student->setStuName($stuName);
 		$this->Student->setStuLastname($stuLastname);
 		$this->Student->setStuAddress($stuAddress);
 		$this->Student->setStuTel($stuTel);
 		$this->Student->setStuEmail($stuEmail);
-		$this->Student->setStuPassword($password2);
+		
 		
 		$this->Student->stuUpdate();
 		$this->stuInfo();
-		}else {
-			echo "<script>alert('Password is NOT');</script>";
-			$this->stuEdit($stuId);
-			}
+		
 	}
+	function stuEditPass(){
+		$stuId = $this->input->post('stuId');
+		$this->Student->setStuId($stuId);
+		$passwordResult=$this->Student->getByPk();
+		$password1 = $this->input->post('password1');
+		$password2 = $this->input->post('password2');
+		$password3 = $this->input->post('password3');
+		
+		if($passwordResult){
+			
+				if($password2==$password3&&$passwordResult[0]['stuPassword']==MD5($password1)){
+					$this->Student->setStuPassword($password2);
+					$this->Student->stuUpdatePassword();
+					}else {
+			echo "<script>alert('Password Fail');</script>";
+			}
+					}else {
+					echo "<script>alert('Password');</script>";
+			$this->stuEdit($stuId);	
+			}
+			$this->stuEdit($stuId);
+	}
+		function stuEditPassword($stuId){
+			$data['id']=$stuId;
+			
+		$this->load->view('stueditpassword',$data);
+		}
+	
 }
 ?>

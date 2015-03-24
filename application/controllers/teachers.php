@@ -54,27 +54,52 @@ class Teachers extends CI_Controller {
 		$teaAddress = $this->input->post('teaAddress');
 		$teaTel = $this->input->post('teaTel');
 		$teaEmail = $this->input->post('teaEmail');
-		$password1 = $this->input->post('password1');
-		$password2 = $this->input->post('password2');
-		$password3 = $this->input->post('password3');
-		$this->Teacher->setTeaId($teaId);
-		$passwordResult=$this->Teacher->getByPk();
 		
-		if($password2==$password3&&$passwordResult[0]['teaPassword']==MD5($password1)){
 		$this->Teacher->setTeaId($teaId);
 		$this->Teacher->setTeaName($teaName);
 		$this->Teacher->setTeaLastname($teaLastname);
 		$this->Teacher->setTeaAddress($teaAddress);
 		$this->Teacher->setTeaTel($teaTel);
 		$this->Teacher->setTeaEmail($teaEmail);
-		$this->Teacher->setTeaPassword($password2);
 		
 		$this->Teacher->teaUpdate();
 		$this->teaInfo();
-		}else {
-			echo "<script>alert('Password is NOT');</script>";
-			$this->teaEdit($teaId);
+	
+		
 			}
-	}
+	function teaEditPass(){
+		$teaId = $this->input->post('teaId');
+		$this->Teacher->setTeaId($teaId);
+		$passwordResult=$this->Teacher->getByPk();
+		$password1 = $this->input->post('password1');
+		$password2 = $this->input->post('password2');
+		$password3 = $this->input->post('password3');
+		
+		if($passwordResult){
+			
+				if($password2==$password3&&$passwordResult[0]['teaPassword']==MD5($password1)){
+					$this->Teacher->setTeaPassword($password2);
+					$this->Teacher->teaUpdatePassword();
+					}else {
+			echo "<script>alert('Password Fail');</script>";
+			}
+					}else {
+					echo "<script>alert('Password');</script>";
+			$this->teaEdit($teaId);	
+			}
+			$this->teaEdit($teaId);
+		}
+		function teaEditPassword($teaId){
+			$data['id']=$teaId;
+			
+		$this->load->view('teaeditpassword',$data);
+		}
+		function teaSearch()
+		{
+		$stuName = $this->input->post('teaSearch');
+		$this->Student->setStuName($stuName);
+		$data['stuName']=$this->Student->stuSearch();
+		$this->load->view('teasearchsturesult',$data);
+		}
 }
 ?>

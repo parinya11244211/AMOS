@@ -213,21 +213,9 @@ body{
     <td>อีเมล์:</td>
     <td><input type="text" name="stuEmail" id="stuEmail" value="<?php echo $s['stuEmail'];?>" /></td>
   </tr>
-   <tr>
-    <td>รหัสผ่านเดิม&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-    <td><input type="text" name="password1" id="password1" /></td>
-  </tr>
-   <tr>
-    <td>รหัสผ่านใหม่&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-    <td><input type="text" name="password2" id="password2" /></td>
-  </tr>
-   <tr>
-    <td>ยืนยันรหัสผ่านใหม่&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-    <td><input type="text" name="password3" id="password3" /></td>
-  </tr>
   <tr>
   <tr>
-    <td>&nbsp;</td>
+    <td><a href='<?php echo base_url();?>index.php/students/stuEditPassword/<?php echo $s['stuId'];?>'>แก้ไขรหัสผ่าน</a></td>
     <td>
     <br>
       <input type="submit" name="button" id="button" value="ยืนยัน" />
