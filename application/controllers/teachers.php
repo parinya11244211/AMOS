@@ -26,7 +26,8 @@ class Teachers extends CI_Controller {
 	}
 	function teaTime()
 	{
-		$this->load->view('teatime');
+		$data['showeventtea'] = $this->Teacher->showEventTea();
+		$this->load->view('teatime',$data);
 	}
 	function teaEvent()
 	{
@@ -89,11 +90,15 @@ class Teachers extends CI_Controller {
 			}
 			$this->teaEdit($teaId);
 		}
+		
+		
 		function teaEditPassword($teaId){
 			$data['id']=$teaId;
 			
 		$this->load->view('teaeditpassword',$data);
 		}
+		
+		
 		function teaSearch()
 		{
 		$stuName = $this->input->post('teaSearch');
@@ -101,5 +106,47 @@ class Teachers extends CI_Controller {
 		$data['stuName']=$this->Student->stuSearch();
 		$this->load->view('teasearchsturesult',$data);
 		}
+		
+		function addEventTea()
+		{
+			$datalogin = $this->session->userdata('loginData');
+			$teaId = $datalogin['id'];
+			$teaEventDay = $this->input->post('teaEventDay');
+			$teaEventTime = $this->input->post('teaEventTime');
+			$teaEventRoom = $this->input->post('teaEventRoom');
+			
+			$repeat = $this->Teacher->showEventTea();
+			$cseck = 0;
+			foreach ($repeat as $r){
+				if ($r['teaEventDay'] == $teaEventDay && $r['teaEventTime'] != $teaEventTime){
+					$cseck = 1; 
+				} else if ($r['teaEventDay'] == $teaEventDay && $r['teaEventTime'] == $teaEventTime){
+					$cseck = 2; 
+				}
+			} 
+			if($cseck == 0 || $cseck == 1){
+					$this->Teacher->setTeaId($teaId);
+					$this->Teacher->setTeaEventDay($teaEventDay);
+					$this->Teacher->setTeaEventTime($teaEventTime);
+					$this->Teacher->setTeaEventRoom($teaEventRoom);
+					
+					$this->Teacher->addEventTea();	
+					
+					echo "<script>
+				window.location.href='".base_url()."index.php/teachers/teaTime';
+				</script>";	
+			} else {
+				echo "<script>alert('DATE REPEAT');
+				window.location.href='".base_url()."index.php/teachers/teaTime';
+				</script>";
+			}
+			
+		}
+		function deleventtea($id)
+	{
+		$this->Teacher->delEventTea($id);
+		
+		header( 'Location: '.base_url().'index.php/teachers/teaTime' );
+	}
 }
 ?>

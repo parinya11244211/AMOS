@@ -226,7 +226,7 @@ body{
   	<td align="center"><br><?php echo $s['stuCode']?></td>
     <td align="left"><br><?php echo $s['stuName']?></td>
     <td align="left"><br><?php echo $s['stuLastname']?></td>
-   <td align="center"><a href="<?php echo base_url();?>index.php/matchs/delStu/<?php echo $teacher[0]['teaId'];?>/<?php echo $s['matchId']?>">เลือก</a> </td>
+   <td align="center"><a href="<?php echo base_url();?>index.php/matchs/delStu/<?php echo $teacher[0]['teaId'];?>/<?php echo $s['matchId']?>">ยกเลิก</a> </td>
   </tr>
   <?php }?>
 </table>

@@ -181,7 +181,7 @@ class Admin extends CI_Model {
 	{
 		return $this->db->get('student')->result_array();
 	}
-		function delmatch($id)
+	function delmatch($id)
 	{
 		$this->db->where('match.matchId',$id);
 		return $this->db->delete('match');

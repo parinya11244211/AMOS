@@ -176,6 +176,7 @@ body{
 		<ul>
       		<li><a href='<?php echo base_url();?>index.php/teachers'>หน้าแรก</a></li>
 			<li><a href='<?php echo base_url();?>index.php/teachers/teainfo'>ข้อมูลส่วนตัว</a></li>
+            <ul><a href='<?php echo base_url();?>index.php/teachers/teainfo'>ข้อมูลส่วนตัว</a></ul>
 			<li><a href='<?php echo base_url();?>index.php/teachers/teainfomatch'>ข้อมูลนักศึกษา</a></li>
 			<li><a href='<?php echo base_url();?>index.php/teachers/teatime'>เวลานัดหมาย</a></li>
             <li><a href='<?php echo base_url();?>index.php/teachers/teaevent'>การนัดหมายของนักศึกษา</a></li>

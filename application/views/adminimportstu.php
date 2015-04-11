@@ -190,10 +190,13 @@ body{
    <div id="bodyInfo" align="center">
     <br><br>
     <h2>นำเข้าข้อมูลนักศึกษา</h2>
-    <br><br>
+    <br>
 <form id="form1" name="form1" method="post" action="<?php echo base_url();?>index.php/admins/importStudent" enctype="multipart/form-data">
-  <input type="file" name="exc" id="exc" />
-  <input type="submit" name="button" id="button" value="นำเข้าข้อมูล" />
+  <p>
+    <input type="file" name="exc" id="exc" />
+    <input type="submit" name="button" id="button" value="นำเข้าข้อมูล" />
+  </p>
+  <p><font size="-1">กรุณาเลือกไฟล์ Excal สำหรับข้อมูลนักศึกษา ที่มีนามสกุล .xls เท่านั้น</font></p>
 </form>
     </div>
 </body>

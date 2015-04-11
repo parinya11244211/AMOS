@@ -18,6 +18,10 @@ class Teacher extends CI_Model {
     var $teaStatus ; ######  สถานะ  ######
 	var $teaBraName ;
 	var $teaFacName ;
+	var $teaEventDay ; ######  เพิ่มวัน  ######
+    var $teaEventTime ; ######  เพิ่มเวลา  ######
+    var $teaEventRoom ; ######  เพิ่มห้อ  ######
+	
 ###### End Attribute  ###### 
 
  ###### SET : $teaId ######
@@ -180,7 +184,48 @@ class Teacher extends CI_Model {
     function getTeaFacName(){
         return $this->teaFacName; 
      }
-###### End GET : $stuStatus ###### 
+###### End GET : $stuStatus ######
+###### SET : $teaEventDay ######
+    function setTeaEventDay($teaEventDay){
+        $this->teaEventDay = $teaEventDay; 
+     }
+###### End SET : $teaEventDay ###### 
+
+
+###### GET : $teaEventDay ######
+    function getTeaEventDay(){
+        return $this->teaEventDay; 
+     }
+###### End GET : $teaEventDay ###### 
+
+
+ ###### SET : $teaEventTime ######
+    function setTeaEventTime($teaEventTime){
+        $this->teaEventTime = $teaEventTime; 
+     }
+###### End SET : $teaEventTime ###### 
+
+
+###### GET : $teaEventTime ######
+    function getTeaEventTime(){
+        return $this->teaEventTime; 
+     }
+###### End GET : $teaEventTime ###### 
+
+
+ ###### SET : $teaEventRoom ######
+    function setTeaEventRoom($teaEventRoom){
+        $this->teaEventRoom = $teaEventRoom; 
+     }
+###### End SET : $teaEventRoom ###### 
+
+
+###### GET : $teaEventRoom ######
+    function getTeaEventRoom(){
+        return $this->teaEventRoom; 
+     }
+###### End GET : $teaEventRoom ###### 
+
 
 	function login(){
 		$this->db->where('teaUsername',$this->getTeaUsername());
@@ -256,5 +301,29 @@ class Teacher extends CI_Model {
      }
 	return $insert;
  }
+ function addEventTea(){
+	 $data = array(
+	 	'teaEventDay' => $this->getTeaEventDay(),
+		'teaEventTime' => $this->getTeaEventTime(),
+		'teaEventRoom' => $this->getTeaEventRoom(),
+		'teaId' => $this->getTeaId()
+		);
+		
+		$this->db->insert('teaevent',$data);
+		
+		}
+	function showEventTea(){
+		
+			$datalogin = $this->session->userdata('loginData');
+			$teaId = $datalogin['id'];
+			$this->db->where('teaId',$teaId);
+			$this->db->order_by('teaEventTime','ASC');
+			return	$this->db->get('teaevent')->result_array();
+		}
+	function delEventTea($id)
+	{
+		$this->db->where('teaevent.teaEventId',$id);
+		return $this->db->delete('teaevent');
+	}
 }
 ?>
