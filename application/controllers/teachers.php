@@ -31,7 +31,8 @@ class Teachers extends CI_Controller {
 	}
 	function teaEvent()
 	{
-		$this->load->view('teaevent');
+		$data['stuevent'] = $this->Event->showEvent();
+		$this->load->view('teaevent',$data);
 	}
 	function teaDetail()
 	{
@@ -91,16 +92,15 @@ class Teachers extends CI_Controller {
 			$this->teaEdit($teaId);
 		}
 		
-		
 		function teaEditPassword($teaId){
-			$data['id']=$teaId;
 			
-		$this->load->view('teaeditpassword',$data);
+			$data['id']=$teaId;
+			$this->load->view('teaeditpassword',$data);
 		}
 		
 		
-		function teaSearch()
-		{
+		function teaSearch(){
+			
 		$stuName = $this->input->post('teaSearch');
 		$this->Student->setStuName($stuName);
 		$data['stuName']=$this->Student->stuSearch();
@@ -139,14 +139,17 @@ class Teachers extends CI_Controller {
 				echo "<script>alert('DATE REPEAT');
 				window.location.href='".base_url()."index.php/teachers/teaTime';
 				</script>";
-			}
-			
+			}	
 		}
-		function deleventtea($id)
-	{
+		function deleventtea($id){
+			
 		$this->Teacher->delEventTea($id);
-		
 		header( 'Location: '.base_url().'index.php/teachers/teaTime' );
+	}
+		function deleventstu($id){
+			
+		$this->Teacher->delEventStu($id);
+		header( 'Location: '.base_url().'index.php/teachers/teaevent' );
 	}
 }
 ?>

@@ -18,6 +18,7 @@ class Student extends CI_Model {
     var $stuStatus ; ######  สถานะ  ######
 	var $stuBraName ;
 	var $stuFacName ;
+	var $eventTopic ; ######  เพิ่มห้อ  ######
 ###### End Attribute  ###### 
 
  ###### SET : $stuId ######
@@ -182,6 +183,19 @@ class Student extends CI_Model {
      }
 ###### End GET : $stuStatus ###### 
 
+ ###### SET : $teaEventRoom ######
+    function setEventTopic($eventTopic){
+        $this->eventTopic = $eventTopic; 
+     }
+###### End SET : $teaEventRoom ###### 
+
+
+###### GET : $teaEventRoom ######
+    function getEventTopic(){
+        return $this->eventTopic; 
+     }
+###### End GET : $teaEventRoom ###### 
+
 	function login(){
 		$this->db->where('stuUsername',$this->getStuUsername());
 		$this->db->where('stuPassword',MD5($this->getStuPassword()));
@@ -262,6 +276,18 @@ class Student extends CI_Model {
 		$this->db->like('stuName',$this->getStuName());
 		$query = $this->db->get('student')->result_array();
 		return $query;
+	}
+	function getByTeaEvent()
+	{
+		$datalogin = $this->session->userdata('loginData');
+		$this->db->where('stuId',$datalogin['id']);
+		$data = $this->db->get('match')->result_array();
+	
+		$this->db->join('teaevent','teaevent.teaId = teacher.teaId');
+		$this->db->where('teacher.teaId',$data[0]['teaId']);
+		$this->db->order_by('teaevent.teaEventDay','ASC');
+		$data = $this->db->get('teacher')->result_array();
+		return $data;
 	}
 }
 ?>

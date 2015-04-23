@@ -21,6 +21,7 @@ class Teacher extends CI_Model {
 	var $teaEventDay ; ######  เพิ่มวัน  ######
     var $teaEventTime ; ######  เพิ่มเวลา  ######
     var $teaEventRoom ; ######  เพิ่มห้อ  ######
+	var $stuId ; ######  เพิ่มห้อ  ######
 	
 ###### End Attribute  ###### 
 
@@ -224,8 +225,20 @@ class Teacher extends CI_Model {
     function getTeaEventRoom(){
         return $this->teaEventRoom; 
      }
-###### End GET : $teaEventRoom ###### 
+###### End GET : $teaEventRoom ######
 
+ ###### SET : $stuId ######
+    function setStuId($stuId){
+        $this->stuId = $stuId; 
+     }
+###### End SET : $stuId ###### 
+
+
+###### GET : $stuId ######
+    function getStuId(){
+        return $this->stuId; 
+     }
+###### End GET : $stuId ######
 
 	function login(){
 		$this->db->where('teaUsername',$this->getTeaUsername());
@@ -325,5 +338,29 @@ class Teacher extends CI_Model {
 		$this->db->where('teaevent.teaEventId',$id);
 		return $this->db->delete('teaevent');
 	}
+	
+	function delEventStu($id)
+	{
+		$this->db->where('event.eventId',$id);
+		return $this->db->delete('event');
+	}
+	
+	function getEventStu(){
+		
+		$this->db->where('teacher.teaId ',$this->getTeaId()); 
+		$data = $this->db->get('teacher')->result_array();
+		return $data;
+		
+	}
+	function getEvent(){
+		
+		$this->db->where('teacher.teaId ',$this->getTeaId()); 
+		$data = $this->db->get('teacher')->result_array();
+		return $data;
+		
+	}
 }
+
+ 
+
 ?>

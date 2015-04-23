@@ -178,6 +178,11 @@ body{
 	$color[4] = "tableshirts";
 	$color[5] = "tableblue";
 	
+	$topic[1] = "การเรียน";
+	$topic[2] = "กิจกรรม";
+	$topic[3] = "กยศ";
+	$topic[4] = "ครอบครัว"
+	
 	 ?>
 
 <body>
@@ -208,27 +213,37 @@ body{
     
     <div id="bodyInfo">
 <br><br><br>
-<form method="post" > 
-<table class="" width="71%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
-
+<form method="post" action="<?php echo base_url();?>index.php/events/addTopic">
+<table width="71%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
   <tr>
+  	<td align="center">เลือกหัวข้อ</td>
     <td align="center">วัน</td>
     <td align="center">เวลา</td>
     <td align="center">ห้อง</td>
-    <td align="center">สถานะ</td>
-    <td align="center">เลือกหัวข้อปรึกษา</td>
+    <td align="center">ปรึกษา</td>
   </tr>
-    <tr><?php foreach($teaEventDay as $e){?>
+ 
+   <tr><?php foreach($showevent as $e){?> 
+   <td align="center">
+	<select name="eventTopic">
+		<option value="1">การเรียน</option>
+		<option value="2">กิจกรรม</option>
+		<option value="3">กยศ.</option>
+		<option value="4">ครอบครัว</option>
+	</select>
+    </td>
     <td align="center"><?php echo $date[$e['teaEventDay']];?></td>
     <td align="center"><?php echo $e['teaEventTime'];?></td>
     <td align="center"><?php echo $e['teaEventRoom'];?></td>
-    <td align="center"><?php echo $status[$e['teaEventStatus']];?></td>
-    <td align="center"><a href='<?php echo base_url();?>index.php/events/selectTopic/<?php echo $e['teaEventId'] ?>'>ดูหัวข้อปรึกษา</a></td>
+    <td align="center"><input type="submit" value="บันทึก">
+    <input name="teaEventDay" type="hidden" value="<?php echo $e['teaEventDay'];?>">
+    <input name="teaEventTime" type="hidden" value="<?php echo $e['teaEventTime'];?>">
+    <input name="teaEventRoom" type="hidden" value="<?php echo $e['teaEventRoom'];?>">
+    <input name="teaEventId" type="hidden" value="<?php echo $e['teaEventId'];?>"></td>
     </tr>
        <?php }?>
- 
-</table>
-</form>
+       </table>
+      </form>
     </div>
 </body>
 </html>
