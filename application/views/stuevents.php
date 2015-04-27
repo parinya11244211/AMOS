@@ -206,44 +206,52 @@ body{
 			<li><a href='<?php echo base_url();?>index.php/students/stuinfo'>ข้อมูลส่วนตัว</a></li>
 			<li><a href='<?php echo base_url();?>index.php/students/stuinfomatch'>ข้อมูลอาจารย์ที่ปรึกษา</a></li>
 			<li><a href='<?php echo base_url();?>index.php/students/stuevent'>ทำรายการการนัดหมาย</a></li>
-            <li><a href='<?php echo base_url();?>index.php/students/stuscore'>ให้คะแนน</a></li>
+            <li><a href='<?php echo base_url();?>index.php/Events/infoStar'>ให้คะแนน</a></li>
 		</ul>
 	</div>	
     </div>
     
     <div id="bodyInfo">
 <br><br><br>
-<form method="post" action="<?php echo base_url();?>index.php/events/addTopic">
-<table width="71%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
-  <tr>
-  	<td align="center">เลือกหัวข้อ</td>
-    <td align="center">วัน</td>
-    <td align="center">เวลา</td>
-    <td align="center">ห้อง</td>
-    <td align="center">ปรึกษา</td>
-  </tr>
- 
-   <tr><?php foreach($showevent as $e){?> 
-   <td align="center">
-	<select name="eventTopic">
+      
+     <form method="post" action="<?php echo base_url();?>index.php/events/addTopic">
+      <table width="30%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
+		<tr><?php foreach($showevent as $e){?>
+        	<td>&nbsp;&nbsp;&nbsp;อาจารย์ที่ปรึกษา</td>
+            <td>&nbsp;&nbsp;&nbsp;<?php echo $e['teaName'];?>&nbsp;&nbsp;&nbsp;<?php echo $e['teaLastname'];?></td>
+        </tr>
+        <tr>
+        	<td>&nbsp;&nbsp;&nbsp;เลือกหัวข้อ</td>
+            <td>&nbsp;
+    <select name="eventTopic">
 		<option value="1">การเรียน</option>
 		<option value="2">กิจกรรม</option>
 		<option value="3">กยศ.</option>
 		<option value="4">ครอบครัว</option>
-	</select>
-    </td>
-    <td align="center"><?php echo $date[$e['teaEventDay']];?></td>
-    <td align="center"><?php echo $e['teaEventTime'];?></td>
-    <td align="center"><?php echo $e['teaEventRoom'];?></td>
-    <td align="center"><input type="submit" value="บันทึก">
-    <input name="teaEventDay" type="hidden" value="<?php echo $e['teaEventDay'];?>">
+	</select></td>
+        </tr>
+        <tr>
+        	<td>&nbsp;&nbsp;&nbsp;วัน</td>
+            <td>&nbsp;&nbsp;&nbsp;<?php echo $date[$e['teaEventDay']];?></td>
+        </tr>
+        <tr>
+        	<td>&nbsp;&nbsp;&nbsp;เวลา</td>
+            <td>&nbsp;&nbsp;&nbsp;<?php echo $e['teaEventTime'];?></td>
+        </tr>
+        <tr>
+        	<td>&nbsp;&nbsp;&nbsp;ห้อง</td>
+            <td>&nbsp;&nbsp;&nbsp;<?php echo $e['teaEventRoom'];?></td>
+        </tr>
+          <tr>
+        	<td>&nbsp;&nbsp;&nbsp;ปรึกษา</td>
+            <td align="left">&nbsp;&nbsp;&nbsp;<input type="submit" value="บันทึก">
+            <input name="teaEventDay" type="hidden" value="<?php echo $e['teaEventDay'];?>">
     <input name="teaEventTime" type="hidden" value="<?php echo $e['teaEventTime'];?>">
     <input name="teaEventRoom" type="hidden" value="<?php echo $e['teaEventRoom'];?>">
     <input name="teaEventId" type="hidden" value="<?php echo $e['teaEventId'];?>"></td>
-    </tr>
-       <?php }?>
+        </tr><?php }?>
        </table>
-      </form>
+         </form>
     </div>
 </body>
 </html>

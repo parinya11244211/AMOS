@@ -201,7 +201,7 @@ body{
 			<li><a href='<?php echo base_url();?>index.php/students/stuinfo'>ข้อมูลส่วนตัว</a></li>
 			<li><a href='<?php echo base_url();?>index.php/students/stuinfomatch'>ข้อมูลอาจารย์ที่ปรึกษา</a></li>
 			<li><a href='<?php echo base_url();?>index.php/students/stuevent'>ทำรายการการนัดหมาย</a></li>
-            <li><a href='<?php echo base_url();?>index.php/students/stuscore'>ให้คะแนน</a></li>
+            <li><a href='<?php echo base_url();?>index.php/Events/infoStar'>ให้คะแนน</a></li>
 		</ul>
 	</div>	
     </div>
@@ -210,7 +210,10 @@ body{
 <br><br><br>
 <form method="post" > 
 <table class="" width="71%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
-
+<tr><?php foreach($teaEventDay as $e){?>
+    <td colspan="2" align="center">อาจารย์ที่ปรึกษา</td>
+    <td colspan="3" align="left">&nbsp;&nbsp;&nbsp;<?php echo $e['teaName'];?>&nbsp;&nbsp;&nbsp;<?php echo $e['teaLastname'];?></td>
+    </tr>
   <tr>
     <td align="center">วัน</td>
     <td align="center">เวลา</td>
@@ -218,15 +221,13 @@ body{
     <td align="center">สถานะ</td>
     <td align="center">เลือกหัวข้อปรึกษา</td>
   </tr>
-    <tr><?php foreach($teaEventDay as $e){?>
+    <tr>
     <td align="center"><?php echo $date[$e['teaEventDay']];?></td>
     <td align="center"><?php echo $e['teaEventTime'];?></td>
     <td align="center"><?php echo $e['teaEventRoom'];?></td>
     <td align="center"><?php echo $status[$e['teaEventStatus']];?></td>
     <td align="center"><a href='<?php echo base_url();?>index.php/events/selectTopic/<?php echo $e['teaEventId'] ?>'>ดูหัวข้อปรึกษา</a></td>
-    </tr>
-       <?php }?>
- 
+    </tr><?php }?>
 </table>
 </form>
     </div>

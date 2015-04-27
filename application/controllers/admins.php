@@ -45,7 +45,6 @@ class Admins extends CI_Controller {
 						}
 					}
 				}
-						
 
 				for($i=0;$i<count($namedDataArray);$i++){
 							

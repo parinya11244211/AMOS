@@ -180,7 +180,7 @@ body{
 			<li><a href='<?php echo base_url();?>index.php/students/stuinfo'>ข้อมูลส่วนตัว</a></li>
 			<li><a href='<?php echo base_url();?>index.php/students/stuinfomatch'>ข้อมูลอาจารย์ที่ปรึกษา</a></li>
 			<li><a href='<?php echo base_url();?>index.php/students/stuevent'>ทำรายการการนัดหมาย</a></li>
-            <li><a href='<?php echo base_url();?>index.php/students/stuscore'>ให้คะแนน</a></li>
+            <li><a href='<?php echo base_url();?>index.php/Events/infoStar'>ให้คะแนน</a></li>
 		</ul>
 	</div>	
     </div>
@@ -198,8 +198,8 @@ body{
   <?php foreach($stuinfo as $s){?>
   <tr>
     <td align="center"><br><?php echo $s['teaCode']?></td>
-    <td align="left"><br><?php echo $s['teaName']?></td>
-    <td align="left"><br><?php echo $s['teaLastname']?></td>
+    <td align="center"><br><?php echo $s['teaName']?></td>
+    <td align="center"><br><?php echo $s['teaLastname']?></td>
     <td align="center"><br><?php echo $s['teaAddress']?></td>
     <td align="center"><br><?php echo $s['teaTel']?></td>
     <td align="center"><br><a href="mailto:<?php $s['teaEmail'] ?>"><?php echo $s['teaEmail']?></td>

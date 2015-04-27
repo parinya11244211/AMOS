@@ -12,6 +12,20 @@
     <link href="<?php echo base_url()?>css/jquery.bxslider.css" rel="stylesheet" />
     <link rel="stylesheet" href="<?php echo base_url()?>css/slideBoxy.css">
     <link rel="stylesheet" href="<?php echo base_url()?>css/styles.css">
+    <!-- Add mousewheel plugin (this is optional) -->
+<script type="text/javascript" src="<?php echo base_url()?>fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+
+<!-- Add fancyBox -->
+<link rel="stylesheet" href="<?php echo base_url()?>fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+<script type="text/javascript" src="<?php echo base_url()?>fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+<!-- Optionally add helpers - button, thumbnail and/or media -->
+<link rel="stylesheet" href="<?php echo base_url()?>fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" media="screen" />
+<script type="text/javascript" src="<?php echo base_url()?>fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+<script type="text/javascript" src="<?php echo base_url()?>fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+
+<link rel="stylesheet" href="<?php echo base_url()?>fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css" media="screen" />
+<script type="text/javascript" src="<?php echo base_url()?>fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
 <style>
 .myButton {
 	-moz-box-shadow: 3px 4px 0px 0px #347327;
@@ -91,6 +105,19 @@ $(document).ready(function(){
 	slideBoxy(imgName,50,399,600,1,'3'); 
 	// การเรียกใช้ slideBoxy(  picName  ,  ขนาดลูกศร  ,  ความสูงของรูปทั้งหมด  ,  ความกว้างของรูปทั้งหมด  ,  ขนาดของเฟรม ใส่เป็น เท่า  , วินาทีที่จะเปลี่ยนรูปอัตโนมัติ);
 		 });
+		 
+ $(".various").fancybox({
+		maxWidth	: 800,
+		maxHeight	: 600,
+		fitToView	: false,
+		width		: '70%',
+		height		: '70%',
+		autoSize	: false,
+		closeClick	: false,
+		openEffect	: 'none',
+		closeEffect	: 'none'
+	});
+		 
 </script>
 
 </header>
@@ -153,7 +180,32 @@ body{
 		margin-left:5px;
 	}
 </style>
-
+<?php 
+	$date[1] = "จันทร์";
+	$date[2] = "อัง‬คาร";
+	$date[3] = "พุธ";
+	$date[4] = "พฤหัสบดี";
+	$date[5] = "ศุกร์";
+	
+	$status[1] = "สามารถนัดได้";
+	$status[2] = "รอการตอบรับ";
+	$status[3] = "รอคำแนะนำ";
+	$status[4] = "ยกเลิกนัด";
+	$status[5] = "รอคะแนน";
+	$status[6] = "เสร็จสิ้น";
+	
+	$color[1] = "tableyellow";
+	$color[2] = "tablepink";
+	$color[3] = "tablegreen";
+	$color[4] = "tableshirts";
+	$color[5] = "tableblue";
+	
+	$topic[1] = "การเรียน";
+	$topic[2] = "กิจกรรม";
+	$topic[3] = "กยศ";
+	$topic[4] = "ครอบครัว"
+	
+	 ?>
 <body>
     <div class="herderTop">
 	<div id="innerTop">
@@ -176,14 +228,40 @@ body{
 			<li><a href='<?php echo base_url();?>index.php/teachers/teainfomatch'>ข้อมูลนักศึกษา</a></li>
 			<li><a href='<?php echo base_url();?>index.php/teachers/teatime'>เวลานัดหมาย</a></li>
             <li><a href='<?php echo base_url();?>index.php/teachers/teaevent'>การนัดหมายของนักศึกษา</a></li>
-            <li><a href='<?php echo base_url();?>index.php/teachers/teadetail'>ใส่รายละเอียดข้อมูลการให้ปรึกษา</a></li>
+            <li><a href='<?php echo base_url();?>index.php/Events/infoEvent'>ใส่รายละเอียดข้อมูลการให้ปรึกษา</a></li>
             <li><a href='<?php echo base_url();?>index.php/teachers/teareport'>รายงาน</a></li>
 		</ul>
 	</div>	
     </div>
     
     <div id="bodyInfo">
-    ใส่รายละเอียดการให้ปรึกษา
+    <br><br>
+    <table width="90%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
+  <tr>
+  	<td align="center">หัวข้อ</td>
+    <td align="center">วัน</td>
+    <td align="center">เวลา</td>
+    <td align="center">ห้อง</td>
+    <td align="center">ชื่อนักศึกษา</td>
+    <td align="center">นามสกุลนักศึกษา</td>
+    <td align="center">รหัสนักศึกษา</td>
+    <td align="center">เบอร์นักศึกษา</td>
+    <td align="center">ใส่คำแนะนำ</td>
+  </tr> 
+  <?php foreach($completeeventstu as $s){?>
+    <tr>
+        <td align="center"><?php echo $topic[$s['eventTopic']]?></td>
+        <td align="center"><?php echo $date[$s['eventDay']]?></td>
+        <td align="center"><?php echo $s['eventTime']?></td>
+        <td align="center"><?php echo $s['eventRoom']?></td>
+        <td align="center"><?php echo $s['stuName']?></td>
+        <td align="center"><?php echo $s['stuLastname']?></td>
+        <td align="center"><?php echo $s['stuCode']?></td>
+        <td align="center"><?php echo $s['stuTel']?></td>
+        <td align="center"><a class="various fancybox.iframe" href='<?php echo base_url();?>index.php/events/comment/<?php echo $s['eventId'] ?>'>ใส่คำแนะนำ</a></td>
+    </tr>
+     <?php }?>
+       </table>
     </div>
 </body>
 </html>
