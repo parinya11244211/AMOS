@@ -182,7 +182,8 @@ body{
 <body>
     <div class="herderTop">
 	<div id="innerTop">
-       <a href="<?php echo base_url();?>index.php/home/logout"> <input id="logout" name="" type="Button" value="Logout" class="myButton"> </a>
+       <a href="<?php echo base_url();?>index.php/home/logout"> 
+       <input id="logout" name="" type="Button" value="Logout" class="myButton"> </a>
     &nbsp;&nbsp;&nbsp;&nbsp;<?php
 	$loginData=$this->session->userdata('loginData');
 	echo "ยินดีต้อนรับอาจารย์&nbsp;&nbsp;&nbsp;";
@@ -201,7 +202,7 @@ body{
 			<li><a href='<?php echo base_url();?>index.php/teachers/teainfomatch'>ข้อมูลนักศึกษา</a></li>
 			<li><a href='<?php echo base_url();?>index.php/teachers/teatime'>เวลานัดหมาย</a></li>
             <li><a href='<?php echo base_url();?>index.php/teachers/teaevent'>การนัดหมายของนักศึกษา</a></li>
-            <li><a href='<?php echo base_url();?>index.php/teachers/teadetail'>ใส่รายละเอียดข้อมูลการให้ปรึกษา</a></li>
+            <li><a href='<?php echo base_url();?>index.php/Events/infoEvent'>ใส่รายละเอียดข้อมูลการให้ปรึกษา</a></li>
             <li><a href='<?php echo base_url();?>index.php/teachers/teareport'>รายงาน</a></li>
 		</ul>
 	</div>	
@@ -227,12 +228,11 @@ body{
         <td align="center"><?php echo $date[$s['eventDay']]?></td>
         <td align="center"><?php echo $s['eventTime']?></td>
         <td align="center"><?php echo $s['eventRoom']?></td>
-        <td align="left"><?php echo $s['stuName']?></td>
+        <td align="center"><?php echo $s['stuName']?></td>
         <td align="center"><?php echo $s['stuCode']?></td>
         <td align="center"><?php echo $s['stuTel']?></td>
-        <td align="center">รับการปรึกษา</td>
-        <td align="center"><a href="<?php echo base_url();?>index.php/teachers/deleventstu/
-	<?php echo $s['eventId'];?>">ยกเลิก</a> </td>
+         <td align="center"><a href='<?php echo base_url();?>index.php/events/completeEvent/<?php echo $s['eventId'] ?>'>รับการปรึกษา</a></td>
+        <td align="center"><a href="<?php echo base_url();?>index.php/teachers/deleventstu/<?php echo $s['eventId'];?>">ยกเลิก</a></td>
     </tr>
      <?php }?>
        </table>

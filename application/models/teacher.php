@@ -359,8 +359,7 @@ class Teacher extends CI_Model {
 		return $data;
 		
 	}
-}
 
- 
+}
 
 ?>
