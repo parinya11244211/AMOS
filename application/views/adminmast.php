@@ -207,8 +207,8 @@ body{
   <?php foreach($teainfo as $t){?>
   <tr>
   	<td align="center"><br><?php echo $t['teaCode']?></td>
-    <td align="left"><br><?php echo $t['teaName']?></td>
-    <td align="left"><br><?php echo $t['teaLastname']?></td>
+    <td align="center"><br><?php echo $t['teaName']?></td>
+    <td align="center"><br><?php echo $t['teaLastname']?></td>
     <td align="center"><br><?php echo $t['teaBraName']?></td>
     <td align="center"><br><?php echo $t['teaFacName']?></td>
     <td align="center"><a href="<?php echo base_url();?>index.php/matchs/matching/<?php echo $t['teaId']?>">เลือก</a></td>

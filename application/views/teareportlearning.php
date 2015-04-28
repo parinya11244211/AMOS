@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Wlecome Admin</title>
+<title>Wlecome Teacher</title>
     <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 	<script src="<?php echo base_url()?>js/jquery-1.11.1.min.js" type="text/javascript"></script>
     <script src="<?php echo base_url()?>js/script.js"></script>
@@ -131,7 +131,6 @@ body{
 		padding-bottom:10px;
 		margin-left:10%;
 		margin-right:10%;
-
 		padding-top:10px;
 	}
 #menu{
@@ -153,103 +152,86 @@ body{
 		margin-top:15px;
 		margin-left:5px;
 	}
-#wlecome{
-		font-size:24px;
-		color:#F09;
-		padding:10px;
-	}
 </style>
-
+<?php 
+	$date[1] = "จันทร์";
+	$date[2] = "อัง‬คาร";
+	$date[3] = "พุธ";
+	$date[4] = "พฤหัสบดี";
+	$date[5] = "ศุกร์";
+	
+	$status[1] = "สามารถนัดได้";
+	$status[2] = "รอการตอบรับ";
+	$status[3] = "รอคำแนะนำ";
+	$status[4] = "ยกเลิกนัด";
+	$status[5] = "รอคะแนน";
+	$status[6] = "เสร็จสิ้น";
+	
+	$color[1] = "tableyellow";
+	$color[2] = "tablepink";
+	$color[3] = "tablegreen";
+	$color[4] = "tableshirts";
+	$color[5] = "tableblue";
+	
+	$topic[1] = "การเรียน";
+	$topic[2] = "กิจกรรม";
+	$topic[3] = "กยศ";
+	$topic[4] = "ครอบครัว"
+	
+	 ?>
 <body>
     <div class="herderTop">
 	<div id="innerTop">
-         <a href="<?php echo base_url();?>index.php/home/logout"> <input id="logout" name="" type="Button" value="Logout" class="myButton"> </a>
+       <a href="<?php echo base_url();?>index.php/home/logout"> <input id="logout" name="" type="Button" value="Logout" class="myButton"> </a>
     &nbsp;&nbsp;&nbsp;&nbsp;<?php
 	$loginData=$this->session->userdata('loginData');
-	 echo "ยินดีต้อนรับคุณ&nbsp;&nbsp;&nbsp;";
+	echo "ยินดีต้อนรับอาจารย์&nbsp;&nbsp;&nbsp;";
 	 echo $loginData['name']; ?>
-	&nbsp;&nbsp;&nbsp;&nbsp;<?php 
-		echo "สถานะ&nbsp;&nbsp;&nbsp;";
-	if( $loginData['status']=='a'){
-		echo 'Admin';
+	&nbsp;&nbsp;&nbsp;&nbsp;<?php if( $loginData['status']=='t'){
+	echo "สถานะ&nbsp;&nbsp;&nbsp;";
+		echo 'Teacher';
 		} ?></div>
 	</div>
-
     <div id="herderBody">	
         <img src="<?php echo base_url();?>img/ncuIcon2.png">
     <div id='cssmenu'>
 		<ul>
-       		<li><a href='<?php echo base_url();?>index.php/admins'>หน้าแรก</a></li>
-			<li><a href='<?php echo base_url();?>index.php/admins/importtea'>นำเข้าข้อมูลอาจารน์ที่ปรึษา</a></li>
-			<li><a href='<?php echo base_url();?>index.php/admins/importstu'>นำเข้าข้อมูลนักศึกษา</a></li>
-			<li><a href='<?php echo base_url();?>index.php/admins/mast'>กำหนดนักศึกษาให้อาจารย์ที่ปรึกษา</a></li>
+      		<li><a href='<?php echo base_url();?>index.php/teachers'>หน้าแรก</a></li>
+			<li><a href='<?php echo base_url();?>index.php/teachers/teainfo'>ข้อมูลส่วนตัว</a></li>
+			<li><a href='<?php echo base_url();?>index.php/teachers/teainfomatch'>ข้อมูลนักศึกษา</a></li>
+			<li><a href='<?php echo base_url();?>index.php/teachers/teatime'>เวลานัดหมาย</a></li>
+            <li><a href='<?php echo base_url();?>index.php/teachers/teaevent'>การนัดหมายของนักศึกษา</a></li>
+            <li><a href='<?php echo base_url();?>index.php/Events/infoEvent'>ใส่รายละเอียดข้อมูลการให้ปรึกษา</a></li>
+            <li><a href='<?php echo base_url();?>index.php/teachers/teaReport'>รายงาน</a></li>
 		</ul>
 	</div>	
     </div>
     
-<div id="bodyInfo">
-    <div id="bodyteainfo">
-    <hr>
-   <h2 align="center"> อาจารย์ที่เลือก</h2>
-   <br>
-      <table width="1000" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
-        <tr>
-            <td align="center"><strong>รหัสอาจารย์ที่ปรึกษา</strong></td>
-            <td align="center"><strong>ชื่ออาจารย์ที่ปรึกษา</strong></td>
-            <td align="center"><strong>นามสกุลอาจารย์ที่ปรึกษา</strong></td>
-            <td align="center"><strong>เบอร์โทรศัพท์อาจารย์ที่ปรึกษา</strong></td>
-            <td align="center"><strong>อีเมล์อาจารย์ที่ปรึกษา</strong></td>
-        </tr>
-        <?php foreach($teacher as $t){?>
-        <tr>
-          <td align="center"><br><?php echo $t['teaCode']?></td>
-    	  <td align="center"><br><?php echo $t['teaName']?></td>
-          <td align="center"><br><?php echo $t['teaLastname']?></td>
-          <td align="center"><br><?php echo $t['teaTel']?></td>
-          <td align="center"><a href="mailto:"><br><?php echo $t['teaEmail']?></td>
-        </tr>
-        <?php }?>
-      </table>
-      <br>
-      <h2 align="center">นักศึกษาปัจจุบัน</h2><br>
-         <table width="60%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0" >
+    <div id="bodyInfo"><br><br>
+    <table width="90%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
   <tr>
-    <td align="center"><strong>รหัสนักษา</strong></td>
-    <td align="center"><strong>ชื่อนักศึกษา</strong></td>
-     <td align="center"><strong>นามสกุลนักศึกษา</strong></td>
-     <td align="center"><strong>ยกเลิกการเป็นที่ปรึกษา</strong></td>
-  </tr>
-  <?php
-  
-   foreach($student2 as $s){?>
-  <tr>
-  	<td align="center"><br><?php echo $s['stuCode']?></td>
-    <td align="center"><br><?php echo $s['stuName']?></td>
-    <td align="center"><br><?php echo $s['stuLastname']?></td>
-   <td align="center"><a href="<?php echo base_url();?>index.php/matchs/delStu/<?php echo $teacher[0]['teaId'];?>/<?php echo $s['matchId']?>">ยกเลิก</a> </td>
-  </tr>
-  <?php }?>
-</table>
-      <br>
-      <h2 align="center">เลือกนักศึกษา</h2>
-      <br>
-      <table width="60%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0" >
-  <tr>
-    <td align="center"><strong>รหัสนักษา</strong></td>
-    <td align="center"><strong>ชื่อนักศึกษา</strong></td>
-     <td align="center"><strong>นามสกุลนักศึกษา</strong></td>
-     <td align="center"><strong>เลือกนักศึกษา</strong></td>
-  </tr>
-  <?php foreach($student as $s){?>
-  <tr>
-  	<td align="center"><br><?php echo $s['stuCode']?></td>
-    <td align="center"><br><?php echo $s['stuName']?></td>
-    <td align="center"><br><?php echo $s['stuLastname']?></td>
-   <td align="center"><a href="<?php echo base_url();?>index.php/matchs/matchstutotea/<?php echo $teacher[0]['teaId'];?>/<?php echo $s['stuId']?>">เลือก</a> </td>
-  </tr>
-  <?php }?>
-</table>
-</div>
+  	<td align="center">หัวข้อ</td>
+    <td align="center">วัน</td>
+    <td align="center">ห้อง</td>
+    <td align="center">เวลา</td>
+    <td align="center">คำแนะนำ</td>    
+    <td align="center">ชื่อนักศึกษา</td>
+    <td align="center">นามสกุลนักศึกษา</td>
+    <td align="center">รหัสนักศึกษา</td>
+  </tr> 
+  <?php foreach($showTopicLearning as $s){?>
+    <tr>
+  		<td align="center"><?php echo $topic[$s['eventTopic']]?></td>
+        <td align="center"><?php echo $date[$s['eventDay']]?></td>
+        <td align="center"><?php echo $s['eventRoom']?></td>
+        <td align="center"><?php echo $s['eventTime']?></td>
+        <td align="center"><?php echo $s['comment']?></td>
+        <td align="center"><?php echo $s['stuName'] ?></td>
+        <td align="center"><?php echo $s['stuLastname'] ?></td>
+        <td align="center"><?php echo $s['stuCode'] ?></td>
+    </tr>
+     <?php }?>
+    </table>
     </div>
 </body>
 </html>

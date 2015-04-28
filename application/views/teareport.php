@@ -153,7 +153,32 @@ body{
 		margin-left:5px;
 	}
 </style>
-
+<?php 
+	$date[1] = "จันทร์";
+	$date[2] = "อัง‬คาร";
+	$date[3] = "พุธ";
+	$date[4] = "พฤหัสบดี";
+	$date[5] = "ศุกร์";
+	
+	$status[1] = "สามารถนัดได้";
+	$status[2] = "รอการตอบรับ";
+	$status[3] = "รอคำแนะนำ";
+	$status[4] = "ยกเลิกนัด";
+	$status[5] = "รอคะแนน";
+	$status[6] = "เสร็จสิ้น";
+	
+	$color[1] = "tableyellow";
+	$color[2] = "tablepink";
+	$color[3] = "tablegreen";
+	$color[4] = "tableshirts";
+	$color[5] = "tableblue";
+	
+	$topic[1] = "การเรียน";
+	$topic[2] = "กิจกรรม";
+	$topic[3] = "กยศ";
+	$topic[4] = "ครอบครัว"
+	
+	 ?>
 <body>
     <div class="herderTop">
 	<div id="innerTop">
@@ -177,13 +202,38 @@ body{
 			<li><a href='<?php echo base_url();?>index.php/teachers/teatime'>เวลานัดหมาย</a></li>
             <li><a href='<?php echo base_url();?>index.php/teachers/teaevent'>การนัดหมายของนักศึกษา</a></li>
             <li><a href='<?php echo base_url();?>index.php/Events/infoEvent'>ใส่รายละเอียดข้อมูลการให้ปรึกษา</a></li>
-            <li><a href='<?php echo base_url();?>index.php/teachers/teareport'>รายงาน</a></li>
+            <li><a href='<?php echo base_url();?>index.php/teachers/teaReport'>รายงาน</a></li>
 		</ul>
 	</div>	
     </div>
     
-    <div id="bodyInfo">
-    รายงาน
+    <div id="bodyInfo"><br><br>
+    <table width="40%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
+  	<td align="center">หัวข้อ</td>
+    <td align="center">คะแนนเฉลี่ย</td>
+  </tr> 
+  <tr>
+  <td align="center"><a href='<?php echo base_url();?>index.php/teachers/getEventTopicLearning'>การเรียน</a></td>
+	<td align="center"><?php echo number_format($resultEvent1,2,'.','')?></td>
+  </tr>
+  <tr>
+  <td align="center"><a href='<?php echo base_url();?>index.php/teachers/getEventTopicEvent'>กิจกรรม</a></td>
+	<td align="center"><?php echo number_format($resultEvent2,2,'.','')?></td>
+  </tr>
+  <tr>
+  <td align="center"><a href='<?php echo base_url();?>index.php/teachers/getEventTopicRecover'>กยศ.</a></td>
+	<td align="center"><?php echo number_format($resultEvent3,2,'.','')?></td>
+  </tr>
+  <tr>
+  <td align="center"><a href='<?php echo base_url();?>index.php/teachers/getEventTopicFamily'>ครอบครัว</a></td>
+	<td align="center"><?php echo number_format($resultEvent4,2,'.','')?></td>
+  </tr>
+  <tr>
+  <td align="center"><?php echo 'รวมคะแนน'; ?></td>
+	<td align="center"><?php echo number_format($resultEvent5,2,'.','')?></td>
+  </tr>
+       </table>
+
     </div>
 </body>
 </html>

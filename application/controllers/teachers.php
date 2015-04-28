@@ -39,8 +39,58 @@ class Teachers extends CI_Controller {
 		$this->load->view('teadetail');
 	}
 	function teaReport()
-	{
-		$this->load->view('teareport');
+	{	
+
+		$data['showEvent1'] = $this->Event->getEventTopicLearning();
+		$data['listEvent1'] = count($data['showEvent1']);
+		
+		$data['totalEvent1'] = $this->Event->showEventTopicLearning();
+		
+		foreach($data['totalEvent1'] as $s)
+		{
+			$data['resultEvent1'] = ($amount = $s['total']/$data['listEvent1']);
+		}
+		
+		$data['showEvent2'] = $this->Event->getEventTopicEvent();
+		$data['listEvent2'] = count($data['showEvent2']);
+		
+		$data['totalEvent2'] = $this->Event->showEventTopicEvent();
+		
+		foreach($data['totalEvent2'] as $s)
+		{
+			$data['resultEvent2'] = ($amount = $s['total']/$data['listEvent2']);
+		}
+		
+		$data['showEvent3'] = $this->Event->getEventTopicRecover();
+		$data['listEvent3'] = count($data['showEvent3']);
+		
+		$data['totalEvent3'] = $this->Event->showEventTopicRecover();
+		
+		foreach($data['totalEvent3'] as $s)
+		{
+			$data['resultEvent3'] = ($amount = $s['total']/$data['listEvent3']);
+		}
+		
+		$data['showEvent4'] = $this->Event->getEventTopicFamily();
+		$data['listEvent4'] = count($data['showEvent4']);
+		
+		$data['totalEvent4'] = $this->Event->showEventTopicFamily();
+		
+		foreach($data['totalEvent4'] as $s)
+		{
+			$data['resultEvent4'] = ($amount = $s['total']/$data['listEvent4']);
+		}
+		
+		$data['showEvent5'] = $this->Event->getEventTopicAll();
+		$data['listEvent5'] = count($data['showEvent5']);
+
+		$data['totalEvent5'] = $this->Event->showEventTopicAll();
+
+		foreach($data['totalEvent5'] as $s)
+		{
+			$data['resultEvent5'] = ($amount = $s['total']/$data['listEvent5']);
+		}
+		$this->load->view('teareport',$data);
 	}
 	function teaEdit($teaId){
 	
@@ -150,6 +200,26 @@ class Teachers extends CI_Controller {
 			
 		$this->Teacher->delEventStu($id);
 		header( 'Location: '.base_url().'index.php/teachers/teaevent' );
+	}
+	function getEventTopicLearning(){
+			
+		$data['showTopicLearning'] = $this->Event->showReportLearning();
+		$this->load->view('teareportlearning',$data);
+	}
+	function getEventTopicEvent(){
+			
+		$data['showTopicEvent'] = $this->Event->showReportEvent();
+		$this->load->view('teareportevent',$data);
+	}
+	function getEventTopicRecover(){
+			
+		$data['showTopicRecover'] = $this->Event->showReportRecover();
+		$this->load->view('teareportrecover',$data);
+	}
+	function getEventTopicFamily(){
+			
+		$data['showTopicFamily'] = $this->Event->showReportfamily();
+		$this->load->view('teareportfamily',$data);
 	}
 }
 ?>
