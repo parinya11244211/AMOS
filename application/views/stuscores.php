@@ -224,12 +224,17 @@ body{
   
     <tr>
         <td align="center"><?php echo $topic[$s['eventTopic']]?></td>
+<<<<<<< HEAD
         <td align="center"><?php echo $s['teaEventDay']?></td>
+=======
+        <td align="center"><?php echo $date[$s['eventDay']]?></td>
+>>>>>>> edee744613ac01048fd0e3bb2b68612bea233426
         <td align="center"><?php echo $s['eventTime']?></td>
         <td align="center"><?php echo $s['eventRoom']?></td>
     </tr>
     
      <tr>
+<<<<<<< HEAD
 		<td colspan="7" align="center"><p><br>
 		  <br>กรุณาให้คะแนนคำปรึกษา<br><br>
 		  <input name="star" type="radio" value="1">
@@ -245,6 +250,18 @@ body{
 		    <input name="teaEventId" type="hidden" value="<?php echo $s['teaEventId'];?>">
        <p align="left" style="font-size:12px">&nbsp;&nbsp;&nbsp; ปล.&nbsp;&nbsp;&nbsp;&nbsp;ดีมาก &nbsp;&nbsp;&nbsp;&nbsp; = &nbsp;&nbsp;&nbsp; 5 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ดี &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = &nbsp;&nbsp;&nbsp; 4 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; พอใช้ &nbsp;&nbsp;&nbsp; = &nbsp;&nbsp;&nbsp; 3 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; แย่ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = &nbsp;&nbsp;&nbsp; 2 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; แย่มาก &nbsp; = &nbsp;&nbsp;&nbsp; 1</p>
 	      </p>
+=======
+		<td colspan="7" align="center"><br><br>กรุณาให้คะแนนคำปรึกษา<br><br>
+        <input name="star" type="radio" value="1">&nbsp;&nbsp;&nbsp;
+        <input name="star" type="radio" value="2">&nbsp;&nbsp;&nbsp;
+        <input name="star" type="radio" value="3">&nbsp;&nbsp;&nbsp;
+        <input name="star" type="radio" value="4">&nbsp;&nbsp;&nbsp;
+        <input name="star" type="radio" value="5">
+	    <br>1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5<br><br>
+        <input type="submit" value="บันทึก">
+  		<input name="teaEventId" type="hidden" value="<?php echo $s['teaEventId'];?>">
+        <br><br>
+>>>>>>> edee744613ac01048fd0e3bb2b68612bea233426
         </td>
   </tr>
        </table>

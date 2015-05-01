@@ -236,14 +236,21 @@ body{
     
     <div id="bodyInfo">
     <br><br>
+<<<<<<< HEAD
     <table width="90%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
+=======
+    <table width="71%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
+>>>>>>> edee744613ac01048fd0e3bb2b68612bea233426
   <tr>
   	<td align="center">หัวข้อ</td>
     <td align="center">วัน</td>
     <td align="center">เวลา</td>
     <td align="center">ห้อง</td>
     <td align="center">ชื่อนักศึกษา</td>
+<<<<<<< HEAD
     <td align="center">นามสกุลนักศึกษา</td>
+=======
+>>>>>>> edee744613ac01048fd0e3bb2b68612bea233426
     <td align="center">รหัสนักศึกษา</td>
     <td align="center">เบอร์นักศึกษา</td>
     <td align="center">ใส่คำแนะนำ</td>
@@ -251,11 +258,18 @@ body{
   <?php foreach($completeeventstu as $s){?>
     <tr>
         <td align="center"><?php echo $topic[$s['eventTopic']]?></td>
+<<<<<<< HEAD
         <td align="center"><?php echo $s['teaEventDay']?></td>
         <td align="center"><?php echo $s['eventTime']?></td>
         <td align="center"><?php echo $s['eventRoom']?></td>
         <td align="center"><?php echo $s['stuName']?></td>
         <td align="center"><?php echo $s['stuLastname']?></td>
+=======
+        <td align="center"><?php echo $date[$s['eventDay']]?></td>
+        <td align="center"><?php echo $s['eventTime']?></td>
+        <td align="center"><?php echo $s['eventRoom']?></td>
+        <td align="center"><?php echo $s['stuName']?></td>
+>>>>>>> edee744613ac01048fd0e3bb2b68612bea233426
         <td align="center"><?php echo $s['stuCode']?></td>
         <td align="center"><?php echo $s['stuTel']?></td>
         <td align="center"><a class="various fancybox.iframe" href='<?php echo base_url();?>index.php/events/comment/<?php echo $s['eventId'] ?>'>ใส่คำแนะนำ</a></td>

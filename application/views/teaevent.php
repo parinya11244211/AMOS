@@ -230,7 +230,10 @@ body{
         <td align="center"><?php echo $s['eventTime']?></td>
         <td align="center"><?php echo $s['eventRoom']?></td>
         <td align="center"><?php echo $s['stuName']?></td>
+<<<<<<< HEAD
         <td align="center"><?php echo $s['stuLastname']?></td>
+=======
+>>>>>>> edee744613ac01048fd0e3bb2b68612bea233426
         <td align="center"><?php echo $s['stuCode']?></td>
         <td align="center"><?php echo $s['stuTel']?></td>
          <td align="center"><a href='<?php echo base_url();?>index.php/events/completeEvent/<?php echo $s['eventId'] ?>'>รับการปรึกษา</a></td>

@@ -83,7 +83,11 @@ class Events extends CI_Controller {
 		
 		$data = $this->Event->addStar();
 		
+<<<<<<< HEAD
 		header('Location:'.base_url().'index.php/students/index');
+=======
+		$this->load->view('stuscore',$data);
+>>>>>>> edee744613ac01048fd0e3bb2b68612bea233426
 		
 	}
 }

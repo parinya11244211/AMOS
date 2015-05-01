@@ -32,24 +32,38 @@
     <td align="center">เวลา</td>
     <td align="center">ห้อง</td>
     <td align="center">ชื่อนักศึกษา</td>
+<<<<<<< HEAD
     <td align="center">นามสกุลนักศึกษา</td>
+=======
+>>>>>>> edee744613ac01048fd0e3bb2b68612bea233426
     <td align="center">รหัสนักศึกษา</td>
     <td align="center">เบอร์นักศึกษา</td>
 </tr> 
 <?php foreach($comment as $s){?>
 <tr>
 	<td align="center"><?php echo $topic[$s['eventTopic']]?></td>
+<<<<<<< HEAD
         <td align="center"><?php echo $s['teaEventDay']?></td>
         <td align="center"><?php echo $s['eventTime']?></td>
         <td align="center"><?php echo $s['eventRoom']?></td>
         <td align="center"><?php echo $s['stuName']?></td>
         <td align="center"><?php echo $s['stuLastname']?></td>
+=======
+        <td align="center"><?php echo $date[$s['eventDay']]?></td>
+        <td align="center"><?php echo $s['eventTime']?></td>
+        <td align="center"><?php echo $s['eventRoom']?></td>
+        <td align="center"><?php echo $s['stuName']?></td>
+>>>>>>> edee744613ac01048fd0e3bb2b68612bea233426
         <td align="center"><?php echo $s['stuCode']?></td>
         <td align="center"><?php echo $s['stuTel']?></td>
 </tr>
 <?php }?>
 <tr>
+<<<<<<< HEAD
 		<td colspan="8" align="center"><br><br>กรุณากรอกคำแนะนำที่ให้กับนักศึกษา<br><br>
+=======
+		<td colspan="7" align="center"><br><br>กรุณากรอกคำแนะนำที่ให้กับนักศึกษา<br><br>
+>>>>>>> edee744613ac01048fd0e3bb2b68612bea233426
           <textarea cols="70" name="comment"></textarea>
 	    <br><br>
         <input type="submit" value="บันทึก">
