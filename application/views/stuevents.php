@@ -213,10 +213,10 @@ body{
     
     <div id="bodyInfo">
 <br><br><br>
-      
-     <form method="post" action="<?php echo base_url();?>index.php/events/addTopic">
+      <?php foreach($showevent as $e){?>
+     <form method="post" action="<?php echo base_url();?>index.php/events/updateStatus/<?php echo $e['teaEventId']; ?>">
       <table width="30%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
-		<tr><?php foreach($showevent as $e){?>
+		<tr>
         	<td>&nbsp;&nbsp;&nbsp;อาจารย์ที่ปรึกษา</td>
             <td>&nbsp;&nbsp;&nbsp;<?php echo $e['teaName'];?>&nbsp;&nbsp;&nbsp;<?php echo $e['teaLastname'];?></td>
         </tr>

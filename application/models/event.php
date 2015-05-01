@@ -17,6 +17,7 @@ class Event extends CI_Model {
 	var $pointId;
 	var $star;
 	var $teaId ; ######  ลำดับ  #####
+	var $e;
 
 ###### End Attribute  ###### 
 
@@ -156,8 +157,17 @@ class Event extends CI_Model {
      }
 ###### End SET : $teaId ###### 
 
+###### GET : $eventRoom ######
+    function getE(){
+        return $this->e; 
+     }
+###### End GET : $eventRoom ###### 
+###### SET : $teaId ######
+    function setE($e){
+        $this->e = $e; 
+     }
+###### End SET : $teaId ###### 
 
-###### GET : $teaId ######
     function getTeaId(){
         return $this->teaId; 
      }
@@ -319,5 +329,16 @@ class Event extends CI_Model {
 		$data = $this->db->get('point')->result_array();
 		return $data;
 	}
+		function getPkStatus(){
+		
+		$this->db->where('teaEventId',$this->getE());
+		
+		$data = array(
+			'teaEventStatus' => 2);
+			
+		$this->db->update('teaevent',$data);
+
+	}
+	
 }
 ?>

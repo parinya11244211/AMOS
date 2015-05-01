@@ -12,7 +12,7 @@ class Matchs extends CI_Controller {
 		$data['match'] = $this->Admin->adminGetMatch();
 		$data['student'] = $this->Admin->adminGetAllStu();
 		$data['student2'] = $this->Admin->adminGetMatchByTeacher($teaId);
-		if ($data['student']&&$data['student2']){
+		if ($data['student']||$data['student2']){
 		for($i=0; $i<count($data['student']); $i++)
 			{
 				for($ii=0; $ii<count($data['match']); $ii++)

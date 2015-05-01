@@ -8,7 +8,7 @@ class Events extends CI_Controller {
 		$this->load->view('stuevents',$data);
 	}
 
-	function addTopic(){
+	/*function addTopic(){
 		
 		$loginData = $this->session->userdata('loginData');
 		
@@ -26,7 +26,7 @@ class Events extends CI_Controller {
 		
 		$data = $this->Event->addEvent();
 		header( 'Location: '.base_url().'index.php/students/stuevent' );
-	}
+	}*/
 	function completeEvent($id){
 	
 		$this->Event->setEventId($id);
@@ -85,6 +85,28 @@ class Events extends CI_Controller {
 		
 		header('Location:'.base_url().'index.php/students/index');
 		
+	}
+		function updateStatus($e){
+			
+		$this->Event->setE($e);
+		$this->Event->getPkStatus();
+		
+				$loginData = $this->session->userdata('loginData');
+		
+		 $eventTopic = $this->input->post('eventTopic');
+		 $eventTime = $this->input->post('teaEventTime');
+		 $eventRoom = $this->input->post('teaEventRoom');
+		 $stuId = $loginData['id'];
+		 $teaEventId = $this->input->post('teaEventId');
+		
+		$this->Event->setEventTopic($eventTopic);
+		$this->Event->setEventTime($eventTime);
+		$this->Event->setEventRoom($eventRoom);
+		$this->Event->setStuId($stuId);
+		$this->Event->setTeaEventId($teaEventId);
+		
+		$data = $this->Event->addEvent();
+		header( 'Location: '.base_url().'index.php/students/stuevent' );
 	}
 }
 ?>

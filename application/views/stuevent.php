@@ -207,28 +207,40 @@ body{
     </div>
     
     <div id="bodyInfo">
-<br><br><br>
+    <br><br><br>
+    <table class="" width="71%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
+  <tr>
+    <th align="center" nowrap="nowrap">ชื่ออาจารย์ที่ปรึกษา</th>
+    <th align="center" nowrap="nowrap">นามสกุลอาจารย์ที่ปรึกษา</th>
+  </tr>
+<?php $i = 1; foreach($teaEventDay as $e){  
+  if($i==1){
+?>
+    <tr>
+    <td align="center"><?php echo $e['teaName'];?></td>
+    <td align="center"><?php echo $e['teaLastname'];?></td>
+ <?php }$i++; }?>
+</table>
+<br>
 <form method="post" > 
 <table class="" width="71%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
-<tr> <?php foreach($teaEventDay as $e){?>
-    <th colspan="2" align="center" nowrap="nowrap">อาจารย์ที่ปรึกษา</th>
-    <th colspan="3" align="left" nowrap="nowrap">&nbsp;&nbsp;&nbsp;<?php echo $e['teaName'];?>&nbsp;&nbsp;&nbsp;<?php echo $e['teaLastname'];?></th>
-    </tr>
   <tr>
-    <td align="center">วัน</td>
-    <td align="center">เวลา</td>
-    <td align="center">ห้อง</td>
-    <td align="center">สถานะ</td>
-    <td align="center">เลือกหัวข้อปรึกษา</td>
+    <th align="center" nowrap="nowrap">วัน</th>
+    <th align="center" nowrap="nowrap">เวลา</th>
+    <th align="center" nowrap="nowrap">ห้อง</th>
+    <th align="center" nowrap="nowrap">สถานะ</th>
+    <th align="center" nowrap="nowrap">เลือกหัวข้อปรึกษา</th>
   </tr>
- 
+<?php foreach($teaEventDay as $e){
+	if($e['teaEventStatus'] == 1){
+	?>
     <tr>
     <td align="center"><?php echo $e['teaEventDay'];?></td>
     <td align="center"><?php echo $e['teaEventTime'];?></td>
     <td align="center"><?php echo $e['teaEventRoom'];?></td>
     <td align="center"><?php echo $status[$e['teaEventStatus']];?></td>
     <td align="center"><a href='<?php echo base_url();?>index.php/events/selectTopic/<?php echo $e['teaEventId'] ?>'>ดูหัวข้อปรึกษา</a></td>
-    </tr><?php }?>
+    </tr><?php } }?>
 </table>
 </form>
     </div>

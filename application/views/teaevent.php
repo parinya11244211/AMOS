@@ -220,6 +220,7 @@ body{
     <td align="center">นามสกุลนักศึกษา</td>
     <td align="center">รหัสนักศึกษา</td>
     <td align="center">เบอร์นักศึกษา</td>
+    <td align="center">สถานะ</td>
     <td align="center">รับการปรึกษา</td>
     <td align="center">ยกเลิกการปรึกษา</td>
   </tr> 
@@ -233,6 +234,7 @@ body{
         <td align="center"><?php echo $s['stuLastname']?></td>
         <td align="center"><?php echo $s['stuCode']?></td>
         <td align="center"><?php echo $s['stuTel']?></td>
+        <td align="center"><?php echo $status[$s['teaEventStatus']]?></td>
          <td align="center"><a href='<?php echo base_url();?>index.php/events/completeEvent/<?php echo $s['eventId'] ?>'>รับการปรึกษา</a></td>
         <td align="center"><a href="<?php echo base_url();?>index.php/teachers/deleventstu/<?php echo $s['eventId'];?>">ยกเลิก</a></td>
     </tr>

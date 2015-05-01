@@ -273,7 +273,10 @@ class Student extends CI_Model {
  }
   function stuSearch()
 	{	
+		$loginData = $this->session->userdata('loginData');
+		$this->db->join('match','match.stuId = student.stuId');
 		$this->db->like('stuName',$this->getStuName());
+		$this->db->where('match.teaId',$loginData['id']);
 		$query = $this->db->get('student')->result_array();
 		return $query;
 	}
@@ -282,7 +285,6 @@ class Student extends CI_Model {
 		$datalogin = $this->session->userdata('loginData');
 		$this->db->where('stuId',$datalogin['id']);
 		$data = $this->db->get('match')->result_array();
-	
 		$this->db->join('teaevent','teaevent.teaId = teacher.teaId');
 		$this->db->where('teacher.teaId',$data[0]['teaId']);
 		$this->db->order_by('teaevent.teaEventDay','ASC');
