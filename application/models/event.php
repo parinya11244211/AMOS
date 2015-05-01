@@ -16,10 +16,7 @@ class Event extends CI_Model {
 	var $comment;
 	var $pointId;
 	var $star;
-<<<<<<< HEAD
 	var $teaId ; ######  ลำดับ  #####
-=======
->>>>>>> edee744613ac01048fd0e3bb2b68612bea233426
 
 ###### End Attribute  ###### 
 
@@ -153,7 +150,6 @@ class Event extends CI_Model {
         return $this->star; 
      }
 ###### End GET : $eventRoom ###### 
-<<<<<<< HEAD
 ###### SET : $teaId ######
     function setTeaId($teaId){
         $this->teaId = $teaId; 
@@ -165,8 +161,6 @@ class Event extends CI_Model {
     function getTeaId(){
         return $this->teaId; 
      }
-=======
->>>>>>> edee744613ac01048fd0e3bb2b68612bea233426
 
 	function addEvent(){
 		$data = array(
@@ -204,10 +198,7 @@ class Event extends CI_Model {
 			$this->db->join('student','student.stuId = event.stuId');
 			$this->db->join('match','match.stuId = student.stuId');
 			$this->db->join('teacher','teacher.teaId = match.teaId');
-<<<<<<< HEAD
 			$this->db->join('teaevent','teaevent.teaEventId = event.teaEventId');
-=======
->>>>>>> edee744613ac01048fd0e3bb2b68612bea233426
 			$this->db->where('event.eventId ',$this->getEventId()); 
 			$data = $this->db->get('event')->result_array();
 			return $data;		
@@ -226,10 +217,7 @@ class Event extends CI_Model {
 			$this->db->join('student','student.stuId = event.stuId');
 			$this->db->join('match','match.stuId = student.stuId');
 			$this->db->join('teacher','teacher.teaId = match.teaId');
-<<<<<<< HEAD
 			$this->db->join('teaevent','teaevent.teaEventId = event.teaEventId');
-=======
->>>>>>> edee744613ac01048fd0e3bb2b68612bea233426
 			return $this->db->get('event')->result_array();
 	}
 	function addComment(){
@@ -258,7 +246,6 @@ class Event extends CI_Model {
 		$this->db->where('pointId',$this->getPointId());
 		$this->db->update('point',$data);
 	}
-<<<<<<< HEAD
 	function showReport()
 	{
 		$this->db->join('teaevent','teaevent.teaEventId = point.teaEventId');
@@ -332,7 +319,5 @@ class Event extends CI_Model {
 		$data = $this->db->get('point')->result_array();
 		return $data;
 	}
-=======
->>>>>>> edee744613ac01048fd0e3bb2b68612bea233426
 }
 ?>
