@@ -232,7 +232,7 @@ body{
         </tr>
         <tr>
         	<td>&nbsp;&nbsp;&nbsp;วัน</td>
-            <td>&nbsp;&nbsp;&nbsp;<?php echo $date[$e['teaEventDay']];?></td>
+            <td>&nbsp;&nbsp;&nbsp;<?php echo $e['teaEventDay'];?></td>
         </tr>
         <tr>
         	<td>&nbsp;&nbsp;&nbsp;เวลา</td>
@@ -245,7 +245,7 @@ body{
           <tr>
         	<td>&nbsp;&nbsp;&nbsp;ปรึกษา</td>
             <td align="left">&nbsp;&nbsp;&nbsp;<input type="submit" value="บันทึก">
-            <input name="teaEventDay" type="hidden" value="<?php echo $e['teaEventDay'];?>">
+    <input name="teaEventDay" type="hidden" value="<?php echo $e['teaEventDay'];?>">
     <input name="teaEventTime" type="hidden" value="<?php echo $e['teaEventTime'];?>">
     <input name="teaEventRoom" type="hidden" value="<?php echo $e['teaEventRoom'];?>">
     <input name="teaEventId" type="hidden" value="<?php echo $e['teaEventId'];?>"></td>

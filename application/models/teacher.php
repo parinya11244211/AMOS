@@ -330,7 +330,7 @@ class Teacher extends CI_Model {
 			$datalogin = $this->session->userdata('loginData');
 			$teaId = $datalogin['id'];
 			$this->db->where('teaId',$teaId);
-			$this->db->order_by('teaEventTime','ASC');
+			$this->db->order_by('teaEventDay','ASC');
 			return	$this->db->get('teaevent')->result_array();
 		}
 	function delEventTea($id)

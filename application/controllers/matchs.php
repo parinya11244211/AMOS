@@ -45,10 +45,7 @@ class Matchs extends CI_Controller {
 	function delStu($teaId,$id)
 	{
 		$this->Admin->delmatch($id);
-		echo "<script>
-
-    window.location.href='".base_url()."index.php/matchs/matching/".$teaId."';
-</script>";
+		echo "<script>window.location.href='".base_url()."index.php/matchs/matching/".$teaId."';</script>";
 		
 	}
 }

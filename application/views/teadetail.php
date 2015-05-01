@@ -251,7 +251,7 @@ body{
   <?php foreach($completeeventstu as $s){?>
     <tr>
         <td align="center"><?php echo $topic[$s['eventTopic']]?></td>
-        <td align="center"><?php echo $date[$s['eventDay']]?></td>
+        <td align="center"><?php echo $s['teaEventDay']?></td>
         <td align="center"><?php echo $s['eventTime']?></td>
         <td align="center"><?php echo $s['eventRoom']?></td>
         <td align="center"><?php echo $s['stuName']?></td>

@@ -224,7 +224,7 @@ body{
   <?php foreach($star as $s){?>
     <tr>
         <td align="center"><?php echo $topic[$s['eventTopic']]?></td>
-        <td align="center"><?php echo $date[$s['eventDay']]?></td>
+        <td align="center"><?php echo $s['teaEventDay']?></td>
         <td align="center"><?php echo $s['eventTime']?></td>
         <td align="center"><?php echo $s['eventRoom']?></td>
         <td align="center"><a href='<?php echo base_url();?>index.php/events/addStar/<?php echo $s['pointId'] ?>'>ให้คะแนน</a></td>

@@ -210,9 +210,9 @@ body{
 <br><br><br>
 <form method="post" > 
 <table class="" width="71%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
-<tr><?php foreach($teaEventDay as $e){?>
-    <td colspan="2" align="center">อาจารย์ที่ปรึกษา</td>
-    <td colspan="3" align="left">&nbsp;&nbsp;&nbsp;<?php echo $e['teaName'];?>&nbsp;&nbsp;&nbsp;<?php echo $e['teaLastname'];?></td>
+<tr> <?php foreach($teaEventDay as $e){?>
+    <th colspan="2" align="center" nowrap="nowrap">อาจารย์ที่ปรึกษา</th>
+    <th colspan="3" align="left" nowrap="nowrap">&nbsp;&nbsp;&nbsp;<?php echo $e['teaName'];?>&nbsp;&nbsp;&nbsp;<?php echo $e['teaLastname'];?></th>
     </tr>
   <tr>
     <td align="center">วัน</td>
@@ -221,8 +221,9 @@ body{
     <td align="center">สถานะ</td>
     <td align="center">เลือกหัวข้อปรึกษา</td>
   </tr>
+ 
     <tr>
-    <td align="center"><?php echo $date[$e['teaEventDay']];?></td>
+    <td align="center"><?php echo $e['teaEventDay'];?></td>
     <td align="center"><?php echo $e['teaEventTime'];?></td>
     <td align="center"><?php echo $e['teaEventRoom'];?></td>
     <td align="center"><?php echo $status[$e['teaEventStatus']];?></td>

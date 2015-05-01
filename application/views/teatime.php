@@ -691,13 +691,8 @@ body{
 <div id="bodyInfo" align="center">
     <form action="<?php echo base_url();?>index.php/teachers/addEventTea" method="post">
             <br><br>
-            <select name="teaEventDay" id="teaEventDay">
-            <option value="1">จันทร์</option>
-            <option value="2">อังคาร</option>
-            <option value="3">พุธ</option>
-            <option value="4">พุฤหัสบดี</option>
-            <option value="5">ศุกร์</option>
-            </select>
+            <input type="date" name="teaEventDay" id="teaEventDay" />
+
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <select name="teaEventTime" id="teaEventTime">
             <option value="08:00:00">8.00-9.00 น.</option>
@@ -717,52 +712,26 @@ body{
   </form>       
                         
 
-<p>
-<?php 
-for ($i=1; $i<=5; $i++){
-?>
-</p>
-  <table class="<?php echo $color[$i]; ?>" width="71%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
+<br>
+<table width="71%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
   <tr>
-    
-    <th colspan="3" align="center" nowrap="nowrap"><?php echo $date[$i]; ?></th>
-    </tr>
-  <tr>
-    
+    <td align="center">วัน/เดือน/ปี</td>
     <td align="center">เวลา</td>
     <td align="center">ห้อง</td>
     <td align="center">ยกเลิก</td>
   </tr>
-  <?php 
-   $c = 0;
-   foreach($showeventtea as $set){
-	  if ($set['teaEventDay'] == $i){$c = 1;
-	  ?>
+  <?php foreach($showeventtea as $t){?>
   <tr>
-    
-    <td align="center"><?php echo $set['teaEventTime']?></td>
-    <td align="center"><?php echo $set['teaEventRoom']?></td>
+    <td align="center"><br><?php echo $t['teaEventDay']?></td>
+    <td align="center"><br><?php echo $t['teaEventTime']?></td>
+    <td align="center"><br><?php echo $t['teaEventRoom']?></td>
     <td align="center"><a href="<?php echo base_url();?>index.php/teachers/deleventtea/
-	<?php echo $set['teaEventId'];?>">ยกเลิก</a> </td>
+	<?php echo $t['teaEventId'];?>">ยกเลิก</a> </td>
   </tr>
-  <?php }}
-  if ($c == 0){
-	  ?>
-    <tr>
-    <td colspan="3" align="center">
-    ไม่มีข้อมูล
-    </td>
-    </tr>
-    <?php
-	  
-  }?>
+  <?php }?>
 </table>
 
-<?php
-	  
-  }?>
-
-  </div>
+</div>
     
 </body>
 </html>

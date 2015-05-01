@@ -165,7 +165,6 @@ class Event extends CI_Model {
 	function addEvent(){
 		$data = array(
 		'eventTopic' => $this->getEventTopic(),
-		'eventDay' => $this->getEventDay(),
 		'eventTime' => $this->getEventTime(),
 		'eventRoom' => $this->getEventRoom(),
 		'stuId' => $this->getStuId(),
@@ -189,7 +188,7 @@ class Event extends CI_Model {
 		$this->db->join('student','student.stuId = event.stuId');
 		$this->db->join('match','match.stuId = student.stuId');
 		$this->db->join('teacher','teacher.teaId = match.teaId');
-		
+		$this->db->join('teaevent','teaevent.teaEventId = event.teaEventId');
 		$this->db->where('teacher.teaId',$datalogin['id']); 
 		return $this->db->get('event')->result_array();
 	}
@@ -199,6 +198,7 @@ class Event extends CI_Model {
 			$this->db->join('student','student.stuId = event.stuId');
 			$this->db->join('match','match.stuId = student.stuId');
 			$this->db->join('teacher','teacher.teaId = match.teaId');
+			$this->db->join('teaevent','teaevent.teaEventId = event.teaEventId');
 			$this->db->where('event.eventId ',$this->getEventId()); 
 			$data = $this->db->get('event')->result_array();
 			return $data;		
@@ -217,6 +217,7 @@ class Event extends CI_Model {
 			$this->db->join('student','student.stuId = event.stuId');
 			$this->db->join('match','match.stuId = student.stuId');
 			$this->db->join('teacher','teacher.teaId = match.teaId');
+			$this->db->join('teaevent','teaevent.teaEventId = event.teaEventId');
 			return $this->db->get('event')->result_array();
 	}
 	function addComment(){
@@ -254,125 +255,67 @@ class Event extends CI_Model {
 		$data = $this->db->get('point')->result_array();
 		return $data;
 	}
-	function showReportLearning()
+	
+	function showAll()
 	{
+		$this->db->select('*, count(point.teaEventId) AS countsum, sum(point.star) AS sumpoints, sum(point.star)/count(point.teaEventId) AS divde');
+		
 		$this->db->join('teaevent','teaevent.teaEventId = point.teaEventId');
 		$this->db->join('event','event.teaEventId = teaevent.teaEventId');
+		
+		$this->db->group_by('event.eventId');
+		$data = $this->db->get('point')->result_array();
+		return $data;
+	}
+	
+		function showAllStar()
+	{
+		$this->db->select('*, count(point.teaEventId) AS countsum, sum(point.star) AS sumpoints, sum(point.star)/count(point.teaEventId) AS divde');
+		
+		$this->db->join('teaevent','teaevent.teaEventId = point.teaEventId');
+		$this->db->join('event','event.teaEventId = teaevent.teaEventId');
+
+		$data = $this->db->get('point')->result_array();
+		return $data;
+	}
+	
+	function showReportLearning()
+	{
+		$this->db->join('event','event.teaEventId = point.teaEventId');
+		$this->db->join('teaevent','teaevent.teaEventId = event.teaEventId');
 		$this->db->join('student','student.stuId = point.stuId');
-		$this->db->order_by('eventTopic','ASC');
 		$this->db->where('eventTopic',1);
+		$this->db->order_by('teaEventDay','ASC');
 		$data = $this->db->get('point')->result_array();
 		return $data;
 	}
 	function showReportEvent()
 	{
-		$this->db->join('teaevent','teaevent.teaEventId = point.teaEventId');
-		$this->db->join('event','event.teaEventId = teaevent.teaEventId');
+		$this->db->join('event','event.teaEventId = point.teaEventId');
+		$this->db->join('teaevent','teaevent.teaEventId = event.teaEventId');
 		$this->db->join('student','student.stuId = point.stuId');
-		$this->db->order_by('eventTopic','ASC');
 		$this->db->where('eventTopic',2);
+		$this->db->order_by('teaEventDay','ASC');
 		$data = $this->db->get('point')->result_array();
 		return $data;
-	}function showReportRecover()
+	}
+	function showReportRecover()
 	{
-		$this->db->join('teaevent','teaevent.teaEventId = point.teaEventId');
-		$this->db->join('event','event.teaEventId = teaevent.teaEventId');
+		$this->db->join('event','event.teaEventId = point.teaEventId');
+		$this->db->join('teaevent','teaevent.teaEventId = event.teaEventId');
 		$this->db->join('student','student.stuId = point.stuId');
-		$this->db->order_by('eventTopic','ASC');
 		$this->db->where('eventTopic',3);
+		$this->db->order_by('teaEventDay','ASC');
 		$data = $this->db->get('point')->result_array();
 		return $data;
 	}
 	function showReportFamily()
 	{
-		$this->db->join('teaevent','teaevent.teaEventId = point.teaEventId');
-		$this->db->join('event','event.teaEventId = teaevent.teaEventId');
+		$this->db->join('event','event.teaEventId = point.teaEventId');
+		$this->db->join('teaevent','teaevent.teaEventId = event.teaEventId');
 		$this->db->join('student','student.stuId = point.stuId');
-		$this->db->order_by('eventTopic','ASC');
 		$this->db->where('eventTopic',4);
-		$data = $this->db->get('point')->result_array();
-		return $data;
-	}
-	function getEventTopicLearning(){
-		
-		$this->db->join('teaevent','teaevent.teaEventId = point.teaEventId');
-		$this->db->join('event','event.teaEventId = teaevent.teaEventId');
-		$this->db->where('eventTopic',1);
-		$data = $this->db->get('point')->result_array();
-		return $data;
-	}
-	function showEventTopicLearning(){
-		
-		$this->db->join('teaevent','teaevent.teaEventId = point.teaEventId');
-		$this->db->join('event','event.teaEventId = teaevent.teaEventId');
-		$this->db->where('eventTopic',1);
-		$this->db->select('sum(star) as total');
-		$data = $this->db->get('point')->result_array();
-		return $data;
-	}
-	function getEventTopicEvent(){
-		
-		$this->db->join('teaevent','teaevent.teaEventId = point.teaEventId');
-		$this->db->join('event','event.teaEventId = teaevent.teaEventId');
-		$this->db->where('eventTopic',2);
-		$data = $this->db->get('point')->result_array();
-		return $data;
-	}
-	function showEventTopicEvent(){
-		
-		$this->db->join('teaevent','teaevent.teaEventId = point.teaEventId');
-		$this->db->join('event','event.teaEventId = teaevent.teaEventId');
-		$this->db->where('eventTopic',2);
-		$this->db->select('sum(star) as total');
-		$data = $this->db->get('point')->result_array();
-		return $data;
-	}
-	function getEventTopicRecover(){
-		
-		$this->db->join('teaevent','teaevent.teaEventId = point.teaEventId');
-		$this->db->join('event','event.teaEventId = teaevent.teaEventId');
-		$this->db->where('eventTopic',3);
-		$data = $this->db->get('point')->result_array();
-		return $data;
-	}
-	function showEventTopicRecover(){
-		
-		$this->db->join('teaevent','teaevent.teaEventId = point.teaEventId');
-		$this->db->join('event','event.teaEventId = teaevent.teaEventId');
-		$this->db->where('eventTopic',3);
-		$this->db->select('sum(star) as total');
-		$data = $this->db->get('point')->result_array();
-		return $data;
-	}
-	function getEventTopicFamily(){
-		
-		$this->db->join('teaevent','teaevent.teaEventId = point.teaEventId');
-		$this->db->join('event','event.teaEventId = teaevent.teaEventId');
-		$this->db->where('eventTopic',4);
-		$data = $this->db->get('point')->result_array();
-		return $data;
-	}
-	function showEventTopicFamily(){
-		
-		$this->db->join('teaevent','teaevent.teaEventId = point.teaEventId');
-		$this->db->join('event','event.teaEventId = teaevent.teaEventId');
-		$this->db->where('eventTopic',4);
-		$this->db->select('sum(star) as total');
-		$data = $this->db->get('point')->result_array();
-		return $data;
-	}
-	function getEventTopicAll(){
-		
-		$this->db->join('teaevent','teaevent.teaEventId = point.teaEventId');
-		$this->db->join('event','event.teaEventId = teaevent.teaEventId');
-		$data = $this->db->get('point')->result_array();
-		return $data;
-	}
-	function showEventTopicAll(){
-		
-		$this->db->join('teaevent','teaevent.teaEventId = point.teaEventId');
-		$this->db->join('event','event.teaEventId = teaevent.teaEventId');
-		$this->db->select('sum(star) as total');
+		$this->db->order_by('teaEventDay','ASC');
 		$data = $this->db->get('point')->result_array();
 		return $data;
 	}

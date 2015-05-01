@@ -191,7 +191,7 @@ body{
     <br><br>
     <h2>นำเข้าข้อมูลอาจารย์ที่ปรึกษา</h2>
     <br><br>
-<form id="form1" name="form1" method="post" action="<?php echo base_url();?>index.php/admins/importTeacher" enctype="multipart/form-data">
+<form id="form1" name="form1" method="post" action="<?php echo base_url();?>index.php/admins/importteacher" enctype="multipart/form-data">
   <input type="file" name="exc" id="exc" />
   <input type="submit" name="button" id="button" value="นำเข้าข้อมูล" />
   </p>

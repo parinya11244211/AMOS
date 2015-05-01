@@ -29,10 +29,6 @@ class Students extends CI_Controller {
 		$data['teaEventDay'] = $this->Student->getByTeaEvent();
 		$this->load->view('stuevent',$data);
 	}
-	function stuScore()
-	{
-		$this->load->view('stuscore');
-	}
 	function stuEdit($stuId){
 	
 		$this->Student->setStuId($stuId);

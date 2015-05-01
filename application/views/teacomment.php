@@ -39,7 +39,7 @@
 <?php foreach($comment as $s){?>
 <tr>
 	<td align="center"><?php echo $topic[$s['eventTopic']]?></td>
-        <td align="center"><?php echo $date[$s['eventDay']]?></td>
+        <td align="center"><?php echo $s['teaEventDay']?></td>
         <td align="center"><?php echo $s['eventTime']?></td>
         <td align="center"><?php echo $s['eventRoom']?></td>
         <td align="center"><?php echo $s['stuName']?></td>
@@ -49,7 +49,7 @@
 </tr>
 <?php }?>
 <tr>
-		<td colspan="7" align="center"><br><br>กรุณากรอกคำแนะนำที่ให้กับนักศึกษา<br><br>
+		<td colspan="8" align="center"><br><br>กรุณากรอกคำแนะนำที่ให้กับนักศึกษา<br><br>
           <textarea cols="70" name="comment"></textarea>
 	    <br><br>
         <input type="submit" value="บันทึก">

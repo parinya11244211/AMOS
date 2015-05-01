@@ -156,7 +156,7 @@ body{
 	<div id="innerTop">
     <form method="post" action="<?php echo base_url();?>index.php/login">
         <input name="username" type="text">
-        <input name="password" type="text">
+        <input name="password" type="password">
         <input name="" type="submit" value="Login" class="myButton">
     <?php echo "<font color='#FF0000'>".$error."</font>";?></form>
     </div>

@@ -15,9 +15,6 @@ class Admins extends CI_Controller {
 	{
 		$this->load->view('adminimporttea');
 	}
-	function fromImport(){
-		$this->load->view('importFile');
-	}
 	function importTeacher(){
 			
 				$inputFileName = $_FILES['exc']['tmp_name'];
@@ -66,7 +63,6 @@ class Admins extends CI_Controller {
 							}	
 				}
 				$this->load->view('adminimporttea');
-				echo "<script>alert('Password is NOT');</script>";	
 	}
 	
 	function importStu()

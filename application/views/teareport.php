@@ -202,38 +202,67 @@ body{
 			<li><a href='<?php echo base_url();?>index.php/teachers/teatime'>เวลานัดหมาย</a></li>
             <li><a href='<?php echo base_url();?>index.php/teachers/teaevent'>การนัดหมายของนักศึกษา</a></li>
             <li><a href='<?php echo base_url();?>index.php/Events/infoEvent'>ใส่รายละเอียดข้อมูลการให้ปรึกษา</a></li>
-            <li><a href='<?php echo base_url();?>index.php/teachers/teaReport'>รายงาน</a></li>
+            <li><a href='<?php echo base_url();?>index.php/Teachers/teaReport'>รายงาน</a></li>
 		</ul>
 	</div>	
     </div>
     
     <div id="bodyInfo"><br><br>
+    
     <table width="40%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
-  	<td align="center">หัวข้อ</td>
-    <td align="center">คะแนนเฉลี่ย</td>
-  </tr> 
-  <tr>
-  <td align="center"><a href='<?php echo base_url();?>index.php/teachers/getEventTopicLearning'>การเรียน</a></td>
-	<td align="center"><?php echo number_format($resultEvent1,2,'.','')?></td>
-  </tr>
-  <tr>
-  <td align="center"><a href='<?php echo base_url();?>index.php/teachers/getEventTopicEvent'>กิจกรรม</a></td>
-	<td align="center"><?php echo number_format($resultEvent2,2,'.','')?></td>
-  </tr>
-  <tr>
-  <td align="center"><a href='<?php echo base_url();?>index.php/teachers/getEventTopicRecover'>กยศ.</a></td>
-	<td align="center"><?php echo number_format($resultEvent3,2,'.','')?></td>
-  </tr>
-  <tr>
-  <td align="center"><a href='<?php echo base_url();?>index.php/teachers/getEventTopicFamily'>ครอบครัว</a></td>
-	<td align="center"><?php echo number_format($resultEvent4,2,'.','')?></td>
-  </tr>
-  <tr>
-  <td align="center"><?php echo 'รวมคะแนน'; ?></td>
-	<td align="center"><?php echo number_format($resultEvent5,2,'.','')?></td>
-  </tr>
-       </table>
-
+        <tr>
+          <th nowrap="nowrap">หัวข้อ</th>
+          <th nowrap="nowrap">คะแนนเฉลี่ย</th>
+        </tr>
+        <?php foreach ($showAllStar as $s){?>
+        <tr>
+          <td align="center"><?php echo 'คะแนนเฉลี่ยรวมทั้งสี่หัวข้อ';?></td>
+          <td align="center"><?php echo number_format($s['divde'], 2, '.', '')?></td>
+        </tr>
+        <?php } ?>
+      </table>
+   
+      <br><br>
+      
+      <table width="40%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
+        <tr>
+          <th nowrap="nowrap">หัวข้อ</th>
+          <th nowrap="nowrap">คะแนนเฉลี่ย</th>
+        </tr>
+        <?php foreach ($showAll as $s){?>
+        <tr>
+          <td align="center"><?php echo $topic[$s['eventTopic']];?></td>
+          <td align="center"><?php echo number_format($s['divde'], 2, '.', '')?></td>
+        </tr>
+        <?php } ?>
+      </table>
+      
+      <br><br>
+      
+      <table width="40%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
+        <tr>
+          <th nowrap="nowrap">หัวข้อ</th>
+          <th nowrap="nowrap">ดูรายละเอียด</th>
+        </tr>
+        <tr>
+          <td align="center"><?php echo 'การเรียน';?></td>
+          <td align="center"><a href='<?php echo base_url();?>index.php/teachers/getEventTopicLearning'>การเรียน</a></td>
+        </tr>
+         <tr>
+           <td align="center"><?php echo 'กิจกรรม';?></td>
+          <td align="center"><a href='<?php echo base_url();?>index.php/teachers/getEventTopicEvent'>กิจกรรม</a></td>
+        </tr>
+        <tr>
+           <td align="center"><?php echo 'กยศ';?></td>
+          <td align="center"><a href='<?php echo base_url();?>index.php/teachers/getEventTopicRecover'>กยศ</a></td>
+        </tr>
+        <tr>
+           <td align="center"><?php echo 'ครอบครัว';?></td>
+          <td align="center"><a href='<?php echo base_url();?>index.php/teachers/getEventTopicFamily'>ครอบครัว</a></td>
+        </tr>
+      </table>
     </div>
 </body>
-</html>
+</html>      
+          
+         
