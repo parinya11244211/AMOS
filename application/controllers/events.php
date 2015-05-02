@@ -8,28 +8,11 @@ class Events extends CI_Controller {
 		$this->load->view('stuevents',$data);
 	}
 
-	/*function addTopic(){
+	function completeEvent($id,$s){
 		
-		$loginData = $this->session->userdata('loginData');
-		
-		 $eventTopic = $this->input->post('eventTopic');
-		 $eventTime = $this->input->post('teaEventTime');
-		 $eventRoom = $this->input->post('teaEventRoom');
-		 $stuId = $loginData['id'];
-		 $teaEventId = $this->input->post('teaEventId');
-		
-		$this->Event->setEventTopic($eventTopic);
-		$this->Event->setEventTime($eventTime);
-		$this->Event->setEventRoom($eventRoom);
-		$this->Event->setStuId($stuId);
-		$this->Event->setTeaEventId($teaEventId);
-		
-		$data = $this->Event->addEvent();
-		header( 'Location: '.base_url().'index.php/students/stuevent' );
-	}*/
-	function completeEvent($id){
-	
+		$this->Event->setS($s);
 		$this->Event->setEventId($id);
+		$this->Event->updateStatusWait();
 		$data['completeeventstu'] = $this->Event->getByPkEvent();
 		$this->load->view('teadetail',$data);
 	}
@@ -38,13 +21,18 @@ class Events extends CI_Controller {
 		$data['completeeventstu'] = $this->Event->getEventAll();
 		$this->load->view('teadetail',$data);
 	}
-	function comment($id)
+	function comment($id,$s)
 	{
+		$this->Event->setS($s);
 		$this->Event->setEventId($id);
+		$data['id'] = $id;
 		$data['comment'] = $this->Event->comment();
 		$this->load->view('teacomment',$data);
 	}
-	function addComment(){
+	function addComment($id){
+
+		$this->Event->setId($id);
+		$this->Event->updateStatusWaitPoint();
 		
 		$loginData = $this->session->userdata('loginData');
 		
@@ -58,25 +46,33 @@ class Events extends CI_Controller {
 		
 		echo "<script>parent.jQuery.fancybox.close();</script>";
 		
+		
 	}
 	function infoStar()
 	{
+		//$datalogin = $this->session->userdata('loginData');
+		//$this->Student->setStuId($datalogin['id']);
 		$data['star'] = $this->Event->getEventStu();
 		$this->load->view('stuscore',$data);
 	}
-	function addStar($id)
+	function addStar($id,$s,$stuId)
 	{
+		$this->Event->setS($s);
 		$this->Event->setPointId($id);
+		$this->Event->setStuId($stuId);
+		$data['id'] = $id;
 		$data['addstar'] = $this->Event->showStar();
 		$this->load->view('stuscores',$data);
 	}
-	function stuAddStar($id){
-		
-		$loginData = $this->session->userdata('loginData');
+	function stuAddStar($id,$stuId){
+	
+		$this->Event->setId($id);
+		$this->Event->setStuId($stuId);
+		$this->Event->updateStatusFinish();
 
 		$star = $this->input->post('star');
 		$stuId = $this->input->post('stuId');
-		
+
 		$this->Event->setPointId($id);
 		$this->Event->setStar($star);
 		$this->Event->setStuId($loginData['id']);
@@ -91,7 +87,7 @@ class Events extends CI_Controller {
 		$this->Event->setE($e);
 		$this->Event->getPkStatus();
 		
-				$loginData = $this->session->userdata('loginData');
+		$loginData = $this->session->userdata('loginData');
 		
 		 $eventTopic = $this->input->post('eventTopic');
 		 $eventTime = $this->input->post('teaEventTime');

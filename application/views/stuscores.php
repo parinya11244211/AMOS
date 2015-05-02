@@ -212,8 +212,10 @@ body{
     
     <div id="bodyInfo">
     <br>
-    <br><?php foreach($addstar as $s){?>
-    <form method="post" action="<?php echo base_url();?>index.php/events/stuAddStar/<?php echo $s['pointId']?>">
+    <br><?php foreach($addstar as $s){
+		 if($s['teaEventStatus'] == 5){
+		?>
+    <form method="post" action="<?php echo base_url();?>index.php/events/stuAddStar/<?php echo $id ?>/<?php echo $s['stuId'] ?>">
 <table width="71%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
   <tr>
   	<td align="center">หัวข้อ</td>
@@ -248,7 +250,7 @@ body{
         </td>
   </tr>
        </table>
-       </form> <?php }?>
+       </form> <?php } }?>
     </div>
 </body>
 </html>

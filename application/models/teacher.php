@@ -22,6 +22,7 @@ class Teacher extends CI_Model {
     var $teaEventTime ; ######  เพิ่มเวลา  ######
     var $teaEventRoom ; ######  เพิ่มห้อ  ######
 	var $stuId ; ######  เพิ่มห้อ  ######
+	var $s;
 	
 ###### End Attribute  ###### 
 
@@ -239,6 +240,16 @@ class Teacher extends CI_Model {
         return $this->stuId; 
      }
 ###### End GET : $stuId ######
+###### GET : $eventRoom ######
+    function getS(){
+        return $this->s; 
+     }
+###### End GET : $eventRoom ###### 
+###### SET : $teaId ######
+    function setS($s){
+        $this->s = $s; 
+     }
+###### End SET : $teaId ###### 
 
 	function login(){
 		$this->db->where('teaUsername',$this->getTeaUsername());
@@ -359,7 +370,16 @@ class Teacher extends CI_Model {
 		return $data;
 		
 	}
+		function updataStatusDel(){
+		
+		$this->db->where('teaEventStatus',$this->getS());
+		
+		$data = array(
+			'teaEventStatus' => 1);
+			
+		$this->db->update('teaevent',$data);
 
+	}
 }
 
 ?>

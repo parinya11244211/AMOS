@@ -24,7 +24,10 @@
 	$topic[4] = "ครอบครัว"
 	
 ?>
-<form method="post" action="<?php echo base_url();?>index.php/events/addComment">
+<?php foreach($comment as $s){
+	 if($s['teaEventStatus'] == 3){
+	?>
+<form method="post" action="<?php echo base_url();?>index.php/events/addComment/<?php echo $id ?>">
 <table width="90%" height="70" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
 <tr>
 	 <td align="center">หัวข้อ</td>
@@ -36,7 +39,7 @@
     <td align="center">รหัสนักศึกษา</td>
     <td align="center">เบอร์นักศึกษา</td>
 </tr> 
-<?php foreach($comment as $s){?>
+
 <tr>
 	<td align="center"><?php echo $topic[$s['eventTopic']]?></td>
         <td align="center"><?php echo $s['teaEventDay']?></td>
@@ -47,7 +50,7 @@
         <td align="center"><?php echo $s['stuCode']?></td>
         <td align="center"><?php echo $s['stuTel']?></td>
 </tr>
-<?php }?>
+<?php } }?>
 <tr>
 		<td colspan="8" align="center"><br><br>กรุณากรอกคำแนะนำที่ให้กับนักศึกษา<br><br>
           <textarea cols="70" name="comment"></textarea>

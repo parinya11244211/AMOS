@@ -221,15 +221,18 @@ body{
     <td align="center">ห้อง</td>
     <td align="center">ให้คะแนน</td>
   </tr> 
-  <?php foreach($star as $s){?>
+  <?php foreach($star as $s){
+	  $datalogin = $this->session->userdata('loginData');
+	  if($s['teaEventStatus'] == 5 && $s['stuId'] == $datalogin['id']  ){
+	  ?>
     <tr>
         <td align="center"><?php echo $topic[$s['eventTopic']]?></td>
         <td align="center"><?php echo $s['teaEventDay']?></td>
         <td align="center"><?php echo $s['eventTime']?></td>
         <td align="center"><?php echo $s['eventRoom']?></td>
-        <td align="center"><a href='<?php echo base_url();?>index.php/events/addStar/<?php echo $s['pointId'] ?>'>ให้คะแนน</a></td>
+        <td align="center"><a href='<?php echo base_url();?>index.php/events/addStar/<?php echo $s['pointId'] ?>/<?php echo $s['teaEventStatus'] ?>/<?php echo $s['stuId'] ?>'>ให้คะแนน</a></td>
     </tr>
-     <?php }?>
+     <?php } }?>
        </table>
        </table>
     </div>

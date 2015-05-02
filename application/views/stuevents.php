@@ -213,7 +213,9 @@ body{
     
     <div id="bodyInfo">
 <br><br><br>
-      <?php foreach($showevent as $e){?>
+      <?php foreach($showevent as $e){
+		  if($e['teaEventStatus'] == 1){
+		  ?>
      <form method="post" action="<?php echo base_url();?>index.php/events/updateStatus/<?php echo $e['teaEventId']; ?>">
       <table width="30%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
 		<tr>
@@ -249,7 +251,7 @@ body{
     <input name="teaEventTime" type="hidden" value="<?php echo $e['teaEventTime'];?>">
     <input name="teaEventRoom" type="hidden" value="<?php echo $e['teaEventRoom'];?>">
     <input name="teaEventId" type="hidden" value="<?php echo $e['teaEventId'];?>"></td>
-        </tr><?php }?>
+        </tr><?php } }?>
        </table>
          </form>
     </div>

@@ -248,7 +248,9 @@ body{
     <td align="center">เบอร์นักศึกษา</td>
     <td align="center">ใส่คำแนะนำ</td>
   </tr> 
-  <?php foreach($completeeventstu as $s){?>
+  <?php foreach($completeeventstu as $s){
+	  if($s['teaEventStatus'] == 3){
+	  ?>
     <tr>
         <td align="center"><?php echo $topic[$s['eventTopic']]?></td>
         <td align="center"><?php echo $s['teaEventDay']?></td>
@@ -258,9 +260,9 @@ body{
         <td align="center"><?php echo $s['stuLastname']?></td>
         <td align="center"><?php echo $s['stuCode']?></td>
         <td align="center"><?php echo $s['stuTel']?></td>
-        <td align="center"><a class="various fancybox.iframe" href='<?php echo base_url();?>index.php/events/comment/<?php echo $s['eventId'] ?>'>ใส่คำแนะนำ</a></td>
+        <td align="center"><a class="various fancybox.iframe" href='<?php echo base_url();?>index.php/events/comment/<?php echo $s['eventId'] ?>/<?php echo $s['teaEventStatus']?>'>ใส่คำแนะนำ</a></td>
     </tr>
-     <?php }?>
+     <?php } }?>
        </table>
     </div>
 </body>
