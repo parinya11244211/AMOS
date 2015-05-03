@@ -230,7 +230,7 @@ body{
         <td align="center"><?php echo $s['teaEventDay']?></td>
         <td align="center"><?php echo $s['eventTime']?></td>
         <td align="center"><?php echo $s['eventRoom']?></td>
-        <td align="center"><a href='<?php echo base_url();?>index.php/events/addStar/<?php echo $s['pointId'] ?>/<?php echo $s['teaEventStatus'] ?>/<?php echo $s['stuId'] ?>'>ให้คะแนน</a></td>
+        <td align="center"><a href='<?php echo base_url();?>index.php/events/addStar/<?php echo $s['pointId'] ?>/<?php echo $s['teaEventStatus'] ?>/<?php echo $s['stuId'] ?>/<?php echo $s['eventId'] ?>/<?php echo $s['teaEventId']?>'>ให้คะแนน</a></td>
     </tr>
      <?php } }?>
        </table>

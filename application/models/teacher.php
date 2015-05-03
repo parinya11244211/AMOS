@@ -23,8 +23,23 @@ class Teacher extends CI_Model {
     var $teaEventRoom ; ######  เพิ่มห้อ  ######
 	var $stuId ; ######  เพิ่มห้อ  ######
 	var $s;
+	var $eventId;
+	var $teaEventId;
 	
 ###### End Attribute  ###### 
+
+ ###### SET : $teaId ######
+    function setTeaEventId($teaEventId){
+        $this->teaEventId = $teaEventId; 
+     }
+###### End SET : $teaId ###### 
+
+
+###### GET : $teaId ######
+    function getTeaEventId(){
+        return $this->teaEventId; 
+     }
+###### End GET : $teaId ###### 
 
  ###### SET : $teaId ######
     function setTeaId($teaId){
@@ -251,6 +266,17 @@ class Teacher extends CI_Model {
      }
 ###### End SET : $teaId ###### 
 
+###### GET : $eventRoom ######
+    function getEventId(){
+        return $this->eventId; 
+     }
+###### End GET : $eventRoom ###### 
+###### SET : $teaId ######
+    function setEventId($eventId){
+        $this->eventId = $eventId; 
+     }
+###### End SET : $teaId ###### 
+
 	function login(){
 		$this->db->where('teaUsername',$this->getTeaUsername());
 		$this->db->where('teaPassword',MD5($this->getTeaPassword()));
@@ -371,14 +397,12 @@ class Teacher extends CI_Model {
 		
 	}
 		function updataStatusDel(){
-		
-		$this->db->where('teaEventStatus',$this->getS());
-		
+
 		$data = array(
 			'teaEventStatus' => 1);
 			
+		$this->db->where('teaevent.teaEventId',$this->getTeaEventId());
 		$this->db->update('teaevent',$data);
-
 	}
 }
 

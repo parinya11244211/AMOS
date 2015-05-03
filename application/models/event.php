@@ -20,8 +20,19 @@ class Event extends CI_Model {
 	var $e;
 	var $s;
 	var $id;
+	var $teaEventStatus;
 
 ###### End Attribute  ###### 
+    function setTeaEventStatus($teaEventStatus){
+        $this->teaEventStatus = $teaEventStatus; 
+     }
+###### End SET : $eventId ###### 
+
+
+###### GET : $eventId ######
+    function getTeaEventStatus(){
+        return $this->teaEventStatus; 
+     }
 
  ###### SET : $eventId ######
     function setEventId($eventId){
@@ -252,7 +263,8 @@ class Event extends CI_Model {
 			$this->db->join('teacher','teacher.teaId = match.teaId');
 			$this->db->join('teaevent','teaevent.teaEventId = event.teaEventId');
 			$this->db->where('event.eventId ',$this->getEventId());
-			return $this->db->get('event')->result_array();
+			$data = $this->db->get('event')->result_array();
+			return $data;
 	}
 	function addComment(){
 		$data = array(
@@ -275,12 +287,15 @@ class Event extends CI_Model {
 			$this->db->where('point.pointId',$this->getPointId());
 			return $this->db->get('point')->result_array();
 	}
-	
 	function addStar(){
+		
+		
+		
 		$data = array(
 			'star' => $this->getStar(),
-			'stuId' => $this->getStuId());
-		$this->db->where('pointId',$this->getPointId());
+			'stuId' => $this->getStuId($loginData['id']));
+			
+		$this->db->where('point.teaEventId',$this->getTeaEventId());
 		$this->db->update('point',$data);
 	}
 	function showReport()
@@ -369,12 +384,10 @@ class Event extends CI_Model {
 		
 	function updateStatusWait(){
 		
-		$this->db->where('teaEventStatus',$this->getS());
-		
 		$data = array(
 			'teaEventStatus' => 3);
 			
-		$this->db->where('teaEventId',$this->getEventId());
+		$this->db->where('teaevent.teaEventId',$this->getTeaEventId());
 		$this->db->update('teaevent',$data);
 
 	}
@@ -383,7 +396,7 @@ class Event extends CI_Model {
 		$data = array(
 			'teaEventStatus' => 5);
 			
-		$this->db->where('teaEventId',$this->getId());
+		$this->db->where('teaevent.teaEventId',$this->getTeaEventId());
 		$this->db->update('teaevent',$data);
 
 	}
@@ -392,7 +405,7 @@ class Event extends CI_Model {
 		$data = array(
 			'teaEventStatus' => 6);
 			
-		$this->db->where('teaEventId',$this->getId());
+		$this->db->where('teaevent.teaEventId',$this->getTeaEventId());
 		$this->db->update('teaevent',$data);
 
 	}

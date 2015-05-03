@@ -26,8 +26,13 @@ class Students extends CI_Controller {
 	}
 	function stuEvent()
 	{
-		$data['teaEventDay'] = $this->Student->getByTeaEvent();
-		$this->load->view('stuevent',$data);
+		$data = $this->Student->checkStu();
+		if(!$data){
+			$data['teaEventDay'] = $this->Student->getByTeaEvent();
+			$this->load->view('stuevent',$data);
+		}else{
+			$this->load->view('homestu');
+		}
 	}
 	function stuEdit($stuId){
 	
@@ -82,6 +87,9 @@ class Students extends CI_Controller {
 		function stuEditPassword($stuId){
 			$data['id']=$stuId;
 			$this->load->view('stueditpassword',$data);
+		}
+	function loadView(){
+			$this->load->view('homestu');
 		}
 	
 }

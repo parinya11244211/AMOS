@@ -145,8 +145,11 @@ class Teachers extends CI_Controller {
 		$this->Teacher->delEventTea($id);
 		header( 'Location: '.base_url().'index.php/teachers/teaTime' );
 	}
-		function deleventstu($id,$s){
+		function deleventstu($id,$s,$teaEventId){
 			$this->Teacher->setS($s);
+			$this->Teacher->setEventId($id);
+			$this->Teacher->setTeaEventId($teaEventId);
+			
 			$this->Teacher->updataStatusDel();
 			
 			$this->Teacher->delEventStu($id);

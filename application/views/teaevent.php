@@ -237,8 +237,8 @@ body{
         <td align="center"><?php echo $s['stuCode']?></td>
         <td align="center"><?php echo $s['stuTel']?></td>
         <td align="center"><?php echo $status[$s['teaEventStatus']]?></td>
-         <td align="center"><a href='<?php echo base_url();?>index.php/events/completeEvent/<?php echo $s['eventId'] ?>/<?php echo $s['teaEventStatus'] ?>'>รับการปรึกษา</a></td>
-        <td align="center"><a href="<?php echo base_url();?>index.php/teachers/deleventstu/<?php echo $s['eventId'];?>/<?php echo $s['teaEventStatus'];?>">ยกเลิก</a></td>
+         <td align="center"><a href='<?php echo base_url();?>index.php/events/completeEvent/<?php echo $s['eventId']; ?>/<?php echo $s['teaEventStatus']; ?>/<?php echo $s['teaEventId'];?>'>รับการปรึกษา</a></td>
+        <td align="center"><a href="<?php echo base_url();?>index.php/teachers/deleventstu/<?php echo $s['eventId'];?>/<?php echo $s['teaEventStatus'];?>/<?php echo $s['teaEventId'];?>">ยกเลิก</a></td>
     </tr>
      <?php } }?>
        </table>

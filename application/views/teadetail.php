@@ -260,7 +260,7 @@ body{
         <td align="center"><?php echo $s['stuLastname']?></td>
         <td align="center"><?php echo $s['stuCode']?></td>
         <td align="center"><?php echo $s['stuTel']?></td>
-        <td align="center"><a class="various fancybox.iframe" href='<?php echo base_url();?>index.php/events/comment/<?php echo $s['eventId'] ?>/<?php echo $s['teaEventStatus']?>'>ใส่คำแนะนำ</a></td>
+        <td align="center"><a class="various fancybox.iframe" href='<?php echo base_url();?>index.php/events/comment/<?php echo $s['eventId'] ?>/<?php echo $s['teaEventStatus']?>/<?php echo $s['teaEventId']?>'>ใส่คำแนะนำ</a></td>
     </tr>
      <?php } }?>
        </table>

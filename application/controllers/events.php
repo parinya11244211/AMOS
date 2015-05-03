@@ -8,10 +8,12 @@ class Events extends CI_Controller {
 		$this->load->view('stuevents',$data);
 	}
 
-	function completeEvent($id,$s){
+	function completeEvent($id,$s,$teaEventId){
 		
 		$this->Event->setS($s);
 		$this->Event->setEventId($id);
+		$this->Event->setTeaEventId($teaEventId);
+		
 		$this->Event->updateStatusWait();
 		$data['completeeventstu'] = $this->Event->getByPkEvent();
 		$this->load->view('teadetail',$data);
@@ -21,17 +23,19 @@ class Events extends CI_Controller {
 		$data['completeeventstu'] = $this->Event->getEventAll();
 		$this->load->view('teadetail',$data);
 	}
-	function comment($id,$s)
+	function comment($id,$s,$teaEventId)
 	{
 		$this->Event->setS($s);
 		$this->Event->setEventId($id);
+		$this->Event->setTeaEventId($teaEventId);
 		$data['id'] = $id;
 		$data['comment'] = $this->Event->comment();
 		$this->load->view('teacomment',$data);
 	}
-	function addComment($id){
-
-		$this->Event->setId($id);
+	function addComment($eventId,$teaEventStatus,$teaEventId){
+		$this->Event->setEventId($eventId);
+		$this->Event->setTeaEventStatus($teaEventStatus);
+		$this->Event->setTeaEventId($teaEventId);
 		$this->Event->updateStatusWaitPoint();
 		
 		$loginData = $this->session->userdata('loginData');
@@ -55,24 +59,29 @@ class Events extends CI_Controller {
 		$data['star'] = $this->Event->getEventStu();
 		$this->load->view('stuscore',$data);
 	}
-	function addStar($id,$s,$stuId)
+	function addStar($pointId,$teaEventStatus,$stuId,$eventId,$teaEventId)
 	{
-		$this->Event->setS($s);
-		$this->Event->setPointId($id);
+		$this->Event->setPointId($pointId);
+		$this->Event->setTeaEventStatus($teaEventStatus);
 		$this->Event->setStuId($stuId);
-		$data['id'] = $id;
+		$this->Event->setEventId($eventId);
+		$this->Event->setTeaEventId($teaEventId);
+		$data['id'] = $pointId;
 		$data['addstar'] = $this->Event->showStar();
 		$this->load->view('stuscores',$data);
 	}
-	function stuAddStar($id,$stuId){
-	
-		$this->Event->setId($id);
-		$this->Event->setStuId($stuId);
+	function stuAddStar($eventId,$teaEventStatus,$teaEventId){
+
+		$this->Event->setEventId($eventId);
+		$this->Event->setTeaEventStatus($teaEventStatus);
+		$this->Event->setTeaEventId($teaEventId);
 		$this->Event->updateStatusFinish();
+		
+		$loginData = $this->session->userdata('loginData');
 
 		$star = $this->input->post('star');
-		$stuId = $this->input->post('stuId');
-
+		$loginData['stuId'] = $this->input->post('stuId');
+	
 		$this->Event->setPointId($id);
 		$this->Event->setStar($star);
 		$this->Event->setStuId($loginData['id']);

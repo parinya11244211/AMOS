@@ -284,12 +284,32 @@ class Student extends CI_Model {
 	{
 		$datalogin = $this->session->userdata('loginData');
 		$this->db->where('stuId',$datalogin['id']);
+		
 		$data = $this->db->get('match')->result_array();
+		
 		$this->db->join('teaevent','teaevent.teaId = teacher.teaId');
+		
 		$this->db->where('teacher.teaId',$data[0]['teaId']);
 		$this->db->order_by('teaevent.teaEventDay','ASC');
 		$data = $this->db->get('teacher')->result_array();
 		return $data;
 	}
+		function checkStu()
+	{
+		$datalogin = $this->session->userdata('loginData');
+	
+		$this->db->join('event','event.teaEventId = teaevent.teaEventId');
+		$this->db->or_where('teaevent.teaEventStatus',2);
+		$this->db->or_where('teaevent.teaEventStatus',3);
+		$this->db->or_where('teaevent.teaEventStatus',4);
+		$this->db->or_where('teaevent.teaEventStatus',5);
+		$this->db->where('event.stuId',$datalogin['id']);
+		$this->db->order_by('teaevent.teaEventId','DESC');
+		$this->db->limit(1);
+		$data = $this->db->get('teaevent')->result_array();
+		return $data;
+
+	}
+	
 }
 ?>
