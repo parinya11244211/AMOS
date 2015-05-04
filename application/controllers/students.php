@@ -27,11 +27,12 @@ class Students extends CI_Controller {
 	function stuEvent()
 	{
 		$data = $this->Student->checkStu();
+		
 		if(!$data){
 			$data['teaEventDay'] = $this->Student->getByTeaEvent();
 			$this->load->view('stuevent',$data);
 		}else{
-			$this->load->view('homestu');
+			$this->load->view('stuerror');
 		}
 	}
 	function stuEdit($stuId){

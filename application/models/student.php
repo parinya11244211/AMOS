@@ -298,11 +298,10 @@ class Student extends CI_Model {
 	{
 		$datalogin = $this->session->userdata('loginData');
 	
+	
 		$this->db->join('event','event.teaEventId = teaevent.teaEventId');
-		$this->db->or_where('teaevent.teaEventStatus',2);
-		$this->db->or_where('teaevent.teaEventStatus',3);
-		$this->db->or_where('teaevent.teaEventStatus',4);
-		$this->db->or_where('teaevent.teaEventStatus',5);
+		$this->db->where('teaevent.teaEventStatus !=',1);
+		$this->db->where('teaevent.teaEventStatus !=',6);
 		$this->db->where('event.stuId',$datalogin['id']);
 		$this->db->order_by('teaevent.teaEventId','DESC');
 		$this->db->limit(1);
