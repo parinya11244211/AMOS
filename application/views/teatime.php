@@ -690,9 +690,10 @@ body{
     
 <div id="bodyInfo" align="center">
     <form action="<?php echo base_url();?>index.php/teachers/addeventtea" method="post">
+    <!-- เมื่อกด บันทึก จะเก็บค่า teaEventDay,teaEventTime,teaEventRoom ไปที่ Controller teachers Function addeventtea -->
             <br><br>
             <input type="date" name="teaEventDay" id="teaEventDay" />
-
+			
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <select name="teaEventTime" id="teaEventTime">
             <option value="08:00:00">8.00-9.00 น.</option>
@@ -721,12 +722,14 @@ body{
     <td align="center">ยกเลิก</td>
   </tr>
   <?php foreach($showeventtea as $t){?>
+  <!-- ค่า $showeventtea มาจาก Controller teachers Function teaTime นำเวลาที่เปิดนัดหมาย มาแสดง -->
   <tr>
     <td align="center"><br><?php echo $t['teaEventDay']?></td>
     <td align="center"><br><?php echo $t['teaEventTime']?></td>
     <td align="center"><br><?php echo $t['teaEventRoom']?></td>
     <td align="center"><a href="<?php echo base_url();?>index.php/teachers/deleventtea/
 	<?php echo $t['teaEventId'];?>">ยกเลิก</a> </td>
+    <!-- เมื่อกดปุ่ม ยกเลิก เอาค่า teaEventId มาใช้ที่ Controller teachers Function deleventtea -->
   </tr>
   <?php }?>
 </table>

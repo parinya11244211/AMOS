@@ -8,14 +8,15 @@ class Events extends CI_Controller {
 		$this->load->view('stuevents',$data);
 	}
 
-	function completeEvent($id,$s,$teaEventId){
+	function completeEvent($id,$s,$teaEventId){//รับค่ามาจากหน้า View teaevent
 		
 		$this->Event->setS($s);
 		$this->Event->setEventId($id);
 		$this->Event->setTeaEventId($teaEventId);
 		
-		$this->Event->updateStatusWait();
+		$this->Event->updateStatusWait();//นำค่าที่รับมาไปใช้ Model Event Function updateStatusWait
 		$data['completeeventstu'] = $this->Event->getByPkEvent();
+		//เรียกใชเ Model Event Function getByPkEvent ได้ค่า $data ชื่อ completeeventstu
 		$this->load->view('teadetail',$data);
 	}
 	function infoEvent()
@@ -29,23 +30,23 @@ class Events extends CI_Controller {
 		$this->Event->setEventId($id);
 		$this->Event->setTeaEventId($teaEventId);
 		$data['id'] = $id;
-		$data['comment'] = $this->Event->comment();
+		$data['comment'] = $this->Event->comment();//นำค่าที่รับมาไปใช้ Model Event Function comment ได้ $data ชื่อ comment
 		$this->load->view('teacomment',$data);
 	}
 	function addComment($eventId,$teaEventStatus,$teaEventId){
 		$this->Event->setEventId($eventId);
 		$this->Event->setTeaEventStatus($teaEventStatus);
 		$this->Event->setTeaEventId($teaEventId);
-		$this->Event->updateStatusWaitPoint();
+		$this->Event->updateStatusWaitPoint();// นำค่าที่รับมาไปใช้กับ Model Event Function updateStatusWaitPoint
 		
 		$loginData = $this->session->userdata('loginData');
 		
 		$comment = $this->input->post('comment');
 		$teaEventId = $this->input->post('teaEventId');
-		
+		//เอาค่าที่รับมาจากหน้า View comment ไป set
 		$this->Event->setComment($comment);
 		$this->Event->setTeaEventId($teaEventId);
-		
+		//เอาค่าไปไปใช้ Model Event Function addComment
 		$this->Event->addComment();
 		
 		echo "<script>parent.jQuery.fancybox.close();</script>";
@@ -54,8 +55,6 @@ class Events extends CI_Controller {
 	}
 	function infoStar()
 	{
-		//$datalogin = $this->session->userdata('loginData');
-		//$this->Student->setStuId($datalogin['id']);
 		$data['star'] = $this->Event->getEventStu();
 		$this->load->view('stuscore',$data);
 	}

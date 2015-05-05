@@ -300,27 +300,27 @@ class Teacher extends CI_Model {
 	}
 	function getByPkMatch()
 	{
-		$this->db->join('student','student.stuId = match.stuId');
-		$this->db->where('match.teaId',$this->getTeaId()); 
-		$data = $this->db->get('match')->result_array();
+		$this->db->join('student','student.stuId = match.stuId');//join table student โดยเอา stuId เทียบกับ stuId ใน table match
+		$this->db->where('match.teaId',$this->getTeaId()); //เอาข้อมูล teaId จาก table match มา
+		$data = $this->db->get('match')->result_array();//ดึง table match มาใช้งาน
 		return $data;
 	}
 	function teaUpdate(){
 		$data = array(
-		'teaName' => $this->getTeaName(),
+		'teaName' => $this->getTeaName(),//get ค่าเที่ยบกับ ตัวแปลใน ฟิว ของ table teacher
 		'teaLastname' => $this->getTeaLastname(),
 		'teaAddress' => $this->getTeaAddress(),
 		'teaTel' => $this->getTeaTel(),
 		'teaEmail' => $this->getTeaEmail());
 		
-		$this->db->where('teaId',$this->getTeaId());
-		$this->db->update('teacher',$data);
+		$this->db->where('teaId',$this->getTeaId());// ทำการ update ข้อมูลเฉพาะอาจารย์คนนั้นๆ
+		$this->db->update('teacher',$data);//update ไปที่ table teacher
 	}
-	function teaUpdatePassword(){
+	function teaUpdatePassword(){// update รหัสผ่าน
 		$data = array(
-		'teaPassword' => MD5($this->getTeaPassword()));
+		'teaPassword' => MD5($this->getTeaPassword()));// เอา TeaPassword ไป update ที่ฟิว teaPassword ที่ table teacher 
 		
-		$this->db->where('teaId',$this->getTeaId());
+		$this->db->where('teaId',$this->getTeaId());//แต่ต้อง update เฉพาะ teaId นั้นๆ
 		$this->db->update('teacher',$data);
 	}
 	function addTea(){
@@ -353,12 +353,12 @@ class Teacher extends CI_Model {
      }
 	return $insert;
  }
- function addEventTea(){
+ function addEventTea(){//ใช้เพิ่มเวลานัดหมาย
 	 $data = array(
 	 	'teaEventDay' => $this->getTeaEventDay(),
 		'teaEventTime' => $this->getTeaEventTime(),
 		'teaEventRoom' => $this->getTeaEventRoom(),
-		'teaId' => $this->getTeaId()
+		'teaId' => $this->getTeaId()//เพิ่มค่าที่รับมาที่ teaId คนนั้นๆ
 		);
 		
 		$this->db->insert('teaevent',$data);
@@ -367,20 +367,20 @@ class Teacher extends CI_Model {
 	function showEventTea(){
 		
 			$datalogin = $this->session->userdata('loginData');
-			$teaId = $datalogin['id'];
-			$this->db->where('teaId',$teaId);
-			$this->db->order_by('teaEventDay','ASC');
-			return	$this->db->get('teaevent')->result_array();
+			$teaId = $datalogin['id'];//เอา id อาจารย์ที่เข้าสู่ระบบ เป็นค่า $teaId
+			$this->db->where('teaId',$teaId);//เก็บค่าไว้ที่ teaId นั้นๆ
+			$this->db->order_by('teaEventDay','ASC');//เรียงจากวันน้อย ไปหาวันมาก
+			return	$this->db->get('teaevent')->result_array();//ดึง table teaevent มาใช้งาน
 		}
 	function delEventTea($id)
 	{
-		$this->db->where('teaevent.teaEventId',$id);
+		$this->db->where('teaevent.teaEventId',$id);//เอาค่าที่รับมาไป ลบ เฉพาะ teaevent
 		return $this->db->delete('teaevent');
 	}
 	
-	function delEventStu($id)
+	function delEventStu($id)//ลบรายการของนักศึกษา
 	{
-		$this->db->where('event.eventId',$id);
+		$this->db->where('event.eventId',$id);//ลบรายการขึ่นอยู่กับ eventId จาก table event และ id ที่รับมา
 		return $this->db->delete('event');
 	}
 	
@@ -403,7 +403,7 @@ class Teacher extends CI_Model {
 		$data = array(
 			'teaEventStatus' => 1);
 			
-		$this->db->where('teaevent.teaEventId',$this->getTeaEventId());
+		$this->db->where('teaevent.teaEventId',$this->getTeaEventId());//update status จาก table teaevent จาก teaEventId เท่านั้น
 		$this->db->update('teaevent',$data);
 	}
 }

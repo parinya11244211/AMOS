@@ -26,8 +26,9 @@
 ?>
 <?php foreach($comment as $s){
 	 if($s['teaEventStatus'] == 3){
-	?>
+	?><!-- $comment ได้มาจาก Controller events Function comment ให้แสดงรายการที่มี status 3 เท่านั้น -->
 <form method="post" action="<?php echo base_url();?>index.php/events/addcomment/<?php echo $s['eventId']; ?>/<?php echo $s['teaEventStatus']; ?>/<?php echo $s['teaEventId'];?>">
+<!-- เมื่อกดปุ่ม บันทึก เก็บค่า eventId,teaEventStatus,teaEvent ไปใช้หน้า Controller events Function addcomment -->
 <table width="90%" height="70" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
 <tr>
 	 <td align="center">หัวข้อ</td>

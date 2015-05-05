@@ -241,9 +241,9 @@ class Event extends CI_Model {
 			
 			$this->db->join('student','student.stuId = event.stuId');
 			$this->db->join('match','match.stuId = student.stuId');
-			$this->db->join('teacher','teacher.teaId = match.teaId');
+			$this->db->join('teacher','teacher.teaId = match.teaId');//join เพื่อเรียกใช้ค่าจาก table นั้นๆ
 			$this->db->join('teaevent','teaevent.teaEventId = event.teaEventId');
-			$this->db->where('event.eventId ',$this->getEventId()); 
+			$this->db->where('event.eventId ',$this->getEventId()); //โดยยึด eventId เป็นหลัก จาก table event
 			$data = $this->db->get('event')->result_array();
 			return $data;		
 	}
@@ -251,9 +251,9 @@ class Event extends CI_Model {
 	{
 			$this->db->join('student','student.stuId = event.stuId');
 			$this->db->join('match','match.stuId = student.stuId');
-			$this->db->join('teacher','teacher.teaId = match.teaId');
+			$this->db->join('teacher','teacher.teaId = match.teaId');//join เพื่อเรียกใช้ค่าจาก table นั้นๆ
 			$this->db->join('teaevent','teaevent.teaEventId = event.teaEventId');
-			$this->db->where('teaevent.teaEventStatus',3); 
+			$this->db->where('teaevent.teaEventStatus',3); //โดยยึด teaEventStatus เป็นหลัก จาก table teaevent
 			return $this->db->get('event')->result_array();
 	}
 	function comment()
@@ -270,14 +270,13 @@ class Event extends CI_Model {
 		$data = array(
 		'comment' => $this->getComment(),
 		'teaEventId' => $this->getTeaEventId());
-		$this->db->insert('point',$data);
+		$this->db->insert('point',$data);//เอาค่าที่รับมาจากหน้า Controller events addComment ไปเพิ่มลงใน table point
 	}
 	function getEventStu()
 	{
 			$this->db->join('teaevent','teaevent.teaEventId = point.teaEventId');
 			$this->db->join('event','event.teaEventId = teaevent.teaEventId');
-		//	$this->db->join('student','student.stuId = point.stuId');
-		//	$this->db->where('student.stuId ',$this->getStuId()); 
+		
 			return $this->db->get('point')->result_array();
 	}
 	function showStar()
@@ -387,7 +386,7 @@ class Event extends CI_Model {
 		$data = array(
 			'teaEventStatus' => 3);
 			
-		$this->db->where('teaevent.teaEventId',$this->getTeaEventId());
+		$this->db->where('teaevent.teaEventId',$this->getTeaEventId());//update status จาก table teaevent จาก teaEventId เท่านั้น
 		$this->db->update('teaevent',$data);
 
 	}
@@ -396,7 +395,7 @@ class Event extends CI_Model {
 		$data = array(
 			'teaEventStatus' => 5);
 			
-		$this->db->where('teaevent.teaEventId',$this->getTeaEventId());
+		$this->db->where('teaevent.teaEventId',$this->getTeaEventId());//update status จาก table teaevent จาก teaEventId เท่านั้น
 		$this->db->update('teaevent',$data);
 
 	}

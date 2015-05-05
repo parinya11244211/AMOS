@@ -186,6 +186,7 @@ body{
     <div id="bodyInfo">
     <br><br>
    <form id="form1" name="form1" method="post" action="<?php echo base_url(); ?>index.php/teachers/teaeditaction">
+   <!-- เมื่อกปุ่ม ยืนยัน จะนำค่าที่ได้มาใหม่ไป update ที่ Controller teachers Function teaeditaction -->
 	<?php foreach($teaedit as $t){ ?>
 <table width="500" border="0" align="center">
   <tr>
@@ -214,6 +215,7 @@ body{
   </tr>
   <tr>
     <td><a href='<?php echo base_url();?>index.php/teachers/teaeditpassword/<?php echo $t['teaId'];?>'>แก้ไขรหัสผ่าน</a></td>
+    <!-- เมื่อกดปุ่มแก้ไขรหัสผ่าน จะเก็บค่า teaId ไปใช้ใน Controller teachers Function teaeditpassword -->
     <td>
      <br> <input type="submit" name="button" id="button" value="ยืนยัน" />
     </td>

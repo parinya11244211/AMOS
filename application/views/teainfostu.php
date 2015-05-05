@@ -185,6 +185,7 @@ body{
     <div id="bodyInfo"><br><br>
     <h2 align="center">ค้นหานักศึกษา<br></h2>
     <form method="post" action="<?php echo base_url();?>index.php/teachers/teasearch">
+    <!-- เมื่อกดปุ่ม ค้นหา ให้เรียกใช้ Controller teacher Function teasearch -->
     <h5 align="center">
     <input type="text" name="teaSearch" id="teaSearch" />&nbsp;&nbsp;
     <input type="submit" value="ค้นหา" /></h5></form>

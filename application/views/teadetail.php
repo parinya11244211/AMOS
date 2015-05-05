@@ -250,7 +250,7 @@ body{
   </tr> 
   <?php foreach($completeeventstu as $s){
 	  if($s['teaEventStatus'] == 3){
-	  ?>
+	  ?><!-- $completeeventstu ได้มาจาก Controller events Function completeEvent ให้แสดงรายการที่มี status 3 เท่านั้น -->
     <tr>
         <td align="center"><?php echo $topic[$s['eventTopic']]?></td>
         <td align="center"><?php echo $s['teaEventDay']?></td>
@@ -261,6 +261,7 @@ body{
         <td align="center"><?php echo $s['stuCode']?></td>
         <td align="center"><?php echo $s['stuTel']?></td>
         <td align="center"><a class="various fancybox.iframe" href='<?php echo base_url();?>index.php/events/comment/<?php echo $s['eventId'] ?>/<?php echo $s['teaEventStatus']?>/<?php echo $s['teaEventId']?>'>ใส่คำแนะนำ</a></td>
+        <!-- เมื่อกดปุ่ม ใส่คำแนะนำ เก็บค่า eventId,teaEventStatus,teaEventId ไปใช้ใน Controller events Function comment -->
     </tr>
      <?php } }?>
        </table>

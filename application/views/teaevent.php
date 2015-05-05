@@ -225,8 +225,9 @@ body{
     <td align="center">ยกเลิกการปรึกษา</td>
   </tr> 
   <?php foreach($stuevent as $s){
+	  
 	  if($s['teaEventStatus'] == 2){
-	  ?>
+	  ?><!-- $stuevent ได้มาจาก Controller teachers Function teaEvent ให้แสดงรายการที่มี status 2 เท่านั้น -->
     <tr>
         <td align="center"><?php echo $topic[$s['eventTopic']]?></td>
         <td align="center"><?php echo $s['teaEventDay']?></td>
@@ -238,7 +239,9 @@ body{
         <td align="center"><?php echo $s['stuTel']?></td>
         <td align="center"><?php echo $status[$s['teaEventStatus']]?></td>
          <td align="center"><a href='<?php echo base_url();?>index.php/events/completeevent/<?php echo $s['eventId']; ?>/<?php echo $s['teaEventStatus']; ?>/<?php echo $s['teaEventId'];?>'>รับการปรึกษา</a></td>
+         <!-- เมื่อกดปุ่มปรึกษา เก็บค่า eventId teaEventStatus teaEventId ไปใช้ใน Controller events Function completeevent -->
         <td align="center"><a href="<?php echo base_url();?>index.php/teachers/deleventstu/<?php echo $s['eventId'];?>/<?php echo $s['teaEventStatus'];?>/<?php echo $s['teaEventId'];?>">ยกเลิก</a></td>
+         <!-- เมื่อกดปุ่มปรึกษา เก็บค่า eventId teaEventStatus teaEventId ไปใช้ใน Controller teachers Function deleventstu -->
     </tr>
      <?php } }?>
        </table>
