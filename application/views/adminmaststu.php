@@ -205,6 +205,7 @@ body{
             <td align="center"><strong>อีเมล์อาจารย์ที่ปรึกษา</strong></td>
         </tr>
         <?php foreach($teacher as $t){?>
+        <!-- ค่า $teacher มาจาก Controller match Function matching แสดงอาจารย์ที่ปรึกษาที่เลือกมาจากหน้า View adminmast -->
         <tr>
           <td align="center"><br><?php echo $t['teaCode']?></td>
     	  <td align="center"><br><?php echo $t['teaName']?></td>
@@ -226,11 +227,12 @@ body{
   <?php
   
    foreach($student2 as $s){?>
+   <!-- ค่า $teacher2 มาจาก Controller match Function matching แสดงนักศึกษาที่ match แล้ว -->
   <tr>
   	<td align="center"><br><?php echo $s['stuCode']?></td>
     <td align="center"><br><?php echo $s['stuName']?></td>
     <td align="center"><br><?php echo $s['stuLastname']?></td>
-   <td align="center"><a href="<?php echo base_url();?>index.php/matchs/delstu/<?php echo $teacher[0]['teaId'];?>/<?php echo $s['matchId']?>">ยกเลิก</a> </td>
+   <td align="center"><a href="<?php echo base_url();?>index.php/matchs/delstu/<?php echo $teacher[0]['teaId'];?>/<?php echo $s['matchId']?>">ยกเลิก</a> </td><!-- เมื่อกดปุ่ม ยกเลิก ให้เก็บค่า TeaId และ matchId ไป Controller matchs Function delstu -->
   </tr>
   <?php }?>
 </table>
@@ -244,12 +246,12 @@ body{
      <td align="center"><strong>นามสกุลนักศึกษา</strong></td>
      <td align="center"><strong>เลือกนักศึกษา</strong></td>
   </tr>
-  <?php foreach($student as $s){?>
+  <?php foreach($student as $s){?><!-- ค่า $student มาจาก Controller match Function matching แสดงค่านักศึกษาทั้งหมดที่ยังไม่ได้ทำการ Match -->
   <tr>
   	<td align="center"><br><?php echo $s['stuCode']?></td>
     <td align="center"><br><?php echo $s['stuName']?></td>
     <td align="center"><br><?php echo $s['stuLastname']?></td>
-   <td align="center"><a href="<?php echo base_url();?>index.php/matchs/matchstutotea/<?php echo $teacher[0]['teaId'];?>/<?php echo $s['stuId']?>">เลือก</a> </td>
+   <td align="center"><a href="<?php echo base_url();?>index.php/matchs/matchstutotea/<?php echo $teacher[0]['teaId'];?>/<?php echo $s['stuId']?>">เลือก</a> </td><!-- เมื่อกดปุ่มเลือก เก็บค่า stuId นำไปใช้ใน Controller matchs Function matchstutotea เริ่มเก็บจาก Array ตัวที่ 0 -->
   </tr>
   <?php }?>
 </table>

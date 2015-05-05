@@ -208,7 +208,7 @@ body{
     <td align="center"><strong>คณะอาจารย์ที่ปรึกษา</strong></td>
     <td align="center"><strong>เลือกอาารย์ที่ปรึกษา</strong></td>
   </tr>
-  <?php foreach($teainfo as $t){?>
+  <?php foreach($teainfo as $t){?><!-- $teainfo เอามาจาก Conteoller หน้า admins ฟังชั่น mast -->
   <tr>
   	<td align="center"><br><?php echo $t['teaCode']?></td>
     <td align="center"><br><?php echo $t['teaName']?></td>
@@ -216,7 +216,7 @@ body{
     <td align="center"><br><?php echo $t['teaBraName']?></td>
     <td align="center"><br><?php echo $t['teaFacName']?></td>
     <td align="center"><a href="<?php echo base_url();?>index.php/matchs/matching/<?php echo $t['teaId']?>">เลือก</a></td>
-  </tr>
+  </tr><!-- เมื่อกดปุ่ม เลือก เก็บค่า teaId ไปใช้ใน Controller หน้า matchs ฟังชั่น matching -->
   <?php }?>
 </table>
 </div>

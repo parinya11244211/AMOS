@@ -154,25 +154,27 @@ class Admin extends CI_Model {
 			return FALSE;
 		}
 	}
-	function adminGetTeaInfo()
+	function adminGetTeaInfo()//นำค่าจาก table teacher มาแสดง
 	{
 		return $this->db->get('teacher')->result_array();
 	}
 	function adminGetMatch()
 	{
 		$this->db->join('match','match.stuId = student.stuId');
-		$data = $this->db->get('student')->result_array();
-		return $data;
+		// join table match โดยเอา stuId จาก table stuId มาเทียบกับ table student stuId
+		$data = $this->db->get('student')->result_array();//เรียกใช่ database student เก็บค่าไว้ที่ $data
+		return $data;// จะได้นักศึกษาที่ยังไม่ได้ทำการ match ออกมาเท่านั้น
 	}
 	function adminGetMatchByTeacher($id)
 	{
 		$this->db->join('match','match.stuId = student.stuId');
-		$this->db->where('match.teaId',$id);
-		$this->db->group_by('student.stuId');
-		$data = $this->db->get('student')->result_array();
+		// join table match โดยเอา stuId จาก table stuId มาเทียบกับ table student stuId
+		$this->db->where('match.teaId',$id);//โดยที่ teaId ให้มีค่าเท่ากับ $id ค่าที่ส่งมาจาก Controller 
+		$this->db->group_by('student.stuId');//รวมนักศึกษาที่มีไอดีไว้ด้วยกัน เพราะเรียกนักศึกษาหลายทีจะได้นักศึกษาออกมาหลายคน
+		$data = $this->db->get('student')->result_array();//เรียกใช่ database student เก็บค่าไว้ที่ $data
 		return $data;
 	}
-	function adminGetAllStu()
+	function adminGetAllStu()//นำค่าจาก table student มาแสดง
 	{
 		$data = $this->db->get('student')->result_array();
 		return $data;
@@ -181,10 +183,10 @@ class Admin extends CI_Model {
 	{
 		return $this->db->get('student')->result_array();
 	}
-	function delmatch($id)
+	function delmatch($id)//รับค่า $id จาก Controller matchs Function delStu
 	{
 		$this->db->where('match.matchId',$id);
-		return $this->db->delete('match');
+		return $this->db->delete('match');//ทำการ - ข้อมูลจาก table match โดยที่ $id ที่ส่งมาต้องเท่ากับ matchId
 	}
 }
 ?>

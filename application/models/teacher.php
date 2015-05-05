@@ -294,8 +294,8 @@ class Teacher extends CI_Model {
 	}
 	function getByPk()
 	{
-		$this->db->where('teacher.teaId ',$this->getTeaId()); 
-		$data = $this->db->get('teacher')->result_array();
+		$this->db->where('teacher.teaId ',$this->getTeaId());// แต่ค่าที่จะนำไปใช้ ต้องมาจาก Id ของอาจารย์คนนั้น ที่เลือกมาจากหน้า View adminmaststu
+		$data = $this->db->get('teacher')->result_array();// เรียกใช่ database teacher เก็บค่าไว้ที่ $data
 		return $data;
 	}
 	function getByPkMatch()

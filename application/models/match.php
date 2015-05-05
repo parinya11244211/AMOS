@@ -54,11 +54,11 @@ class Match extends CI_Model {
 
 	function addMatch(){
 		$data = array(
-		'teaId' => $this->getTeaId(),
-		'stuId' => $this->getstuId()
+		'teaId' => $this->getTeaId(),//นำค่่า TeaId ไป get ใส่ teaId
+		'stuId' => $this->getStuId()//นำค่่า StuId ไป get ใส่ stuId
 		);
 
-		$this->db->insert('match',$data);
+		$this->db->insert('match',$data);//นำข้อมูลไปเพิ่มใน tabel match
 	}
 	
 }

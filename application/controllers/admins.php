@@ -121,8 +121,8 @@ class Admins extends CI_Controller {
 	}
 	function mast()
 	{
-		$data['teainfo'] = $this->Admin->adminGetTeaInfo();
-		$this->load->view('adminmast',$data);
+		$data['teainfo'] = $this->Admin->adminGetTeaInfo();//นำค่าจาก Model Admin Function adminGetTeaInfo มาเก็บไว้ใน $data ชื่อ teainfo
+		$this->load->view('adminmast',$data);//ส่งค่าขึ้นหน้า View adminmast
 	}
 	function mastStu()
 	{
