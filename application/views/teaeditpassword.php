@@ -177,7 +177,7 @@ body{
 			<li><a href='<?php echo base_url();?>index.php/teachers/teainfomatch'>ข้อมูลนักศึกษา</a></li>
 			<li><a href='<?php echo base_url();?>index.php/teachers/teatime'>เวลานัดหมาย</a></li>
             <li><a href='<?php echo base_url();?>index.php/teachers/teaevent'>การนัดหมายของนักศึกษา</a></li>
-            <li><a href='<?php echo base_url();?>index.php/Events/infoEvent'>ใส่รายละเอียดข้อมูลการให้ปรึกษา</a></li>
+            <li><a href='<?php echo base_url();?>index.php/events/infoevent'>ใส่รายละเอียดข้อมูลการให้ปรึกษา</a></li>
             <li><a href='<?php echo base_url();?>index.php/teachers/teareport'>รายงาน</a></li>
 		</ul>
 	</div>	
@@ -185,21 +185,21 @@ body{
     
     <div id="bodyInfo">
     <br><br>
-   <form id="form1" name="form1" method="post" action="<?php echo base_url(); ?>index.php/teachers/teaEditPass">
+   <form id="form1" name="form1" method="post" action="<?php echo base_url(); ?>index.php/teachers/teaeditpass">
    <input type="hidden" name="teaId" id="teaId" value="<?php echo $id;?>" />
       <br><br>
 <table width="500" border="0" align="center">
    <tr>
     <td>รหัสผ่านเดิม&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-    <td><input type="text" name="password1" id="password1" /></td>
+    <td><input type="password" name="password1" id="password1" /></td>
   </tr>
    <tr>
     <td>รหัสผ่านใหม่&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-    <td><input type="text" name="password2" id="password2" /></td>
+    <td><input type="password" name="password2" id="password2" /></td>
   </tr>
    <tr>
     <td>ยืนยันรหัสผ่านใหม่&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-    <td><input type="text" name="password3" id="password3" /></td>
+    <td><input type="password" name="password3" id="password3" /></td>
   </tr>
   <tr>
     <td>&nbsp;</td>

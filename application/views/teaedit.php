@@ -177,7 +177,7 @@ body{
 			<li><a href='<?php echo base_url();?>index.php/teachers/teainfomatch'>ข้อมูลนักศึกษา</a></li>
 			<li><a href='<?php echo base_url();?>index.php/teachers/teatime'>เวลานัดหมาย</a></li>
             <li><a href='<?php echo base_url();?>index.php/teachers/teaevent'>การนัดหมายของนักศึกษา</a></li>
-            <li><a href='<?php echo base_url();?>index.php/Events/infoEvent'>ใส่รายละเอียดข้อมูลการให้ปรึกษา</a></li>
+            <li><a href='<?php echo base_url();?>index.php/events/infoevent'>ใส่รายละเอียดข้อมูลการให้ปรึกษา</a></li>
             <li><a href='<?php echo base_url();?>index.php/teachers/teareport'>รายงาน</a></li>
 		</ul>
 	</div>	
@@ -185,7 +185,7 @@ body{
     
     <div id="bodyInfo">
     <br><br>
-   <form id="form1" name="form1" method="post" action="<?php echo base_url(); ?>index.php/teachers/teaEditAction">
+   <form id="form1" name="form1" method="post" action="<?php echo base_url(); ?>index.php/teachers/teaeditaction">
 	<?php foreach($teaedit as $t){ ?>
 <table width="500" border="0" align="center">
   <tr>
@@ -213,7 +213,7 @@ body{
     <td><input type="text" name="teaEmail" id="teaEmail" value="<?php echo $t['teaEmail'];?>" /></td>
   </tr>
   <tr>
-    <td><a href='<?php echo base_url();?>index.php/teachers/teaEditPassword/<?php echo $t['teaId'];?>'>แก้ไขรหัสผ่าน</a></td>
+    <td><a href='<?php echo base_url();?>index.php/teachers/teaeditpassword/<?php echo $t['teaId'];?>'>แก้ไขรหัสผ่าน</a></td>
     <td>
      <br> <input type="submit" name="button" id="button" value="ยืนยัน" />
     </td>

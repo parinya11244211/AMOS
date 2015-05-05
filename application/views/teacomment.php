@@ -27,7 +27,7 @@
 <?php foreach($comment as $s){
 	 if($s['teaEventStatus'] == 3){
 	?>
-<form method="post" action="<?php echo base_url();?>index.php/events/addComment/<?php echo $s['eventId']; ?>/<?php echo $s['teaEventStatus']; ?>/<?php echo $s['teaEventId'];?>">
+<form method="post" action="<?php echo base_url();?>index.php/events/addcomment/<?php echo $s['eventId']; ?>/<?php echo $s['teaEventStatus']; ?>/<?php echo $s['teaEventId'];?>">
 <table width="90%" height="70" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
 <tr>
 	 <td align="center">หัวข้อ</td>

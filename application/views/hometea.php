@@ -180,8 +180,8 @@ body{
 			<li><a href='<?php echo base_url();?>index.php/teachers/teainfomatch'>ข้อมูลนักศึกษา</a></li>
 			<li><a href='<?php echo base_url();?>index.php/teachers/teatime'>เวลานัดหมาย</a></li>
             <li><a href='<?php echo base_url();?>index.php/teachers/teaevent'>การนัดหมายของนักศึกษา</a></li>
-            <li><a href='<?php echo base_url();?>index.php/Events/infoEvent'>ใส่รายละเอียดข้อมูลการให้ปรึกษา</a></li>
-            <li><a href='<?php echo base_url();?>index.php/Teachers/teaReport'>รายงาน</a></li>
+            <li><a href='<?php echo base_url();?>index.php/events/infoevent'>ใส่รายละเอียดข้อมูลการให้ปรึกษา</a></li>
+            <li><a href='<?php echo base_url();?>index.php/teachers/teareport'>รายงาน</a></li>
 		</ul>
 	</div>	
     </div>

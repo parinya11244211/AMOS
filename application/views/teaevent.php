@@ -202,7 +202,7 @@ body{
 			<li><a href='<?php echo base_url();?>index.php/teachers/teainfomatch'>ข้อมูลนักศึกษา</a></li>
 			<li><a href='<?php echo base_url();?>index.php/teachers/teatime'>เวลานัดหมาย</a></li>
             <li><a href='<?php echo base_url();?>index.php/teachers/teaevent'>การนัดหมายของนักศึกษา</a></li>
-            <li><a href='<?php echo base_url();?>index.php/Events/infoEvent'>ใส่รายละเอียดข้อมูลการให้ปรึกษา</a></li>
+            <li><a href='<?php echo base_url();?>index.php/events/infoevent'>ใส่รายละเอียดข้อมูลการให้ปรึกษา</a></li>
             <li><a href='<?php echo base_url();?>index.php/teachers/teareport'>รายงาน</a></li>
 		</ul>
 	</div>	
@@ -237,7 +237,7 @@ body{
         <td align="center"><?php echo $s['stuCode']?></td>
         <td align="center"><?php echo $s['stuTel']?></td>
         <td align="center"><?php echo $status[$s['teaEventStatus']]?></td>
-         <td align="center"><a href='<?php echo base_url();?>index.php/events/completeEvent/<?php echo $s['eventId']; ?>/<?php echo $s['teaEventStatus']; ?>/<?php echo $s['teaEventId'];?>'>รับการปรึกษา</a></td>
+         <td align="center"><a href='<?php echo base_url();?>index.php/events/completeevent/<?php echo $s['eventId']; ?>/<?php echo $s['teaEventStatus']; ?>/<?php echo $s['teaEventId'];?>'>รับการปรึกษา</a></td>
         <td align="center"><a href="<?php echo base_url();?>index.php/teachers/deleventstu/<?php echo $s['eventId'];?>/<?php echo $s['teaEventStatus'];?>/<?php echo $s['teaEventId'];?>">ยกเลิก</a></td>
     </tr>
      <?php } }?>

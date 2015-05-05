@@ -191,7 +191,7 @@ body{
     <br><br>
     <h2>นำเข้าข้อมูลนักศึกษา</h2>
     <br>
-<form id="form1" name="form1" method="post" action="<?php echo base_url();?>index.php/admins/importStudent" enctype="multipart/form-data">
+<form id="form1" name="form1" method="post" action="<?php echo base_url();?>index.php/admins/importstudent" enctype="multipart/form-data">
   <p>
     <input type="file" name="exc" id="exc" />
     <input type="submit" name="button" id="button" value="นำเข้าข้อมูล" />

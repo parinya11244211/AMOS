@@ -205,7 +205,7 @@ body{
 			<li><a href='<?php echo base_url();?>index.php/students/stuinfo'>ข้อมูลส่วนตัว</a></li>
 			<li><a href='<?php echo base_url();?>index.php/students/stuinfomatch'>ข้อมูลอาจารย์ที่ปรึกษา</a></li>
 			<li><a href='<?php echo base_url();?>index.php/students/stuevent'>ทำรายการการนัดหมาย</a></li>
-            <li><a href='<?php echo base_url();?>index.php/Events/infoStar'>ให้คะแนน</a></li>
+            <li><a href='<?php echo base_url();?>index.php/events/infostar'>ให้คะแนน</a></li>
 		</ul>
 	</div>	
     </div>
@@ -215,7 +215,7 @@ body{
     <br><?php foreach($addstar as $s){
 		 if($s['teaEventStatus'] == 5){
 		?>
-    <form method="post" action="<?php echo base_url();?>index.php/events/stuAddStar/<?php echo $s['eventId']; ?>/<?php echo $s['teaEventStatus']; ?>/<?php echo $s['teaEventId'];?>/<?php echo $s['stuId'];?>">
+    <form method="post" action="<?php echo base_url();?>index.php/events/stuaddstar/<?php echo $s['eventId']; ?>/<?php echo $s['teaEventStatus']; ?>/<?php echo $s['teaEventId'];?>/<?php echo $s['stuId'];?>">
 <table width="71%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
   <tr>
   	<td align="center">หัวข้อ</td>

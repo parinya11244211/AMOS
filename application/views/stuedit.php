@@ -180,13 +180,13 @@ body{
 			<li><a href='<?php echo base_url();?>index.php/students/stuinfo'>ข้อมูลส่วนตัว</a></li>
 			<li><a href='<?php echo base_url();?>index.php/students/stuinfomatch'>ข้อมูลอาจารย์ที่ปรึกษา</a></li>
 			<li><a href='<?php echo base_url();?>index.php/students/stuevent'>ทำรายการการนัดหมาย</a></li>
-            <li><a href='<?php echo base_url();?>index.php/Events/infoStar'>ให้คะแนน</a></li>
+            <li><a href='<?php echo base_url();?>index.php/events/infostar'>ให้คะแนน</a></li>
 		</ul>
 	</div>	
     </div>
     
     <div id="bodyInfo">
-   <form id="form1" name="form1" method="post" action="<?php echo base_url(); ?>index.php/students/stuEditAction">
+   <form id="form1" name="form1" method="post" action="<?php echo base_url(); ?>index.php/students/stueditaction">
 	<?php foreach($stuedit as $s){ ?><br><br>
 <table width="500" border="0" align="center">
   <tr>
@@ -215,7 +215,7 @@ body{
   </tr>
   <tr>
   <tr>
-    <td><a href='<?php echo base_url();?>index.php/students/stuEditPassword/<?php echo $s['stuId'];?>'>แก้ไขรหัสผ่าน</a></td>
+    <td><a href='<?php echo base_url();?>index.php/students/stueditpassword/<?php echo $s['stuId'];?>'>แก้ไขรหัสผ่าน</a></td>
     <td>
     <br>
       <input type="submit" name="button" id="button" value="ยืนยัน" />

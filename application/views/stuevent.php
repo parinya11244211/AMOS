@@ -201,7 +201,7 @@ body{
 			<li><a href='<?php echo base_url();?>index.php/students/stuinfo'>ข้อมูลส่วนตัว</a></li>
 			<li><a href='<?php echo base_url();?>index.php/students/stuinfomatch'>ข้อมูลอาจารย์ที่ปรึกษา</a></li>
 			<li><a href='<?php echo base_url();?>index.php/students/stuevent'>ทำรายการการนัดหมาย</a></li>
-            <li><a href='<?php echo base_url();?>index.php/Events/infoStar'>ให้คะแนน</a></li>
+            <li><a href='<?php echo base_url();?>index.php/events/infostar'>ให้คะแนน</a></li>
 		</ul>
 	</div>	
     </div>
@@ -239,7 +239,7 @@ body{
     <td align="center"><?php echo $e['teaEventTime'];?></td>
     <td align="center"><?php echo $e['teaEventRoom'];?></td>
     <td align="center"><?php echo $status[$e['teaEventStatus']];?></td>
-    <td align="center"><a href='<?php echo base_url();?>index.php/events/selectTopic/<?php echo $e['teaEventId'] ?>'>ดูหัวข้อปรึกษา</a></td>
+    <td align="center"><a href='<?php echo base_url();?>index.php/events/selecttopic/<?php echo $e['teaEventId'] ?>'>ดูหัวข้อปรึกษา</a></td>
     </tr><?php } }?>
 </table>
 </form>

@@ -206,7 +206,7 @@ body{
 			<li><a href='<?php echo base_url();?>index.php/students/stuinfo'>ข้อมูลส่วนตัว</a></li>
 			<li><a href='<?php echo base_url();?>index.php/students/stuinfomatch'>ข้อมูลอาจารย์ที่ปรึกษา</a></li>
 			<li><a href='<?php echo base_url();?>index.php/students/stuevent'>ทำรายการการนัดหมาย</a></li>
-            <li><a href='<?php echo base_url();?>index.php/Events/infoStar'>ให้คะแนน</a></li>
+            <li><a href='<?php echo base_url();?>index.php/events/infostar'>ให้คะแนน</a></li>
 		</ul>
 	</div>	
     </div>
@@ -216,7 +216,7 @@ body{
       <?php foreach($showevent as $e){
 		  if($e['teaEventStatus'] == 1){
 		  ?>
-     <form method="post" action="<?php echo base_url();?>index.php/events/updateStatus/<?php echo $e['teaEventId']; ?>">
+     <form method="post" action="<?php echo base_url();?>index.php/events/updatestatus/<?php echo $e['teaEventId']; ?>">
       <table width="30%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
 		<tr>
         	<td>&nbsp;&nbsp;&nbsp;อาจารย์ที่ปรึกษา</td>
