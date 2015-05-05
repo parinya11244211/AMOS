@@ -200,6 +200,7 @@ body{
     <td align="center">อีเมล์นักศึกษา</td>
   </tr>
   <?php foreach($teainfo as $t){?>
+  <!-- $teainfo มาจาก Controller teachers Function teaInfoMatch -->
   <tr>
     <td align="center"><br><?php echo $t['stuCode']?></td>
     <td align="center"><br><?php echo $t['stuName']?></td>

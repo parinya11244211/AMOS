@@ -213,8 +213,8 @@ class Student extends CI_Model {
 	}
 	function getByPk()
 	{
-		$this->db->where('student.stuId ',$this->getStuId()); 
-		$data = $this->db->get('student')->result_array();
+		$this->db->where('student.stuId ',$this->getStuId()); // แต่ค่าที่จะนำไปใช้ ต้องมาจาก Id ของนักศึกษาคนนั้น
+		$data = $this->db->get('student')->result_array();// เรียกใช่ database student เก็บค่าไว้ที่ $data
 		return $data;
 	}
 	function getByPkMatch()
@@ -226,14 +226,14 @@ class Student extends CI_Model {
 	}
 	function stuUpdate(){
 		$data = array(
-		'stuName' => $this->getStuName(),
+		'stuName' => $this->getStuName(),//get ค่าเที่ยบกับ ตัวแปลใน ฟิว ของ table student
 		'stuLastname' => $this->getStuLastname(),
 		'stuAddress' => $this->getStuAddress(),
 		'stuTel' => $this->getStuTel(),
 		'stuEmail' => $this->getStuEmail());
 		
-		$this->db->where('stuId',$this->getStuId());
-		$this->db->update('student',$data);
+		$this->db->where('stuId',$this->getStuId());// ทำการ update ข้อมูลเฉพาะนักเรียนคนนั้นๆ
+		$this->db->update('student',$data);//update ไปที่ table student
 	}
 	function stuUpdatePassword(){
 		$data = array(
@@ -279,6 +279,7 @@ class Student extends CI_Model {
 		$this->db->join('match','match.stuId = student.stuId');
 		$this->db->like('stuName',$this->getStuName());//ค้นหาจากชื่อนักศึกษา like คือหาชื่อที่มีตัวนั้นๆที่ส่งมา
 		$this->db->where('match.teaId',$loginData['id']);//อาจารย์ใช้ id จากการเข้าสู่ระบบไปค้นหา นักศึกษาของตัวเองจาก table match
+		$this->db->group_by('event.stuId');//เอาค่าที่ซ้ำกันไม่แสดง ตามหัวข้อ ในตาราง point
 		$query = $this->db->get('student')->result_array();//เรียกใช้ table student
 		return $query;
 	}
@@ -286,8 +287,8 @@ class Student extends CI_Model {
 	{
 		$datalogin = $this->session->userdata('loginData');
 		$this->db->where('stuId',$datalogin['id']);
-		
-		$data = $this->db->get('match')->result_array();
+		//ใช้ค่าจากนักศึกษาคนนั้นๆ
+		$data = $this->db->get('match')->result_array();//เรียกใช้ table match
 		
 		$this->db->join('teaevent','teaevent.teaId = teacher.teaId');
 		
@@ -295,11 +296,11 @@ class Student extends CI_Model {
 		$this->db->order_by('teaevent.teaEventDay','ASC');
 		$data = $this->db->get('teacher')->result_array();
 		return $data;
+		//เรียกกิจกรรมของอาจารย์คนนั้นๆออกมา
 	}
 		function checkStu()
 	{
 		$datalogin = $this->session->userdata('loginData');
-	
 	
 		$this->db->join('event','event.teaEventId = teaevent.teaEventId');
 		$this->db->where('teaevent.teaEventStatus !=',1);
@@ -309,7 +310,7 @@ class Student extends CI_Model {
 		$this->db->limit(1);
 		$data = $this->db->get('teaevent')->result_array();
 		return $data;
-
+		//เช็คดูว่านักศึกษามีกิจกรรมที่ status ไม่เท่ากับ 1 และ 6 หรือไม่ 1 = สามารถนัดได้ 6 = เสร็จสิ้น จะดูเฉพาะนักศึกษาคนนั้นๆ และรายการทำได้เพียงรายการเดียว
 	}
 	
 }

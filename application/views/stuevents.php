@@ -216,7 +216,9 @@ body{
       <?php foreach($showevent as $e){
 		  if($e['teaEventStatus'] == 1){
 		  ?>
+     <!-- $showevent ได้มาจาก Controller events Function selectTopic แต่กิจกรรมต้องมี status 1 เท่านั้น 1 = สามารถนัดได้ -->
      <form method="post" action="<?php echo base_url();?>index.php/events/updatestatus/<?php echo $e['teaEventId']; ?>">
+     <!-- เก็บค่า teaEventId ไปใช้ใน Controller events Function updatestatus -->
       <table width="30%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
 		<tr>
         	<td>&nbsp;&nbsp;&nbsp;อาจารย์ที่ปรึกษา</td>

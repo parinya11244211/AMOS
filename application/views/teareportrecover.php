@@ -220,6 +220,7 @@ body{
     <td align="center">รหัสนักศึกษา</td>
   </tr> 
   <?php foreach($showTopicRecover as $s){?>
+  <!-- $showTopicRecover มาจาก Controller teacher Function getEventTopicRecover -->
     <tr>
   		<td align="center"><?php echo $topic[$s['eventTopic']]?></td>
         <td align="center"><?php echo $s['teaEventDay']?></td>

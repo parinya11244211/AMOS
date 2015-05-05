@@ -214,7 +214,7 @@ class Event extends CI_Model {
 		'eventRoom' => $this->getEventRoom(),
 		'stuId' => $this->getStuId(),
 		'teaEventId' => $this->getTeaEventId());
-
+		//นำค่าที่รับมาเทียบกับฟิวว่าตรงกันหรือไม่ ถ้าตรงก็เพิ่มเข้า table event
 		$this->db->insert('event',$data);
 		
 	}
@@ -225,6 +225,7 @@ class Event extends CI_Model {
 		$this->db->where('teaEventId',$this->getTeaEventId());
 		$data = $this->db->get('teaevent')->result_array();
 		return $data;
+		//เรียกใช้ table teaevent join table teacher เพื่อนำค่าไปใช้ แต่ค่าต้องมาจาก อาจารย์ที่ที่มีกิจกรรม table teacher
 	}
 	function showEvent(){
 		
@@ -251,11 +252,14 @@ class Event extends CI_Model {
 	}
 	function getEventAll()
 	{
+			$datalogin = $this->session->userdata('loginData');
 			$this->db->join('student','student.stuId = event.stuId');
 			$this->db->join('match','match.stuId = student.stuId');
 			$this->db->join('teacher','teacher.teaId = match.teaId');//join เพื่อเรียกใช้ค่าจาก table นั้นๆ
 			$this->db->join('teaevent','teaevent.teaEventId = event.teaEventId');
+			
 			$this->db->group_by('event.teaEventId');//เอาค่าที่ซ้ำกันไม่แสดง ตามหัวข้อ ในตาราง point
+			$this->db->where('teacher.teaId',$datalogin['id']); 
 			$this->db->where('teaevent.teaEventStatus',3); //โดยยึด teaEventStatus เป็นหลัก จาก table teaevent
 			return $this->db->get('event')->result_array();
 	}
@@ -282,6 +286,7 @@ class Event extends CI_Model {
 			$this->db->join('event','event.teaEventId = teaevent.teaEventId');
 		
 			return $this->db->get('point')->result_array();
+			//ดึงข้อมูลจาก table point , event , teaevent มาใช้งาน
 	}
 	function showStar()
 	{
@@ -289,10 +294,9 @@ class Event extends CI_Model {
 			$this->db->join('event','event.teaEventId = teaevent.teaEventId');
 			$this->db->where('point.pointId',$this->getPointId());
 			return $this->db->get('point')->result_array();
+			//ดึงข้อมูลจาก table point , event , teaevent มาใช้งาน แต่กิจกรรมที่ออกมาต้องตรงกับไอดีที่รับมา
 	}
 	function addStar(){
-		
-		
 		
 		$data = array(
 			'star' => $this->getStar(),
@@ -300,6 +304,7 @@ class Event extends CI_Model {
 			
 		$this->db->where('point.teaEventId',$this->getTeaEventId());
 		$this->db->update('point',$data);
+		//นำค่ามา updata ที่ table point โดยยึด teaEventId เป็นหลัก
 	}
 	function showReport()
 	{
@@ -397,13 +402,12 @@ class Event extends CI_Model {
 	}
 		function getPkStatus(){
 		
-		$this->db->where('teaEventId',$this->getE());
-		
 		$data = array(
 			'teaEventStatus' => 2);
 			
+		$this->db->where('teaEventId',$this->getE());	
 		$this->db->update('teaevent',$data);
-
+		//update status จาก table teaevent จาก teaEventId เท่านั้น
 	}
 		
 	function updateStatusWait(){

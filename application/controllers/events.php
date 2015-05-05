@@ -1,10 +1,10 @@
 ﻿<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Events extends CI_Controller {
 	
-	function selectTopic($id){
+	function selectTopic($id){//รับค่า id มาจาก View stuevent
 	
-		$this->Event->setTeaEventId($id);
-		$data['showevent'] = $this->Event->getByPk();
+		$this->Event->setTeaEventId($id);//นำค่า id ที่รับ ไป set
+		$data['showevent'] = $this->Event->getByPk();//เรียกใช้ Model Event Function getByPk ได้ค่า $data ชื่อ showevent
 		$this->load->view('stuevents',$data);
 	}
 
@@ -55,11 +55,11 @@ class Events extends CI_Controller {
 	}
 	function infoStar()
 	{
-		$data['star'] = $this->Event->getEventStu();
+		$data['star'] = $this->Event->getEventStu();// นำค่าที่รับมาไปใช้กับ Model Event Function getEventStu ได้ $data ชื่อ star
 		$this->load->view('stuscore',$data);
 	}
 	function addStar($pointId,$teaEventStatus,$stuId,$eventId,$teaEventId)
-	{
+	{//เอาค่าที่รับมาจากหน้า View stuscore มา set แล้วเรียกใช้ Model Event Function showStar ได้ $data ชื่อ addstar ออกมา
 		$this->Event->setPointId($pointId);
 		$this->Event->setTeaEventStatus($teaEventStatus);
 		$this->Event->setStuId($stuId);
@@ -70,7 +70,7 @@ class Events extends CI_Controller {
 		$this->load->view('stuscores',$data);
 	}
 	function stuAddStar($eventId,$teaEventStatus,$teaEventId){
-
+		//นำค่าที่รับมาจากหน้า View stuscores นำมา set 
 		$this->Event->setEventId($eventId);
 		$this->Event->setTeaEventStatus($teaEventStatus);
 		$this->Event->setTeaEventId($teaEventId);
@@ -84,7 +84,7 @@ class Events extends CI_Controller {
 		$this->Event->setPointId($id);
 		$this->Event->setStar($star);
 		$this->Event->setStuId($loginData['id']);
-		
+		//นำค่ามารับมาไปใช้ใน Model Event Function addStar
 		$data = $this->Event->addStar();
 		
 		header('Location:'.base_url().'index.php/students/index');
@@ -94,7 +94,7 @@ class Events extends CI_Controller {
 			
 		$this->Event->setE($e);
 		$this->Event->getPkStatus();
-		
+		//เมื่อ update status แล้ว
 		$loginData = $this->session->userdata('loginData');
 		
 		 $eventTopic = $this->input->post('eventTopic');
@@ -108,7 +108,7 @@ class Events extends CI_Controller {
 		$this->Event->setEventRoom($eventRoom);
 		$this->Event->setStuId($stuId);
 		$this->Event->setTeaEventId($teaEventId);
-		
+		//นำค่าที่เข้ามาทำเป็นตัวแปล เอาตัวแปลไป set แล้วใช้ Model Event Function addEvent
 		$data = $this->Event->addEvent();
 		header( 'Location: '.base_url().'index.php/students/stuevent' );
 	}

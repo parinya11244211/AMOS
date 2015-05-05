@@ -225,6 +225,7 @@ body{
 	  $datalogin = $this->session->userdata('loginData');
 	  if($s['teaEventStatus'] == 5 && $s['stuId'] == $datalogin['id']  ){
 	  ?>
+      <!-- $star มาจาก Controller events Function infoStar กิจกรรมจะออกมาเฉพาะ status 5 = รอคะแนน -->
     <tr>
         <td align="center"><?php echo $topic[$s['eventTopic']]?></td>
         <td align="center"><?php echo $s['teaEventDay']?></td>
@@ -233,6 +234,7 @@ body{
         <td align="center"><a href='<?php echo base_url();?>index.php/events/addstar/<?php echo $s['pointId'] ?>/<?php echo $s['teaEventStatus'] ?>/<?php echo $s['stuId'] ?>/<?php echo $s['eventId'] ?>/<?php echo $s['teaEventId']?>'>ให้คะแนน</a></td>
     </tr>
      <?php } }?>
+     <!-- เรียกใช้ Controller events Function addstar โดยใส่ค่า pointId , teaEventStatus , stuId , eventId , teaEventId ไปด้วย -->
        </table>
        </table>
     </div>

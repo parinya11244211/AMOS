@@ -194,6 +194,7 @@ body{
     <td align="center">อีเมล์นักศึกษา</td>
   </tr>
   <?php foreach($stuName as $n){?>
+  <!-- $stuName มาจาก Controller teachers Function teaSearch -->
   <tr>
     <td align="center"><br><?php echo $n['stuCode']?></td>
     <td align="left"><br><?php echo $n['stuName']?></td>

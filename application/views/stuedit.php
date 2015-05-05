@@ -187,6 +187,7 @@ body{
     
     <div id="bodyInfo">
    <form id="form1" name="form1" method="post" action="<?php echo base_url(); ?>index.php/students/stueditaction">
+    <!-- เมื่อกปุ่ม ยืนยัน จะนำค่าที่ได้มาใหม่ไป update ที่ Controller students Function stueditaction -->
 	<?php foreach($stuedit as $s){ ?><br><br>
 <table width="500" border="0" align="center">
   <tr>
@@ -216,6 +217,7 @@ body{
   <tr>
   <tr>
     <td><a href='<?php echo base_url();?>index.php/students/stueditpassword/<?php echo $s['stuId'];?>'>แก้ไขรหัสผ่าน</a></td>
+    <!-- เมื่อกดปุ่มแก้ไขรหัสผ่าน จะเก็บค่า stuId ไปใช้ใน Controller students Function stueditpassword -->
     <td>
     <br>
       <input type="submit" name="button" id="button" value="ยืนยัน" />

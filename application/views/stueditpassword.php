@@ -188,6 +188,7 @@ body{
     <div id="bodyInfo">
     <br><br>
    <form id="form1" name="form1" method="post" action="<?php echo base_url(); ?>index.php/students/stueditpass">
+    <!-- เมื่อกดปุ่ม ยืนยัน จะเก็บค่า password1,password2,password3 ไปใช้ที่ Controller students Function stueditpass -->
    <input type="hidden" name="stuId" id="stuId" value="<?php echo $id;?>" />
 	<br><br>
 <table width="500" border="0" align="center">

@@ -215,7 +215,9 @@ body{
     <br><?php foreach($addstar as $s){
 		 if($s['teaEventStatus'] == 5){
 		?>
+        <!-- $addstar มาจาก Controoler events Function addstar แต่กิจกรรมที่ออกมาต้องมี status 5 เท่านั้น 5 = รอคะแนน -->
     <form method="post" action="<?php echo base_url();?>index.php/events/stuaddstar/<?php echo $s['eventId']; ?>/<?php echo $s['teaEventStatus']; ?>/<?php echo $s['teaEventId'];?>/<?php echo $s['stuId'];?>">
+    <!-- เรียกใข้ Controller events Function stuaddstar และส่งค่า eventId , teaEventStatus , teaEventId , stuId ไปด้วย -->
 <table width="71%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
   <tr>
   	<td align="center">หัวข้อ</td>

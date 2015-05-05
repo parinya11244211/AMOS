@@ -220,6 +220,7 @@ body{
     <td align="center">รหัสนักศึกษา</td>
   </tr> 
   <?php foreach($showTopicFamily as $s){?>
+   <!-- $showTopicFamily มาจาก Controller teachers Function getEventTopicFamily -->
     <tr>
   		<td align="center"><?php echo $topic[$s['eventTopic']]?></td>
         <td align="center"><?php echo $s['teaEventDay']?></td>

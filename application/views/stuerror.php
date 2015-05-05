@@ -127,6 +127,7 @@ body{
 		background-color:#FFF;
 		opacity:0.9;
 		border-radius:7px;
+		font-size:24px;
 	}
 	
 #herderBody{
@@ -210,7 +211,7 @@ body{
 	</div>	
     </div>
   
-    <div id="bodyInfo">
+    <div id="bodyInfo" align="center" >
     <br>
     <br>
   <?php echo 'คุณมีกิจกรรมอยู่แล้ว'; ?>

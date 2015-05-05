@@ -216,6 +216,7 @@ body{
 <?php $i = 1; foreach($teaEventDay as $e){  
   if($i==1){
 ?>
+<!-- $teaEventDay มาจาก Controller students Function stuEvent $i คือให้แสดงค่าที่ซำ้กันออกมาเพียงค่าเดียว -->
     <tr>
     <td align="center"><?php echo $e['teaName'];?></td>
     <td align="center"><?php echo $e['teaLastname'];?></td>
@@ -241,6 +242,7 @@ body{
     <td align="center"><?php echo $status[$e['teaEventStatus']];?></td>
     <td align="center"><a href='<?php echo base_url();?>index.php/events/selecttopic/<?php echo $e['teaEventId'] ?>'>ดูหัวข้อปรึกษา</a></td>
     </tr><?php } }?>
+    <!-- เรียกใช้ Controller events Function selecttopic และเก็บค่า teaEventId ไปด้วย -->
 </table>
 </form>
     </div>
