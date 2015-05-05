@@ -192,15 +192,15 @@ body{
 <table width="500" border="0" align="center">
    <tr>
     <td>รหัสผ่านเดิม&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-    <td><input type="password" name="password1" id="password1" /></td>
+    <td><input type="password" name="password1" id="password1" required /></td>
   </tr>
    <tr>
     <td>รหัสผ่านใหม่&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-    <td><input type="password" name="password2" id="password2" /></td>
+    <td><input type="password" name="password2" id="password2" required /></td>
   </tr>
    <tr>
     <td>ยืนยันรหัสผ่านใหม่&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-    <td><input type="password" name="password3" id="password3" /></td>
+    <td><input type="password" name="password3" id="password3" required /></td>
   </tr>
   <tr>
     <td>&nbsp;</td>

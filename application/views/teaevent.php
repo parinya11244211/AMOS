@@ -91,6 +91,11 @@ $(document).ready(function(){
 	slideBoxy(imgName,50,399,600,1,'3'); 
 	// การเรียกใช้ slideBoxy(  picName  ,  ขนาดลูกศร  ,  ความสูงของรูปทั้งหมด  ,  ความกว้างของรูปทั้งหมด  ,  ขนาดของเฟรม ใส่เป็น เท่า  , วินาทีที่จะเปลี่ยนรูปอัตโนมัติ);
 		 });
+		 
+		 function confirme(){
+	var x = confirm("ยืนยันการทำงานนี้หรือไม่");
+	return x;
+}
 </script>
 
 </header>
@@ -238,9 +243,9 @@ body{
         <td align="center"><?php echo $s['stuCode']?></td>
         <td align="center"><?php echo $s['stuTel']?></td>
         <td align="center"><?php echo $status[$s['teaEventStatus']]?></td>
-         <td align="center"><a href='<?php echo base_url();?>index.php/events/completeevent/<?php echo $s['eventId']; ?>/<?php echo $s['teaEventStatus']; ?>/<?php echo $s['teaEventId'];?>'>รับการปรึกษา</a></td>
+         <td align="center"><a href='<?php echo base_url();?>index.php/events/completeevent/<?php echo $s['eventId']; ?>/<?php echo $s['teaEventStatus']; ?>/<?php echo $s['teaEventId'];?>' onClick="return confirme()">รับการปรึกษา</a></td>
          <!-- เมื่อกดปุ่มปรึกษา เก็บค่า eventId teaEventStatus teaEventId ไปใช้ใน Controller events Function completeevent -->
-        <td align="center"><a href="<?php echo base_url();?>index.php/teachers/deleventstu/<?php echo $s['eventId'];?>/<?php echo $s['teaEventStatus'];?>/<?php echo $s['teaEventId'];?>">ยกเลิก</a></td>
+        <td align="center"><a href="<?php echo base_url();?>index.php/teachers/deleventstu/<?php echo $s['eventId'];?>/<?php echo $s['teaEventStatus'];?>/<?php echo $s['teaEventId'];?>" onClick="return confirme()">ยกเลิก</a></td>
          <!-- เมื่อกดปุ่มปรึกษา เก็บค่า eventId teaEventStatus teaEventId ไปใช้ใน Controller teachers Function deleventstu -->
     </tr>
      <?php } }?>

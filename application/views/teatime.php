@@ -103,6 +103,11 @@ $(document).ready(function(){
 	});
 	
 	});
+	
+	function confirme(){
+	var x = confirm("คุณต้องการลบหรือไม่");
+	return x;
+}
 </script>
 
 </header>
@@ -707,7 +712,7 @@ body{
             <option value="16:00:00">16.00-17.00 น.</option>
             </select>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="text" value="" name="teaEventRoom" id="teaEventRoom" placeholder="เพิ่มสถานที่"/>
+            <input type="text" value="" name="teaEventRoom" id="teaEventRoom" placeholder="เพิ่มสถานที่" required/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input type="submit" value="บันทึก" id="teasave"/>
   </form>       
@@ -727,7 +732,7 @@ body{
     <td align="center"><br><?php echo $t['teaEventDay']?></td>
     <td align="center"><br><?php echo $t['teaEventTime']?></td>
     <td align="center"><br><?php echo $t['teaEventRoom']?></td>
-    <td align="center"><a href="<?php echo base_url();?>index.php/teachers/deleventtea/
+    <td align="center"><a onClick="return confirme()" href="<?php echo base_url();?>index.php/teachers/deleventtea/
 	<?php echo $t['teaEventId'];?>">ยกเลิก</a> </td>
     <!-- เมื่อกดปุ่ม ยกเลิก เอาค่า teaEventId มาใช้ที่ Controller teachers Function deleventtea -->
   </tr>

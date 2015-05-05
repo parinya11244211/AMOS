@@ -188,5 +188,17 @@ class Admin extends CI_Model {
 		$this->db->where('match.matchId',$id);
 		return $this->db->delete('match');//ทำการ - ข้อมูลจาก table match โดยที่ $id ที่ส่งมาต้องเท่ากับ matchId
 	}
+	function checkTeaCode($teaCode)
+	{
+		$this->db->where('teaCode',$teaCode);
+		$data = $this->db->get('teacher')->result_array();
+		return $data;
+	}
+		function checkStuCode($stuCode)
+	{
+		$this->db->where('stuCode',$stuCode);
+		$data = $this->db->get('student')->result_array();
+		return $data;
+	}
 }
 ?>

@@ -186,7 +186,7 @@ body{
     </div>
     
     <div id="bodyInfo">
-   <form id="form1" name="form1" method="post" action="<?php echo base_url(); ?>index.php/students/stueditaction">
+   <form id="form1" name="form1" method="post" action="<?php echo base_url(); ?>index.php/students/stueditaction" onSubmit="return main()">
     <!-- เมื่อกปุ่ม ยืนยัน จะนำค่าที่ได้มาใหม่ไป update ที่ Controller students Function stueditaction -->
 	<?php foreach($stuedit as $s){ ?><br><br>
 <table width="500" border="0" align="center">
@@ -194,25 +194,25 @@ body{
     <td>ชื่อ:</td>
     <td>
       <label for="textfield"></label>
-      <input type="text" name="stuName" id="stuName" value="<?php echo $s['stuName'];?>" />
+      <input type="text" name="stuName" id="stuName" value="<?php echo $s['stuName'];?>" required/>
       <input type="hidden" name="stuId" id="stuId" value="<?php echo $s['stuId'];?>" />
     </td>
   </tr>
   <tr>
     <td>นามสกุล:</td>
-    <td><input type="text" name="stuLastname" id="stuLastname" value="<?php echo $s['stuLastname'];?>" /></td>
+    <td><input type="text" name="stuLastname" id="stuLastname" value="<?php echo $s['stuLastname'];?>" required /></td>
   </tr>
   <tr>
     <td>ที่อยู่:</td>
-    <td><input type="text" name="stuAddress" id="stuAddress" value="<?php echo $s['stuAddress'];?>" /></td>
+    <td><input type="text" name="stuAddress" id="stuAddress" value="<?php echo $s['stuAddress'];?>" required /></td>
   </tr>
   <tr>
     <td>เบอรโทรศัพท์:</td>
-    <td><input type="text" name="stuTel" id="stuTel" value="<?php echo $s['stuTel'];?>" /></td>
+    <td><input type="text" name="stuTel" id="tel" value="<?php echo $s['stuTel'];?>" required /></td>
   </tr>
   <tr>
     <td>อีเมล์:</td>
-    <td><input type="text" name="stuEmail" id="stuEmail" value="<?php echo $s['stuEmail'];?>" /></td>
+    <td><input type="text" name="stuEmail" id="stuEmail" value="<?php echo $s['stuEmail'];?>" required /></td>
   </tr>
   <tr>
   <tr>
@@ -229,3 +229,35 @@ body{
     </div>
 </body>
 </html>
+<script>
+function alertCheck(c,message){
+	if(c==false){
+		alert(message);
+	}
+}
+		 
+function main(){
+	
+	var c = true;
+	
+	c =checktel(document.getElementById('tel').value);
+	
+			alertCheck(c,'กรุณาใส่เบอร์โทรให้ถูกต้อง');
+			return c;
+	
+}
+	
+	function checktel(tel){
+
+	if(tel*1==tel&&tel>0&&tel[0]==0){
+		if(tel.length==10){
+			return true;
+		}else{
+			return false;
+		}
+	}else{
+		return false;
+	}
+	
+} 
+</script>

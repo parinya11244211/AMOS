@@ -118,6 +118,8 @@ $(document).ready(function(){
 		closeEffect	: 'none'
 	});
 		 
+
+		 
 </script>
 
 </header>

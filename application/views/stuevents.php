@@ -95,6 +95,12 @@ $(document).ready(function(){
 	slideBoxy(imgName,50,399,600,1,'3'); 
 	// การเรียกใช้ slideBoxy(  picName  ,  ขนาดลูกศร  ,  ความสูงของรูปทั้งหมด  ,  ความกว้างของรูปทั้งหมด  ,  ขนาดของเฟรม ใส่เป็น เท่า  , วินาทีที่จะเปลี่ยนรูปอัตโนมัติ);
 		 });
+		 
+function confirme(){
+	var x = confirm("คุณต้องการลบหรือไม่");
+	return x;
+}
+
 </script>
 
 </header>
@@ -217,7 +223,7 @@ body{
 		  if($e['teaEventStatus'] == 1){
 		  ?>
      <!-- $showevent ได้มาจาก Controller events Function selectTopic แต่กิจกรรมต้องมี status 1 เท่านั้น 1 = สามารถนัดได้ -->
-     <form method="post" action="<?php echo base_url();?>index.php/events/updatestatus/<?php echo $e['teaEventId']; ?>">
+     <form method="post" action="<?php echo base_url();?>index.php/events/updatestatus/<?php echo $e['teaEventId']; ?>" >
      <!-- เก็บค่า teaEventId ไปใช้ใน Controller events Function updatestatus -->
       <table width="30%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
 		<tr>
@@ -248,7 +254,7 @@ body{
         </tr>
           <tr>
         	<td>&nbsp;&nbsp;&nbsp;ปรึกษา</td>
-            <td align="left">&nbsp;&nbsp;&nbsp;<input type="submit" value="บันทึก">
+            <td align="left">&nbsp;&nbsp;&nbsp;<input type="submit" value="บันทึก" onClick="return confirme()">
     <input name="teaEventDay" type="hidden" value="<?php echo $e['teaEventDay'];?>">
     <input name="teaEventTime" type="hidden" value="<?php echo $e['teaEventTime'];?>">
     <input name="teaEventRoom" type="hidden" value="<?php echo $e['teaEventRoom'];?>">

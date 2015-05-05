@@ -91,6 +91,14 @@ $(document).ready(function(){
 	slideBoxy(imgName,50,399,600,1,'3'); 
 	// การเรียกใช้ slideBoxy(  picName  ,  ขนาดลูกศร  ,  ความสูงของรูปทั้งหมด  ,  ความกว้างของรูปทั้งหมด  ,  ขนาดของเฟรม ใส่เป็น เท่า  , วินาทีที่จะเปลี่ยนรูปอัตโนมัติ);
 		 });
+		 
+function confirme(){
+	var x = confirm("คุณต้องการลบหรือไม่");
+	return x;
+}
+	
+
+		 
 </script>
 
 </header>
@@ -232,7 +240,7 @@ body{
   	<td align="center"><br><?php echo $s['stuCode']?></td>
     <td align="center"><br><?php echo $s['stuName']?></td>
     <td align="center"><br><?php echo $s['stuLastname']?></td>
-   <td align="center"><a href="<?php echo base_url();?>index.php/matchs/delstu/<?php echo $teacher[0]['teaId'];?>/<?php echo $s['matchId']?>">ยกเลิก</a> </td><!-- เมื่อกดปุ่ม ยกเลิก ให้เก็บค่า TeaId และ matchId ไป Controller matchs Function delstu -->
+   <td align="center"><a onClick="return confirme()" href="<?php echo base_url();?>index.php/matchs/delstu/<?php echo $teacher[0]['teaId'];?>/<?php echo $s['matchId']?>">ยกเลิก</a> </td><!-- เมื่อกดปุ่ม ยกเลิก ให้เก็บค่า TeaId และ matchId ไป Controller matchs Function delstu -->
   </tr>
   <?php }?>
 </table>

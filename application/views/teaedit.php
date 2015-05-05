@@ -91,6 +91,8 @@ $(document).ready(function(){
 	slideBoxy(imgName,50,399,600,1,'3'); 
 	// การเรียกใช้ slideBoxy(  picName  ,  ขนาดลูกศร  ,  ความสูงของรูปทั้งหมด  ,  ความกว้างของรูปทั้งหมด  ,  ขนาดของเฟรม ใส่เป็น เท่า  , วินาทีที่จะเปลี่ยนรูปอัตโนมัติ);
 		 });
+		 
+	 
 </script>
 
 </header>
@@ -185,33 +187,35 @@ body{
     
     <div id="bodyInfo">
     <br><br>
-   <form id="form1" name="form1" method="post" action="<?php echo base_url(); ?>index.php/teachers/teaeditaction">
+   <form id="form1" name="form1" method="post" action="<?php echo base_url(); ?>index.php/teachers/teaeditaction" onSubmit="return main()">
    <!-- เมื่อกปุ่ม ยืนยัน จะนำค่าที่ได้มาใหม่ไป update ที่ Controller teachers Function teaeditaction -->
+   
+   
 	<?php foreach($teaedit as $t){ ?>
 <table width="500" border="0" align="center">
   <tr>
     <td>ชื่อ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
     <td>
       <label for="textfield"></label>
-      <input type="text" name="teaName" id="teaName" value="<?php echo $t['teaName'];?>" />
+      <input type="text" name="teaName" id="teaName" value="<?php echo $t['teaName'];?>" required />
       <input type="hidden" name="teaId" id="teaId" value="<?php echo $t['teaId'];?>" />
     </td>
   </tr>
   <tr>
     <td>นามสกุล&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-    <td><input type="text" name="teaLastname" id="teaLastname" value="<?php echo $t['teaLastname'];?>" /></td>
+    <td><input type="text" name="teaLastname" id="teaLastname" value="<?php echo $t['teaLastname'];?>" required /></td>
   </tr>
   <tr>
     <td>ที่อยู่&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-    <td><input type="text" name="teaAddress" id="teaAddress" value="<?php echo $t['teaAddress'];?>" /></td>
+    <td><input type="text" name="teaAddress" id="teaAddress" value="<?php echo $t['teaAddress'];?>" required /></td>
   </tr>
   <tr>
     <td>เบอรโทรศัพท์&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-    <td><input type="text" name="teaTel" id="teaTel" value="<?php echo $t['teaTel'];?>" /></td>
+    <td><input type="text" name="teaTel" id="tel" value="<?php echo $t['teaTel'];?>" required /></td>
   </tr>
   <tr>
     <td>อีเมล์&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-    <td><input type="text" name="teaEmail" id="teaEmail" value="<?php echo $t['teaEmail'];?>" /></td>
+    <td><input type="text" name="teaEmail" id="teaEmail" value="<?php echo $t['teaEmail'];?>" required /></td>
   </tr>
   <tr>
     <td><a href='<?php echo base_url();?>index.php/teachers/teaeditpassword/<?php echo $t['teaId'];?>'>แก้ไขรหัสผ่าน</a></td>
@@ -226,3 +230,35 @@ body{
     </div>
 </body>
 </html>
+<script>
+function alertCheck(c,message){
+	if(c==false){
+		alert(message);
+	}
+}
+		 
+function main(){
+	
+	var c = true;
+	
+	c =checktel(document.getElementById('tel').value);
+	
+			alertCheck(c,'กรุณาใส่เบอร์โทรให้ถูกต้อง');
+			return c;
+	
+}
+	
+	function checktel(tel){
+
+	if(tel*1==tel&&tel>0&&tel[0]==0){
+		if(tel.length==10){
+			return true;
+		}else{
+			return false;
+		}
+	}else{
+		return false;
+	}
+	
+} 
+</script>

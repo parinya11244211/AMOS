@@ -1,4 +1,10 @@
-﻿<?php 
+﻿<script>
+function confirme(){
+	var x = confirm("ยืนยันการบันทึก");
+	return x;
+}
+</script>
+<?php 
 	$date[1] = "จันทร์";
 	$date[2] = "อัง‬คาร";
 	$date[3] = "พุธ";
@@ -54,9 +60,9 @@
 <?php } }?>
 <tr>
 		<td colspan="8" align="center"><br><br>กรุณากรอกคำแนะนำที่ให้กับนักศึกษา<br><br>
-          <textarea cols="70" name="comment"></textarea>
+          <textarea cols="70" name="comment" required="required" ></textarea>
 	    <br><br>
-        <input type="submit" value="บันทึก">
+        <input type="submit" value="บันทึก" onClick="return confirme()">
   		<input name="teaEventId" type="hidden" value="<?php echo $s['teaEventId'];?>">
         <br><br>
         </td>

@@ -17,6 +17,7 @@ class Admins extends CI_Controller {
 	}
 	function importTeacher(){
 			
+			if($_FILES['exc']['type'] == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'){
 				$inputFileName = $_FILES['exc']['tmp_name'];//เปลี่ยนอยู่ช่อง exc ช่องเดียว
 				$inputFileType = PHPExcel_IOFactory::identify($inputFileName);  
 				$objReader = PHPExcel_IOFactory::createReader($inputFileType);  
@@ -42,9 +43,11 @@ class Admins extends CI_Controller {
 						}
 					}
 				}
-
+				$save='';
 				for($i=0;$i<count($namedDataArray);$i++){
-							
+					
+					$tc = $this->Admin->checkTeaCode($namedDataArray[$i]['teaCode']);
+						if(!$tc){
 							if($namedDataArray[$i]['teaStatus']=='t'){//เช็คว่าค่าที่เข้ามา teaStatus = t หรือไม่
 							$this->Teacher->setTeaUsername($namedDataArray[$i]['teaUsername']);
 							//รับค่า teaUsername จากหัวไฟล์นำไป setTeaUsername ที่ Model Teacher
@@ -60,9 +63,19 @@ class Admins extends CI_Controller {
 							$this->Teacher->setTeaFacName($namedDataArray[$i]['teaFacName']);
 							$this->Teacher->addTea();
 							//เรียกใช่ Model Teacher ใน Function addTea
-							}	
+							}
+							
+						}
+						else {
+							$save=$save.', '.$namedDataArray[$i]['teaCode'];
+							}
 				}
+				echo "<script>alert('".$save."');</script>";
 				$this->load->view('adminimporttea');
+			}else {
+				echo "<script>alert('กรุณาใส่ไฟล์ที่ถูกต้อง');</script>";
+				$this->load->view('adminimporttea');
+				}
 	}
 	
 	function importStu()
@@ -71,6 +84,7 @@ class Admins extends CI_Controller {
 	}
 	function importStudent(){
 			
+			if($_FILES['exc']['type'] == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'){
 				$inputFileName = $_FILES['exc']['tmp_name'];//เปลี่ยนอยู่ช่อง exc ช่องเดียว
 				$inputFileType = PHPExcel_IOFactory::identify($inputFileName);  
 				$objReader = PHPExcel_IOFactory::createReader($inputFileType);  
@@ -96,10 +110,13 @@ class Admins extends CI_Controller {
 						}
 					}
 				}
-						
+				$save='';
 
 				for($i=0;$i<count($namedDataArray);$i++){
-							
+					
+					$tc = $this->Admin->checkStuCode($namedDataArray[$i]['stuCode']);
+						if(!$tc){
+
 							if($namedDataArray[$i]['stuStatus']=='s'){//เช็คว่าค่าที่เข้ามา teaStatus = s หรือไม่
 							$this->Student->setStuUsername($namedDataArray[$i]['stuUsername']);
 							//รับค่า stuUsername จากหัวไฟล์นำไป stuUsername ที่ Model Student
@@ -115,10 +132,24 @@ class Admins extends CI_Controller {
 							$this->Student->setStuFacName($namedDataArray[$i]['stuFacName']);
 							$this->Student->addStu();
 							//เรียกใช่ Model Student ใน Function addStu
-							}	
+							}
+							
+						}
+						else {
+							$save=$save.', '.$namedDataArray[$i]['stuCode'];
+							}
 				}
-				$this->load->view('adminimportstu');	
+				echo "<script>alert('".$save."');</script>";
+				$this->load->view('adminimportstu');
+			}
+			else 
+			
+			{
+				echo "<script>alert('กรุณาใส่ไฟล์ที่ถูกต้อง');</script>";
+				$this->load->view('adminimportstu');
+			}
 	}
+	
 	function mast()
 	{
 		$data['teainfo'] = $this->Admin->adminGetTeaInfo();//นำค่าจาก Model Admin Function adminGetTeaInfo มาเก็บไว้ใน $data ชื่อ teainfo
