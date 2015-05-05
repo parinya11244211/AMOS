@@ -215,6 +215,7 @@ body{
           <th nowrap="nowrap">คะแนนเฉลี่ย</th>
         </tr>
         <?php foreach ($showAllStar as $s){?>
+        <!-- $showAllStar มาจาก Controller teachers Function teaReport showAllStar คือ แสดงค่าเฉลี่ยทั้งหมด -->
         <tr>
           <td align="center"><?php echo 'คะแนนเฉลี่ยรวมทั้งสี่หัวข้อ';?></td>
           <td align="center"><?php echo number_format($s['divde'], 2, '.', '')?></td>
@@ -230,6 +231,7 @@ body{
           <th nowrap="nowrap">คะแนนเฉลี่ย</th>
         </tr>
         <?php foreach ($showAll as $s){?>
+        <!-- $showAll มาจาก Controller teachers Function teaReport showAll คือ แสดงค่าเฉลี่ยตามหัวข้อ -->
         <tr>
           <td align="center"><?php echo $topic[$s['eventTopic']];?></td>
           <td align="center"><?php echo number_format($s['divde'], 2, '.', '')?></td>
@@ -247,18 +249,22 @@ body{
         <tr>
           <td align="center"><?php echo 'การเรียน';?></td>
           <td align="center"><a href='<?php echo base_url();?>index.php/teachers/getEventTopicLearning'>การเรียน</a></td>
+          <!-- เรียกใช้ Controller teachers Function getEventTopicLearning -->
         </tr>
          <tr>
            <td align="center"><?php echo 'กิจกรรม';?></td>
           <td align="center"><a href='<?php echo base_url();?>index.php/teachers/getEventTopicEvent'>กิจกรรม</a></td>
+          <!-- เรียกใช้ Controller teachers Function getEventTopicEvent -->
         </tr>
         <tr>
            <td align="center"><?php echo 'กยศ';?></td>
           <td align="center"><a href='<?php echo base_url();?>index.php/teachers/getEventTopicRecover'>กยศ</a></td>
+          <!-- เรียกใช้ Controller teachers Function getEventTopicRecover -->
         </tr>
         <tr>
            <td align="center"><?php echo 'ครอบครัว';?></td>
           <td align="center"><a href='<?php echo base_url();?>index.php/teachers/getEventTopicFamily'>ครอบครัว</a></td>
+          <!-- เรียกใช้ Controller teachers Function getEventTopicFamily -->
         </tr>
       </table>
     </div>

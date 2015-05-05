@@ -35,10 +35,10 @@ class Teachers extends CI_Controller {
 		$this->load->view('teaevent',$data);
 	}
 	
-	function teaReport()
+	function teaReport(){	
 	
-	{	$data['showAll'] = $this->Event->showAll();
-		$data['showAllStar'] = $this->Event->showAllStar();
+		$data['showAll'] = $this->Event->showAll();//ได่ค่า $data ชื่อ showAll
+		$data['showAllStar'] = $this->Event->showAllStar();//ได่ค่า $data ชื่อ showAllStar
 		$this->load->view('teareport',$data);
 	}
 	function teaEdit($teaId){//รับค่า $teaId มาจาก Function teaEditPass
@@ -162,21 +162,25 @@ class Teachers extends CI_Controller {
 	function getEventTopicLearning(){
 			
 		$data['showTopicLearning'] = $this->Event->showReportLearning();
+		//เรียกใช้ Model Event Function getEventTopicLearning ได้ค่า $data ชื่อ showTopicLearning
 		$this->load->view('teareportlearning',$data);
 	}
 	function getEventTopicEvent(){
 			
 		$data['showTopicEvent'] = $this->Event->showReportEvent();
+		//เรียกใช้ Model Event Function showReportEvent ได้ค่า $data ชื่อ showTopicEvent
 		$this->load->view('teareportevent',$data);
 	}
 	function getEventTopicRecover(){
 			
 		$data['showTopicRecover'] = $this->Event->showReportRecover();
+		//เรียกใช้ Model Event Function showReportRecover ได้ค่า $data ชื่อ showTopicRecover
 		$this->load->view('teareportrecover',$data);
 	}
 	function getEventTopicFamily(){
 			
 		$data['showTopicFamily'] = $this->Event->showReportFamily();
+		//เรียกใช้ Model Event Function showReportFamily ได้ค่า $data ชื่อ showTopicFamily
 		$this->load->view('teareportfamily',$data);
 	}
 

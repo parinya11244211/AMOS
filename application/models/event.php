@@ -21,6 +21,7 @@ class Event extends CI_Model {
 	var $s;
 	var $id;
 	var $teaEventStatus;
+	
 
 ###### End Attribute  ###### 
     function setTeaEventStatus($teaEventStatus){
@@ -233,6 +234,7 @@ class Event extends CI_Model {
 		$this->db->join('match','match.stuId = student.stuId');
 		$this->db->join('teacher','teacher.teaId = match.teaId');
 		$this->db->join('teaevent','teaevent.teaEventId = event.teaEventId');
+		$this->db->group_by('event.teaEventId');//เอาค่าที่ซ้ำกันไม่แสดง ตามหัวข้อ ในตาราง point
 		$this->db->where('teacher.teaId',$datalogin['id']); 
 		return $this->db->get('event')->result_array();
 	}
@@ -253,6 +255,7 @@ class Event extends CI_Model {
 			$this->db->join('match','match.stuId = student.stuId');
 			$this->db->join('teacher','teacher.teaId = match.teaId');//join เพื่อเรียกใช้ค่าจาก table นั้นๆ
 			$this->db->join('teaevent','teaevent.teaEventId = event.teaEventId');
+			$this->db->group_by('event.teaEventId');//เอาค่าที่ซ้ำกันไม่แสดง ตามหัวข้อ ในตาราง point
 			$this->db->where('teaevent.teaEventStatus',3); //โดยยึด teaEventStatus เป็นหลัก จาก table teaevent
 			return $this->db->get('event')->result_array();
 	}
@@ -262,6 +265,7 @@ class Event extends CI_Model {
 			$this->db->join('match','match.stuId = student.stuId');
 			$this->db->join('teacher','teacher.teaId = match.teaId');
 			$this->db->join('teaevent','teaevent.teaEventId = event.teaEventId');
+			$this->db->group_by('event.teaEventId');//เอาค่าที่ซ้ำกันไม่แสดง ตามหัวข้อ ในตาราง point
 			$this->db->where('event.eventId ',$this->getEventId());
 			$data = $this->db->get('event')->result_array();
 			return $data;
@@ -307,66 +311,87 @@ class Event extends CI_Model {
 		return $data;
 	}
 	
-	function showAll()
+	function showAll()//คำนวนหาคะแนนตามหัวข้อ
 	{
+		$datalogin = $this->session->userdata('loginData');
+		$teaId = $datalogin['id'];//เอา id อาจารย์ที่เข้าสู่ระบบ เป็นค่า $teaId
+			
 		$this->db->select('*, count(point.teaEventId) AS countsum, sum(point.star) AS sumpoints, sum(point.star)/count(point.teaEventId) AS divde');
-		
+		//count = นับ table point เฉพาะ teaEventId เดียวกัน ค่าที่ได้ออกมาใช้ชื่อ countsum
+		//sum = ผมรวมคะแนน table point ที่นับมา ค่าที่ได้มาชื่อ sumpoints
+		//นำค่า sum มาหารกับค่า count ค่าที่ได้ชิ่อ divde
 		$this->db->join('teaevent','teaevent.teaEventId = point.teaEventId');
 		$this->db->join('event','event.teaEventId = teaevent.teaEventId');
-		
-		$this->db->group_by('event.eventId');
+		$this->db->where('teaId',$teaId);//เก็บค่าไว้ที่ teaId นั้นๆ
+		$this->db->group_by('event.eventTopic');//เอาค่าที่ซ้ำกันไม่แสดง ตามหัวข้อ ในตาราง point
 		$data = $this->db->get('point')->result_array();
 		return $data;
 	}
 	
-		function showAllStar()
+		function showAllStar()//คำนวนหาคะแนนทั้งหมด
 	{
+		$datalogin = $this->session->userdata('loginData');
+		$teaId = $datalogin['id'];//เอา id อาจารย์ที่เข้าสู่ระบบ เป็นค่า $teaId
 		$this->db->select('*, count(point.teaEventId) AS countsum, sum(point.star) AS sumpoints, sum(point.star)/count(point.teaEventId) AS divde');
-		
+		//count = นับ table point เฉพาะ teaEventId เดียวกัน ค่าที่ได้ออกมาใช้ชื่อ countsum
+		//sum = ผมรวมคะแนน table point ที่นับมา ค่าที่ได้มาชื่อ sumpoints
+		//นำค่า sum มาหารกับค่า count ค่าที่ได้ชิ่อ divde
 		$this->db->join('teaevent','teaevent.teaEventId = point.teaEventId');
 		$this->db->join('event','event.teaEventId = teaevent.teaEventId');
-
+		$this->db->where('teaId',$teaId);//เก็บค่าไว้ที่ teaId นั้นๆ
 		$data = $this->db->get('point')->result_array();
 		return $data;
 	}
 	
 	function showReportLearning()
 	{
+		$datalogin = $this->session->userdata('loginData');
+		$teaId = $datalogin['id'];//เอา id อาจารย์ที่เข้าสู่ระบบ เป็นค่า $teaId
 		$this->db->join('event','event.teaEventId = point.teaEventId');
 		$this->db->join('teaevent','teaevent.teaEventId = event.teaEventId');
 		$this->db->join('student','student.stuId = point.stuId');
-		$this->db->where('eventTopic',1);
-		$this->db->order_by('teaEventDay','ASC');
+		$this->db->where('teaId',$teaId);//ใช้งานเฉพาะ teaId นั้นๆ
+		$this->db->where('eventTopic',1);//ใช้งานเฉาะหัวข้อที่มีค่า 1 เท่านั้น 1 = การเรียน
+		$this->db->order_by('teaEventDay','ASC');//เรียงจากวันน้อยไปวันมาก
 		$data = $this->db->get('point')->result_array();
 		return $data;
 	}
 	function showReportEvent()
 	{
+		$datalogin = $this->session->userdata('loginData');
+		$teaId = $datalogin['id'];//เอา id อาจารย์ที่เข้าสู่ระบบ เป็นค่า $teaId
 		$this->db->join('event','event.teaEventId = point.teaEventId');
 		$this->db->join('teaevent','teaevent.teaEventId = event.teaEventId');
 		$this->db->join('student','student.stuId = point.stuId');
-		$this->db->where('eventTopic',2);
-		$this->db->order_by('teaEventDay','ASC');
+		$this->db->where('teaId',$teaId);//ใช้งานเฉพาะ teaId นั้นๆ
+		$this->db->where('eventTopic',2);//ใช้งานเฉาะหัวข้อที่มีค่า 2 เท่านั้น 2 = หัวข้อกิจกรรม
+		$this->db->order_by('teaEventDay','ASC');//เรียงจากวันน้อยไปวันมาก
 		$data = $this->db->get('point')->result_array();
 		return $data;
 	}
 	function showReportRecover()
 	{
+		$datalogin = $this->session->userdata('loginData');
+		$teaId = $datalogin['id'];//เอา id อาจารย์ที่เข้าสู่ระบบ เป็นค่า $teaId
 		$this->db->join('event','event.teaEventId = point.teaEventId');
 		$this->db->join('teaevent','teaevent.teaEventId = event.teaEventId');
 		$this->db->join('student','student.stuId = point.stuId');
-		$this->db->where('eventTopic',3);
-		$this->db->order_by('teaEventDay','ASC');
+		$this->db->where('teaId',$teaId);//ใช้งานเฉพาะ teaId นั้นๆ
+		$this->db->where('eventTopic',3);//ใช้งานเฉาะหัวข้อที่มีค่า 3 เท่านั้น 3 = กยศ.
+		$this->db->order_by('teaEventDay','ASC');//เรียงจากวันน้อยไปวันมาก
 		$data = $this->db->get('point')->result_array();
 		return $data;
 	}
 	function showReportFamily()
 	{
+		$datalogin = $this->session->userdata('loginData');
+		$teaId = $datalogin['id'];//เอา id อาจารย์ที่เข้าสู่ระบบ เป็นค่า $teaId
 		$this->db->join('event','event.teaEventId = point.teaEventId');
 		$this->db->join('teaevent','teaevent.teaEventId = event.teaEventId');
 		$this->db->join('student','student.stuId = point.stuId');
-		$this->db->where('eventTopic',4);
-		$this->db->order_by('teaEventDay','ASC');
+		$this->db->where('teaId',$teaId);//ใช้งานเฉพาะ teaId นั้นๆ
+		$this->db->where('eventTopic',4);//ใช้งานเฉาะหัวข้อที่มีค่า 4 เท่านั้น 4 = ครอบครัว
+		$this->db->order_by('teaEventDay','ASC');//เรียงจากวันน้อยไปวันมาก
 		$data = $this->db->get('point')->result_array();
 		return $data;
 	}
