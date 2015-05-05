@@ -17,7 +17,7 @@ class Admins extends CI_Controller {
 	}
 	function importTeacher(){
 			
-				$inputFileName = $_FILES['exc']['tmp_name'];
+				$inputFileName = $_FILES['exc']['tmp_name'];//เปลี่ยนอยู่ช่อง exc ช่องเดียว
 				$inputFileType = PHPExcel_IOFactory::identify($inputFileName);  
 				$objReader = PHPExcel_IOFactory::createReader($inputFileType);  
 				$objReader->setReadDataOnly(true);  
@@ -45,8 +45,9 @@ class Admins extends CI_Controller {
 
 				for($i=0;$i<count($namedDataArray);$i++){
 							
-							if($namedDataArray[$i]['teaStatus']=='t'){
+							if($namedDataArray[$i]['teaStatus']=='t'){//เช็คว่าค่าที่เข้ามา teaStatus = t หรือไม่
 							$this->Teacher->setTeaUsername($namedDataArray[$i]['teaUsername']);
+							//รับค่า teaUsername จากหัวไฟล์นำไป setTeaUsername ที่ Model Teacher
 							$this->Teacher->setTeaPassword($namedDataArray[$i]['teaPassword']);
 							$this->Teacher->setTeaCode($namedDataArray[$i]['teaCode']);
 							$this->Teacher->setTeaName($namedDataArray[$i]['teaName']);
@@ -58,8 +59,7 @@ class Admins extends CI_Controller {
 							$this->Teacher->setTeaBraName($namedDataArray[$i]['teaBraName']);
 							$this->Teacher->setTeaFacName($namedDataArray[$i]['teaFacName']);
 							$this->Teacher->addTea();
-							
-							
+							//เรียกใช่ Model Teacher ใน Function addTea
 							}	
 				}
 				$this->load->view('adminimporttea');
@@ -71,7 +71,7 @@ class Admins extends CI_Controller {
 	}
 	function importStudent(){
 			
-				$inputFileName = $_FILES['exc']['tmp_name'];
+				$inputFileName = $_FILES['exc']['tmp_name'];//เปลี่ยนอยู่ช่อง exc ช่องเดียว
 				$inputFileType = PHPExcel_IOFactory::identify($inputFileName);  
 				$objReader = PHPExcel_IOFactory::createReader($inputFileType);  
 				$objReader->setReadDataOnly(true);  
@@ -100,8 +100,9 @@ class Admins extends CI_Controller {
 
 				for($i=0;$i<count($namedDataArray);$i++){
 							
-							if($namedDataArray[$i]['stuStatus']=='s'){
+							if($namedDataArray[$i]['stuStatus']=='s'){//เช็คว่าค่าที่เข้ามา teaStatus = s หรือไม่
 							$this->Student->setStuUsername($namedDataArray[$i]['stuUsername']);
+							//รับค่า stuUsername จากหัวไฟล์นำไป stuUsername ที่ Model Student
 							$this->Student->setStuPassword($namedDataArray[$i]['stuPassword']);
 							$this->Student->setStuCode($namedDataArray[$i]['stuCode']);
 							$this->Student->setStuName($namedDataArray[$i]['stuName']);
@@ -113,8 +114,7 @@ class Admins extends CI_Controller {
 							$this->Student->setStuBraName($namedDataArray[$i]['stuBraName']);
 							$this->Student->setStuFacName($namedDataArray[$i]['stuFacName']);
 							$this->Student->addStu();
-							
-							
+							//เรียกใช่ Model Student ใน Function addStu
 							}	
 				}
 				$this->load->view('adminimportstu');	

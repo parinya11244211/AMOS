@@ -66,18 +66,18 @@ class Login extends CI_Controller {
 			}
 		}
 		
-		$this->session->set_userdata('loginData',$sesData);
+		$this->session->set_userdata('loginData',$sesData);//นำค่า $sesData เก็บไว้ที่ loginData
 		
-		$loginData = $this->session->userdata('loginData');
+		$loginData = $this->session->userdata('loginData');//ให้ค่าที่เก็บมาเรียกใช่ในชื่อ $loginData
 		
-		if($loginData){
-			  $satus = $loginData['status'];  /// ให้ข้อมูลใน array session_data ชื่อ status เท่ากับ $satus
-			 if($satus=="a"){ //เช็คค่า $satus ว่าเป็น admin
-				  header( 'Location: '.base_url().'index.php/admins' ); /// ไปยัง contorller Admin
-			 }else if($satus=="t"){//เช็คค่า $satus ว่าเป็น user
-				 header( 'Location: '.base_url().'index.php/teachers' ); /// ไปยัง contorller user
-			 }else if($satus=="s"){//เช็คค่า $satus ว่าเป็น user
-				 header( 'Location: '.base_url().'index.php/students' ); /// ไปยัง contorller user
+		if($loginData){//เช็คค่า $loginData ว่า status = a หรือ t หรือ s 
+			  $satus = $loginData['status'];
+			 if($satus=="a"){
+				  header( 'Location: '.base_url().'index.php/admins' ); // ถ้า status เป็น a ให้เรียก Controller หน้า admins
+			 }else if($satus=="t"){
+				 header( 'Location: '.base_url().'index.php/teachers' );// ถ้า status เป็น a ให้เรียก Controller หน้า teachers
+			 }else if($satus=="s"){
+				 header( 'Location: '.base_url().'index.php/students' );// ถ้า status เป็น a ให้เรียก Controller หน้า students
 			 }
 		
 		}else{ /// เมื่อไม่มีข้อมูลใน $this->session->userdata('loginData')

@@ -324,8 +324,8 @@ class Teacher extends CI_Model {
 		$this->db->update('teacher',$data);
 	}
 	function addTea(){
-	 $data = array(
-	 	'teaUsername' => $this->getTeaUsername(),
+	 $data = array(//เพิ่มค่าเป็น Array
+	 	'teaUsername' => $this->getTeaUsername(),//ค่าที่ set นำมาเรียกใช้ getTeaUsername แล้วไปลงในฟิว teaUsername
 		'teaPassword' => MD5($this->getTeaPassword()),
 		'teaCode' => $this->getTeaCode(),
 		'teaName' => $this->getTeaName(),
@@ -340,8 +340,10 @@ class Teacher extends CI_Model {
 	 
      $this->db->where('teaCode',$this->getTeaCode());
 	 $this->db->or_where('teaUsername',$this->getTeaUsername());
+	 //ค่าที่เข้าไปใน database ต้องไม่ซ่ำกันมีค่า teaCode,teaUsername
      $q = $this->db->get('teacher');
-     if($q->num_rows == 0)
+	 
+     if($q->num_rows == 0)//ค่าที่ได้มา ถ้าไม่ซ้ำถึงจะนำเข้า ถ้าซ้ำจะไม่นำเข้า
      {
         $insert =  $this->db->insert('teacher',$data);
      }

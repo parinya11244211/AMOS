@@ -244,8 +244,8 @@ class Student extends CI_Model {
 	}
 	
 	function addStu(){
-	 $data = array(
-	 	'stuUsername' => $this->getStuUsername(),
+	 $data = array(//เพิ่มค่าเป็น Array
+	 	'stuUsername' => $this->getStuUsername(),//ค่าที่ set นำมาเรียกใช้ getStuUsername แล้วไปลงในฟิว stuUsername
 		'stuPassword' => MD5($this->getStuPassword()),
 		'stuCode' => $this->getStuCode(),
 		'stuName' => $this->getStuName(),
@@ -260,8 +260,10 @@ class Student extends CI_Model {
 	 
      $this->db->where('stuCode',$this->getStuCode());
 	 $this->db->or_where('stuUsername',$this->getStuUsername());
+	 //ค่าที่เข้าไปใน database ต้องไม่ซ่ำกันมีค่า teaCode,teaUsername
      $q = $this->db->get('student');
-     if($q->num_rows == 0)
+	 
+     if($q->num_rows == 0)//ค่าที่ได้มา ถ้าไม่ซ้ำถึงจะนำเข้า ถ้าซ้ำจะไม่นำเข้า
      {
         $insert =  $this->db->insert('student',$data);
      }

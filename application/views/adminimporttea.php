@@ -180,9 +180,13 @@ body{
     <div id='cssmenu'>
 		<ul>
        		<li><a href='<?php echo base_url();?>index.php/admins'>หน้าแรก</a></li>
+            <!-- เมนูสั่งไป Controller admins -->
 			<li><a href='<?php echo base_url();?>index.php/admins/importtea'>นำเข้าข้อมูลอาจารน์ที่ปรึษา</a></li>
+            <!-- เมนูสั่งไป Controller admins ใน Function importtea -->
 			<li><a href='<?php echo base_url();?>index.php/admins/importstu'>นำเข้าข้อมูลนักศึกษา</a></li>
+            <!-- เมนูสั่งไป Controller admins ใน Function importstu -->
 			<li><a href='<?php echo base_url();?>index.php/admins/mast'>กำหนดนักศึกษาให้อาจารย์ที่ปรึกษา</a></li>
+            <!-- เมนูสั่งไป Controller admins ใน Function mast -->
 		</ul>
 	</div>	
     </div>
@@ -191,8 +195,8 @@ body{
     <br><br>
     <h2>นำเข้าข้อมูลอาจารย์ที่ปรึกษา</h2>
     <br><br>
-<form id="form1" name="form1" method="post" action="<?php echo base_url();?>index.php/admins/importteacher" enctype="multipart/form-data">
-  <input type="file" name="exc" id="exc" />
+<form id="form1" name="form1" method="post" action="<?php echo base_url();?>index.php/admins/importteacher" enctype="multipart/form-data"><!-- เมื่อกดปุ่ม นำเข้าข้อมูล ส่งค่าไปที่ Controller admins ใน Function importteacher -->
+  <input type="file" name="exc" id="exc" required /><!-- type="file" เพื่อเก็บค่าเฉพาะไฟล์ เรียกใช่ในชื่อ exc -->
   <input type="submit" name="button" id="button" value="นำเข้าข้อมูล" />
   </p>
   <p><font size="-1">กรุณาเลือกไฟล์ Excal สำหรับข้อมูลอาจารย์ที่ปรึกษา ที่มีนามสกุล .xls เท่านั้น</font></p>
