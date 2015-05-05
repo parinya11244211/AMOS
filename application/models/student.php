@@ -197,11 +197,11 @@ class Student extends CI_Model {
 ###### End GET : $teaEventRoom ###### 
 
 	function login(){
-		$this->db->where('stuUsername',$this->getStuUsername());
-		$this->db->where('stuPassword',MD5($this->getStuPassword()));
-		$this->db->limit(1);
-		$data = $this->db->get('student')->result_array();
-		if($data){
+		$this->db->where('stuUsername',$this->getStuUsername());//เช็คค่า StuUsername ว่าตรงตาม databas student ใน field stuUsername หรือไม่
+		$this->db->where('stuPassword',MD5($this->getStuPassword()));//เช็คค่า StuPassword ว่าตรงตาม databas student                                                                          ใน field StuPassword หรือไม่
+		$this->db->limit(1);//เอาค่าที่ตรงออกมาตัวเดียว
+		$data = $this->db->get('student')->result_array();//เรียกใช่ database student เก็บค่าไว้ที่ $data
+		if($data){//ถ้าค่าถูกให้ส่งค่า $data กลับไป ถ้าไม่ถูกส่ง FALSE ไป
 			return $data;
 		}else{
 			return FALSE;

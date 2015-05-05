@@ -278,11 +278,11 @@ class Teacher extends CI_Model {
 ###### End SET : $teaId ###### 
 
 	function login(){
-		$this->db->where('teaUsername',$this->getTeaUsername());
-		$this->db->where('teaPassword',MD5($this->getTeaPassword()));
-		$this->db->limit(1);
-		$data = $this->db->get('teacher')->result_array();
-		if($data){
+		$this->db->where('teaUsername',$this->getTeaUsername());//เช็คค่า TeaUsername ว่าตรงตาม databas teacher ใน field teaUsername หรือไม่
+		$this->db->where('teaPassword',MD5($this->getTeaPassword()));//เช็คค่า TeaPassword ว่าตรงตาม databas teacher                                                                               ใน field teaPassword หรือไม่
+		$this->db->limit(1);//เอาค่าที่ตรงออกมาตัวเดียว
+		$data = $this->db->get('teacher')->result_array();//เรียกใช่ database teacher เก็บค่าไว้ที่ $data
+		if($data){//ถ้าค่าถูกให้ส่งค่า $data กลับไป ถ้าไม่ถูกส่ง FALSE ไป
 			return $data;
 		}else{
 			return FALSE;

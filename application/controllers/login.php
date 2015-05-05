@@ -10,15 +10,15 @@ class Login extends CI_Controller {
 
  function index()
  {  
- 	$username =  $this->input->post('username'); /// รับค่า input ชื่อ username
-	$password =  $this->input->post('password');/// รับค่า input ชื่อ password
-	$this->Admin->setAdminUsername($username);
+ 	$username =  $this->input->post('username'); // รับค่า input ชื่อ username
+	$password =  $this->input->post('password');// รับค่า input ชื่อ password
+	$this->Admin->setAdminUsername($username);//นำค่า username,password ไป set(ใส่ค่า) ที่ Model Admin ในชื่อ AdminUsername,AdminPassword
 	$this->Admin->setAdminPassword($password);
-	$data = $this->Admin->logins();
-	$data2="";
-	$sesData=array();
-		if($data){
-			foreach($data as $r){  // สั่งวน เพื่อเก็บค่าที่อบู่ใน $data
+	$data = $this->Admin->logins();//เรียกใช่ function logins ที่ Model Admin แล้วได้ค่า data กลับมา
+	$data2="";//สร้างตัวแปล $data2 มาเป็นค่าว่าง
+	$sesData=array();//สร้าง array ชื่อ $sesData
+		if($data){//เรียกใช่ค่า $data
+			foreach($data as $r){  // สั่งค่า $data วนในชื่อ $r เพื่อเก็บค่า id,user,name,status เก็บไว่ใน $sesData Array
 	
 			$sesData = array(
 				'id'=>$r['adminId'],
@@ -30,13 +30,14 @@ class Login extends CI_Controller {
 			
 			
 		}
-		if(!$data){
-				$this->Teacher->setTeaUsername($username);
+		if(!$data){//ถ้าค่า $data ที่รับมาไม่เท่ากับค่าของ admin ให้มาทำส่วนนี้
+				$this->Teacher->setTeaUsername($username);//นำค่า username,password ไป set(ใส่ค่า) ที่ Model Teacher ในชื่อ                                                                              TeaUsername,TeaPassword
 				$this->Teacher->setTeaPassword($password);
-				$data2 = $this->Teacher->login();
+				$data2 = $this->Teacher->login();//เรียกใช่ function login ที่ Model Teacher แล้วได้ค่า data กลับมา เรียกใช่ในชื่อ $data2
 				
-				if($data2){
-				foreach($data2 as $r) { // สั่งวน เพื่อเก็บค่าที่อบู่ใน $data
+			if($data2){
+				foreach($data2 as $r) { // สั่งค่า $data2 วนในชื่อ $r เพื่อเก็บค่า id,user,name,status เก็บไว่ใน $sesData Array
+				
 				$sesData = array(
 					'id'=>$r['teaId'],
 					'user'=>$r['teaUsername'],
@@ -47,14 +48,15 @@ class Login extends CI_Controller {
 			
 			}
 		}
-		if(!$data2) {
-				$this->Student->setStuUsername($username);
+		if(!$data2) {//ถ้าค่า $data2 ที่รับมาไม่เท่ากับค่าของ teacher ให้มาทำส่วนนี้
+				$this->Student->setStuUsername($username);//นำค่า username,password ไป set(ใส่ค่า) ที่ Model Student ในชื่อ                                                                              StuUsername,StuPassword
 				$this->Student->setStuPassword($password);
-				$data3 = $this->Student->login();
+				$data3 = $this->Student->login();//เรียกใช่ function login ที่ Model Student แล้วได้ค่า data กลับมา เรียกใช่ในชื่อ $data3
 				
-				if($data3){
+			if($data3){
 				foreach($data3 as $r) { // สั่งวน เพื่อเก็บค่าที่อบู่ใน $data
-				$sesData = array(
+				
+				$sesData = array( // สั่งค่า $data3 วนในชื่อ $r เพื่อเก็บค่า id,user,name,status เก็บไว่ใน $sesData Array
 					'id'=>$r['stuId'],
 					'user'=>$r['stuUsername'],
 					'name'=>$r['stuName'],

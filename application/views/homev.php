@@ -154,7 +154,7 @@ body{
 
 <div class="herderTop">
 	<div id="innerTop">
-    <form method="post" action="<?php echo base_url();?>index.php/login">
+    <form method="post" action="<?php echo base_url();?>index.php/login"><!-- รับค่า username และ password ไป Controller หน้า login -->
         <input name="username" type="text">
         <input name="password" type="password">
         <input name="" type="submit" value="Login" class="myButton">

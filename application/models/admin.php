@@ -144,11 +144,11 @@ class Admin extends CI_Model {
 ###### End GET : $adminStatus ###### 
 
 	function logins(){
-		$this->db->where('adminUsername',$this->getAdminUsername());
-		$this->db->where('adminPassword',MD5($this->getAdminPassword()));
-		$this->db->limit(1);
-		$data = $this->db->get('admin')->result_array();
-		if($data){
+		$this->db->where('adminUsername',$this->getAdminUsername());//เช็คค่า AdminUsername ว่าตรงตาม database admin                                                                       ใน field adminUsername หรือไม่
+		$this->db->where('adminPassword',MD5($this->getAdminPassword()));//เช็คค่า adminPassword ว่าตรงตาม database admin                                                                           ใน field adminPassword หรือไม่
+		$this->db->limit(1);//เอาค่าที่ตรงออกมาตัวเดียว
+		$data = $this->db->get('admin')->result_array();//เรียกใช่ database admin เก็บค่าไว้ที่ $data
+		if($data){//ถ้าค่าถูกให้ส่งค่า $data กลับไป ถ้าไม่ถูกส่ง FALSE ไป
 			return $data;
 		}else{
 			return FALSE;
