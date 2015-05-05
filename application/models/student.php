@@ -279,7 +279,7 @@ class Student extends CI_Model {
 		$this->db->join('match','match.stuId = student.stuId');
 		$this->db->like('stuName',$this->getStuName());//ค้นหาจากชื่อนักศึกษา like คือหาชื่อที่มีตัวนั้นๆที่ส่งมา
 		$this->db->where('match.teaId',$loginData['id']);//อาจารย์ใช้ id จากการเข้าสู่ระบบไปค้นหา นักศึกษาของตัวเองจาก table match
-		$this->db->group_by('event.stuId');//เอาค่าที่ซ้ำกันไม่แสดง ตามหัวข้อ ในตาราง point
+		$this->db->group_by('match.stuId');//เอาค่าที่ซ้ำกันไม่แสดง ตามหัวข้อ ในตาราง point
 		$query = $this->db->get('student')->result_array();//เรียกใช้ table student
 		return $query;
 	}
