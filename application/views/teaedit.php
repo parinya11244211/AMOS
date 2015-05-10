@@ -197,31 +197,30 @@ body{
     <td>ชื่อ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
     <td>
       <label for="textfield"></label>
-      <input type="text" name="teaName" id="teaName" value="<?php echo $t['teaName'];?>" required />
+	  <?php echo $t['teaName'];?>
       <input type="hidden" name="teaId" id="teaId" value="<?php echo $t['teaId'];?>" />
     </td>
   </tr>
   <tr>
     <td>นามสกุล&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-    <td><input type="text" name="teaLastname" id="teaLastname" value="<?php echo $t['teaLastname'];?>" required /></td>
+    <td><?php echo $t['teaLastname'];?></td>
   </tr>
   <tr>
     <td>ที่อยู่&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-    <td><input type="text" name="teaAddress" id="teaAddress" value="<?php echo $t['teaAddress'];?>" required /></td>
+    <td><?php echo $t['teaAddress'];?></td>
   </tr>
   <tr>
     <td>เบอรโทรศัพท์&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-    <td><input type="text" name="teaTel" id="tel" value="<?php echo $t['teaTel'];?>" required /></td>
+    <td><?php echo $t['teaTel'];?></td>
   </tr>
   <tr>
     <td>อีเมล์&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-    <td><input type="text" name="teaEmail" id="teaEmail" value="<?php echo $t['teaEmail'];?>" required /></td>
+    <td><?php echo $t['teaEmail'];?></td>
   </tr>
   <tr>
     <td><a href='<?php echo base_url();?>index.php/teachers/teaeditpassword/<?php echo $t['teaId'];?>'>แก้ไขรหัสผ่าน</a></td>
     <!-- เมื่อกดปุ่มแก้ไขรหัสผ่าน จะเก็บค่า teaId ไปใช้ใน Controller teachers Function teaeditpassword -->
     <td>
-     <br> <input type="submit" name="button" id="button" value="ยืนยัน" />
     </td>
   </tr>
 </table>

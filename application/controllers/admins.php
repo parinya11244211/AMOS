@@ -43,6 +43,7 @@ class Admins extends CI_Controller {
 						}
 					}
 				}
+				$message = "รหัสอาจารย์ที่ปรึกษาที่มีอยู่แล้ว";
 				$save='';
 				for($i=0;$i<count($namedDataArray);$i++){
 					
@@ -67,10 +68,10 @@ class Admins extends CI_Controller {
 							
 						}
 						else {
-							$save=$save.', '.$namedDataArray[$i]['teaCode'];
+							$save=$save.' \n\n '.$namedDataArray[$i]['teaCode'];
 							}
 				}
-				echo "<script>alert('".$save."');</script>";
+				echo "<script>alert('".$message,$save."');</script>";
 				$this->load->view('adminimporttea');
 			}else {
 				echo "<script>alert('กรุณาใส่ไฟล์ที่ถูกต้อง');</script>";
@@ -111,7 +112,7 @@ class Admins extends CI_Controller {
 					}
 				}
 				$save='';
-
+				$message = "รหัสนักศึกษาที่มีอยู่แล้ว";
 				for($i=0;$i<count($namedDataArray);$i++){
 					
 					$tc = $this->Admin->checkStuCode($namedDataArray[$i]['stuCode']);
@@ -136,10 +137,10 @@ class Admins extends CI_Controller {
 							
 						}
 						else {
-							$save=$save.', '.$namedDataArray[$i]['stuCode'];
+							$save=$save.' \n\n '.$namedDataArray[$i]['stuCode'];
 							}
 				}
-				echo "<script>alert('".$save."');</script>";
+				echo "<script>alert('".$message,$save."');</script>";
 				$this->load->view('adminimportstu');
 			}
 			else 

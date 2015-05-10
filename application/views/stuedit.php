@@ -61,7 +61,6 @@
 input[type=text]{
 	width:200px;
 	height:20px;
-	background-color:#336600;
 	border-radius:5px;
 	border:0;
 	box-shadow:2px 2px 2px #333333;
@@ -194,33 +193,31 @@ body{
     <td>ชื่อ:</td>
     <td>
       <label for="textfield"></label>
-      <input type="text" name="stuName" id="stuName" value="<?php echo $s['stuName'];?>" required/>
+      <?php echo $s['stuName'];?>
       <input type="hidden" name="stuId" id="stuId" value="<?php echo $s['stuId'];?>" />
     </td>
   </tr>
   <tr>
     <td>นามสกุล:</td>
-    <td><input type="text" name="stuLastname" id="stuLastname" value="<?php echo $s['stuLastname'];?>" required /></td>
+    <td><?php echo $s['stuLastname'];?></td>
   </tr>
   <tr>
     <td>ที่อยู่:</td>
-    <td><input type="text" name="stuAddress" id="stuAddress" value="<?php echo $s['stuAddress'];?>" required /></td>
+    <td><?php echo $s['stuAddress'];?></td>
   </tr>
   <tr>
     <td>เบอรโทรศัพท์:</td>
-    <td><input type="text" name="stuTel" id="tel" value="<?php echo $s['stuTel'];?>" required /></td>
+    <td><?php echo $s['stuTel'];?></td>
   </tr>
   <tr>
     <td>อีเมล์:</td>
-    <td><input type="text" name="stuEmail" id="stuEmail" value="<?php echo $s['stuEmail'];?>" required /></td>
+    <td><?php echo $s['stuEmail'];?></td>
   </tr>
   <tr>
   <tr>
     <td><a href='<?php echo base_url();?>index.php/students/stueditpassword/<?php echo $s['stuId'];?>'>แก้ไขรหัสผ่าน</a></td>
     <!-- เมื่อกดปุ่มแก้ไขรหัสผ่าน จะเก็บค่า stuId ไปใช้ใน Controller students Function stueditpassword -->
     <td>
-    <br>
-      <input type="submit" name="button" id="button" value="ยืนยัน" />
     </td>
   </tr>
 </table>
