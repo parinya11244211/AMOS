@@ -165,18 +165,22 @@ body{
 	}
 </style>
 <?php 
+
+	$time[1] = "8.00-9.00 น.";
+	$time[2] = "9.00-10.00 น.";
+	$time[3] = "10.00-11.00 น.";
+	$time[4] = "11.00-12.00 น.";
+	$time[5] = "12.00-13.00 น.";
+	$time[6] = "13.00-14.00 น.";
+	$time[7] = "14.00-15.00 น.";
+	$time[8] = "15.00-16.00 น.";
+	$time[9] = "16.00-17.00 น.";
+
 	$date[1] = "จันทร์";
 	$date[2] = "อัง‬คาร";
 	$date[3] = "พุธ";
 	$date[4] = "พฤหัสบดี";
 	$date[5] = "ศุกร์";
-	
-	$status[1] = "สามารถนัดได้";
-	$status[2] = "รอการตอบรับ";
-	$status[3] = "รอคำแนะนำ";
-	$status[4] = "ยกเลิกนัด";
-	$status[5] = "รอคะแนน";
-	$status[6] = "เสร็จสิ้น";
 	
 	$color[1] = "tableyellow";
 	$color[2] = "tablepink";
@@ -246,7 +250,7 @@ body{
         </tr>
         <tr>
         	<td>&nbsp;&nbsp;&nbsp;เวลา</td>
-            <td>&nbsp;&nbsp;&nbsp;<?php echo $e['teaEventTime'];?></td>
+            <td>&nbsp;&nbsp;&nbsp;<?php echo $time[$e['teaEventTime']];?></td>
         </tr>
         <tr>
         	<td>&nbsp;&nbsp;&nbsp;ห้อง</td>

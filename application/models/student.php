@@ -283,6 +283,26 @@ class Student extends CI_Model {
 		$query = $this->db->get('student')->result_array();//เรียกใช้ table student
 		return $query;
 	}
+	function stuSearchCode()
+	{	
+		$loginData = $this->session->userdata('loginData');
+		$this->db->join('match','match.stuId = student.stuId');
+		$this->db->like('stuCode',$this->getStuCode());//ค้นหาจากชื่อนักศึกษา like คือหาชื่อที่มีตัวนั้นๆที่ส่งมา
+		$this->db->where('match.teaId',$loginData['id']);//อาจารย์ใช้ id จากการเข้าสู่ระบบไปค้นหา นักศึกษาของตัวเองจาก table match
+		$this->db->group_by('match.stuId');//เอาค่าที่ซ้ำกันไม่แสดง ตามหัวข้อ ในตาราง point
+		$query = $this->db->get('student')->result_array();//เรียกใช้ table student
+		return $query;
+	}
+	function stuSearchEmail()
+	{	
+		$loginData = $this->session->userdata('loginData');
+		$this->db->join('match','match.stuId = student.stuId');
+		$this->db->like('stuEmail',$this->getStuEmail());//ค้นหาจากชื่อนักศึกษา like คือหาชื่อที่มีตัวนั้นๆที่ส่งมา
+		$this->db->where('match.teaId',$loginData['id']);//อาจารย์ใช้ id จากการเข้าสู่ระบบไปค้นหา นักศึกษาของตัวเองจาก table match
+		$this->db->group_by('match.stuId');//เอาค่าที่ซ้ำกันไม่แสดง ตามหัวข้อ ในตาราง point
+		$query = $this->db->get('student')->result_array();//เรียกใช้ table student
+		return $query;
+	}
 	function getByTeaEvent()
 	{
 		$datalogin = $this->session->userdata('loginData');

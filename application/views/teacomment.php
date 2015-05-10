@@ -5,6 +5,17 @@ function confirme(){
 }
 </script>
 <?php 
+	
+	$time[1] = "8.00-9.00 น.";
+	$time[2] = "9.00-10.00 น.";
+	$time[3] = "10.00-11.00 น.";
+	$time[4] = "11.00-12.00 น.";
+	$time[5] = "12.00-13.00 น.";
+	$time[6] = "13.00-14.00 น.";
+	$time[7] = "14.00-15.00 น.";
+	$time[8] = "15.00-16.00 น.";
+	$time[9] = "16.00-17.00 น.";
+
 	$date[1] = "จันทร์";
 	$date[2] = "อัง‬คาร";
 	$date[3] = "พุธ";
@@ -50,7 +61,7 @@ function confirme(){
 <tr>
 	<td align="center"><?php echo $topic[$s['eventTopic']]?></td>
         <td align="center"><?php echo $s['teaEventDay']?></td>
-        <td align="center"><?php echo $s['eventTime']?></td>
+        <td align="center"><?php echo $time[$s['eventTime']]?></td>
         <td align="center"><?php echo $s['eventRoom']?></td>
         <td align="center"><?php echo $s['stuName']?></td>
         <td align="center"><?php echo $s['stuLastname']?></td>

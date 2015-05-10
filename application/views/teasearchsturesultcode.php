@@ -153,43 +153,7 @@ body{
 		margin-left:5px;
 	}
 </style>
-<?php 
 
-	$time[1] = "8.00-9.00 น.";
-	$time[2] = "9.00-10.00 น.";
-	$time[3] = "10.00-11.00 น.";
-	$time[4] = "11.00-12.00 น.";
-	$time[5] = "12.00-13.00 น.";
-	$time[6] = "13.00-14.00 น.";
-	$time[7] = "14.00-15.00 น.";
-	$time[8] = "15.00-16.00 น.";
-	$time[9] = "16.00-17.00 น.";
-	
-	$date[1] = "จันทร์";
-	$date[2] = "อัง‬คาร";
-	$date[3] = "พุธ";
-	$date[4] = "พฤหัสบดี";
-	$date[5] = "ศุกร์";
-	
-	$status[1] = "สามารถนัดได้";
-	$status[2] = "รอการตอบรับ";
-	$status[3] = "รอคำแนะนำ";
-	$status[4] = "ยกเลิกนัด";
-	$status[5] = "รอคะแนน";
-	$status[6] = "เสร็จสิ้น";
-	
-	$color[1] = "tableyellow";
-	$color[2] = "tablepink";
-	$color[3] = "tablegreen";
-	$color[4] = "tableshirts";
-	$color[5] = "tableblue";
-	
-	$topic[1] = "การเรียน";
-	$topic[2] = "กิจกรรม";
-	$topic[3] = "กยศ";
-	$topic[4] = "ครอบครัว"
-	
-	 ?>
 <body>
     <div class="herderTop">
 	<div id="innerTop">
@@ -219,31 +183,28 @@ body{
     </div>
     
     <div id="bodyInfo"><br><br>
-    <table width="90%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
+    
+    <table width="71%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
   <tr>
-  	<td align="center">หัวข้อ</td>
-    <td align="center">วัน</td>
-    <td align="center">ห้อง</td>
-    <td align="center">เวลา</td>
-    <td align="center">คำแนะนำ</td>    
+    <td align="center">รหัสนักศึกษา</td>
     <td align="center">ชื่อนักศึกษา</td>
     <td align="center">นามสกุลนักศึกษา</td>
-    <td align="center">รหัสนักศึกษา</td>
-  </tr> 
-  <?php foreach($showTopicFamily as $s){?>
-   <!-- $showTopicFamily มาจาก Controller teachers Function getEventTopicFamily -->
-    <tr>
-  		<td align="center"><?php echo $topic[$s['eventTopic']]?></td>
-        <td align="center"><?php echo $s['teaEventDay']?></td>
-        <td align="center"><?php echo $s['eventRoom']?></td>
-        <td align="center"><?php echo $time[$s['eventTime']]?></td>
-        <td align="center"><?php echo $s['comment']?></td>
-        <td align="center"><?php echo $s['stuName'] ?></td>
-        <td align="center"><?php echo $s['stuLastname'] ?></td>
-        <td align="center"><?php echo $s['stuCode'] ?></td>
-    </tr>
-     <?php }?>
-    </table>
+    <td align="center">ที่อยู่นักศึกษา</td>
+    <td align="center">เบอร์โทรนักศึกษา</td>
+    <td align="center">อีเมล์นักศึกษา</td>
+  </tr>
+  <?php foreach($stuCode as $n){?>
+  <!-- $stuName มาจาก Controller teachers Function teaSearch -->
+  <tr>
+    <td align="center"><br><?php echo $n['stuCode']?></td>
+    <td align="left"><br><?php echo $n['stuName']?></td>
+    <td align="left"><br><?php echo $n['stuLastname']?></td>
+    <td align="center"><br><?php echo $n['stuAddress']?></td>
+    <td align="center"><br><?php echo $n['stuTel']?></td>
+    <td align="center"><br><a href="mailto:"><?php echo $n['stuEmail']?></td>
+  </tr>
+  <?php }?>
+</table>
     </div>
 </body>
 </html>

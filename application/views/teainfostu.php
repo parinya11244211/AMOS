@@ -187,8 +187,20 @@ body{
     <form method="post" action="<?php echo base_url();?>index.php/teachers/teasearch">
     <!-- เมื่อกดปุ่ม ค้นหา ให้เรียกใช้ Controller teacher Function teasearch -->
     <h5 align="center">
-    <input type="text" name="teaSearch" id="teaSearch" required />&nbsp;&nbsp;
-    <input type="submit" value="ค้นหา" /></h5></form>
+    <input type="text" name="teaSearch" id="teaSearch" required />
+    <input type="submit" value="ค้นหาจากชื่อ" /></h5></form>
+    <form method="post" action="<?php echo base_url();?>index.php/teachers/teasearchcode">
+    <!-- เมื่อกดปุ่ม ค้นหา ให้เรียกใช้ Controller teacher Function teasearch -->
+    <h5 align="center">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="text" name="teaSearchCode" id="teaSearchCode" required />
+    <input type="submit" value="ค้นหาจากรหัสนักศึกษา" /></h5></form>
+    <form method="post" action="<?php echo base_url();?>index.php/teachers/teasearchemail">
+    <!-- เมื่อกดปุ่ม ค้นหา ให้เรียกใช้ Controller teacher Function teasearch -->
+    <h5 align="center">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="text" name="teaSearchEmail" id="teaSearchEmail" required />
+    <input type="submit" value="ค้นหาจากอีเมล์" /></h5></form>
 	<br>
     <table width="71%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
   <tr>

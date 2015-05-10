@@ -109,6 +109,22 @@ class Teachers extends CI_Controller {
 		$this->load->view('teasearchsturesult',$data);
 		}
 		
+		function teaSearchCode(){//ค้นหานักศึกษา
+			
+		$stuCode = $this->input->post('teaSearchCode');//ค่าที่รับมากจากหน้า View teainfostu ให้ค่านั้นเป็น $stuName
+		$this->Student->setStuCode($stuCode);//ใช้ค่า $stuName ไป set ในชื่อ StuName ที่ Model Student
+		$data['stuCode']=$this->Student->stuSearchCode();//เรียกใช้ Model Student Function stuSearch
+		$this->load->view('teasearchsturesultcode',$data);
+		}
+		
+		function teaSearchEmail(){//ค้นหานักศึกษา
+			
+		$stuEmail = $this->input->post('teaSearchEmail');//ค่าที่รับมากจากหน้า View teainfostu ให้ค่านั้นเป็น $stuName
+		$this->Student->setStuEmail($stuEmail);//ใช้ค่า $stuName ไป set ในชื่อ StuName ที่ Model Student
+		$data['stuEmail']=$this->Student->stuSearchEmail();//เรียกใช้ Model Student Function stuSearch
+		$this->load->view('teasearchsturesultemail',$data);
+		}
+		
 		function addEventTea()
 		{
 			$datalogin = $this->session->userdata('loginData');

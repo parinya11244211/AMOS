@@ -178,6 +178,16 @@ body{
 	$color[4] = "tableshirts";
 	$color[5] = "tableblue";
 	
+	$time[1] = "8.00-9.00 น.";
+	$time[2] = "9.00-10.00 น.";
+	$time[3] = "10.00-11.00 น.";
+	$time[4] = "11.00-12.00 น.";
+	$time[5] = "12.00-13.00 น.";
+	$time[6] = "13.00-14.00 น.";
+	$time[7] = "14.00-15.00 น.";
+	$time[8] = "15.00-16.00 น.";
+	$time[9] = "16.00-17.00 น.";
+	
 	 ?>
 
 <body>
@@ -237,7 +247,7 @@ body{
 	?>
     <tr>
     <td align="center"><?php echo $e['teaEventDay'];?></td>
-    <td align="center"><?php echo $e['teaEventTime'];?></td>
+    <td align="center"><?php echo $time[$e['teaEventTime']];?></td>
     <td align="center"><?php echo $e['teaEventRoom'];?></td>
     <td align="center"><?php echo $status[$e['teaEventStatus']];?></td>
     <td align="center"><a href='<?php echo base_url();?>index.php/events/selecttopic/<?php echo $e['teaEventId'] ?>'>ดูหัวข้อปรึกษา</a></td>
