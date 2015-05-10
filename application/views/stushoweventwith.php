@@ -160,6 +160,7 @@ body{
 	}
 </style>
 <?php 
+
 	$time[1] = "8.00-9.00 น.";
 	$time[2] = "9.00-10.00 น.";
 	$time[3] = "10.00-11.00 น.";
@@ -169,7 +170,7 @@ body{
 	$time[7] = "14.00-15.00 น.";
 	$time[8] = "15.00-16.00 น.";
 	$time[9] = "16.00-17.00 น.";
-
+	
 	$date[1] = "จันทร์";
 	$date[2] = "อัง‬คาร";
 	$date[3] = "พุธ";
@@ -224,8 +225,25 @@ body{
     <div id="bodyInfo" align="center" >
     <br>
     <br>
-    <a href='<?php echo base_url();?>index.php/students/showEventWith'>กิจกรรมของคุณ</a>
-  <br><br>
+  <table width="90%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
+  <tr>
+  	<td align="center">หัวข้อ</td>
+    <td align="center">วัน</td>
+    <td align="center">ห้อง</td>
+    <td align="center">สถานะ</td>
+    <td align="center">ยกเลิกกิจกรรม</td>
+  </tr> 
+  <?php foreach($showeventwith as $s){?><!-- $completeeventstu ได้มาจาก Controller events Function completeEvent ให้แสดงรายการที่มี status 3 เท่านั้น -->
+    <tr>
+        <td align="center"><?php echo $topic[$s['eventTopic']]?></td>
+        <td align="center"><?php echo $time[$s['eventTime']]?></td>
+        <td align="center"><?php echo $s['eventRoom']?></td>
+        <td align="center"><?php echo $status[$s['teaEventStatus']]?></td>
+        <td align="center"><a href="<?php echo base_url();?>index.php/teachers/deleventstuevent/<?php echo $s['eventId'];?>/<?php echo $s['teaEventStatus'];?>/<?php echo $s['teaEventId'];?>" onClick="return confirme()">ยกเลิก</a></td>
+        <!-- เมื่อกดปุ่ม ใส่คำแนะนำ เก็บค่า eventId,teaEventStatus,teaEventId ไปใช้ใน Controller events Function comment -->
+    </tr>
+     <?php } ?>
+       </table>
     </div>
 </body>
 </html>

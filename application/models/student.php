@@ -333,5 +333,16 @@ class Student extends CI_Model {
 		//เช็คดูว่านักศึกษามีกิจกรรมที่ status ไม่เท่ากับ 1 และ 6 หรือไม่ 1 = สามารถนัดได้ 6 = เสร็จสิ้น จะดูเฉพาะนักศึกษาคนนั้นๆ และรายการทำได้เพียงรายการเดียว
 	}
 	
+			function showEventWith()
+	{
+		$datalogin = $this->session->userdata('loginData');
+		$this->db->join('teaevent','teaevent.teaEventId = event.teaEventId');
+		$this->db->where('teaevent.teaEventStatus !=',6);
+		$this->db->where('event.stuId',$datalogin['id']);
+		$data = $this->db->get('event')->result_array();
+		return $data;
+		//เช็คดูว่านักศึกษามีกิจกรรมที่ status ไม่เท่ากับ 1 และ 6 หรือไม่ 1 = สามารถนัดได้ 6 = เสร็จสิ้น จะดูเฉพาะนักศึกษาคนนั้นๆ และรายการทำได้เพียงรายการเดียว
+	}
+	
 }
 ?>

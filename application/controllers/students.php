@@ -96,6 +96,12 @@ class Students extends CI_Controller {
 	function loadView(){
 			$this->load->view('homestu');
 		}
+		
+		function showEventWith()
+	{
+		$data['showeventwith'] = $this->Student->showEventWith();
+		$this->load->view('stushoweventwith',$data);
+	}
 	
 }
 ?>

@@ -174,7 +174,9 @@ class Teachers extends CI_Controller {
 			$this->Teacher->delEventStu($id);
 		
 		header( 'Location: '.base_url().'index.php/teachers/teaevent' );
+		
 	}
+
 	function getEventTopicLearning(){
 			
 		$data['showTopicLearning'] = $this->Event->showReportLearning();
@@ -198,6 +200,19 @@ class Teachers extends CI_Controller {
 		$data['showTopicFamily'] = $this->Event->showReportFamily();
 		//เรียกใช้ Model Event Function showReportFamily ได้ค่า $data ชื่อ showTopicFamily
 		$this->load->view('teareportfamily',$data);
+	}
+
+	function deleventstuevent($id,$s,$teaEventId){//ลบรายการนัดหมายของนักศึกษา
+			$this->Teacher->setS($s);
+			$this->Teacher->setEventId($id);
+			$this->Teacher->setTeaEventId($teaEventId);
+			//เอาค่าที่รับมาไปใช้กับ Model Teacher Function updataStatusDel
+			$this->Teacher->updataStatusDel();
+			//เมื่อ update status แล้วเอาค่า id = eventId ไปใช้ใน Model Teacher Function delEventStu
+			$this->Teacher->delEventStu($id);
+		
+		header( 'Location: '.base_url().'index.php/students/stuevent' );
+		
 	}
 
 }
