@@ -201,7 +201,17 @@ body{
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <input type="text" name="teaSearchEmail" id="teaSearchEmail" required />
     <input type="submit" value="ค้นหาจากอีเมล์" /></h5></form>
-	<br>
+    
+    <form ><h5 align="center">
+    <select name="value" id="value" >
+            <option value="stuName">ค้นหาจากชื่อ</option>
+            <option value="stuCode">ค้นหาจากรหัส</option>
+            <option value="stuEmail">คนหาจากอีเมล์</option>
+    </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="text" name="teaSearchEmail" id="teaSearchEmail" required />
+   	<input type="submit" value="ค้นหา" /></h5>
+     </form>
+	<br><br>
     <table width="71%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
   <tr>
     <td align="center">รหัสนักศึกษา</td>
