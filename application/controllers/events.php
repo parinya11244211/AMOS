@@ -133,6 +133,7 @@ class Events extends CI_Controller {
 		$this->Event->setEventRoom($eventRoom);
 		$this->Event->teaEditEvent();
 
+		header( 'Location: '.base_url().'index.php/teachers/teaevent' );
 	}
 }
 ?>
