@@ -415,7 +415,13 @@ class Teacher extends CI_Model {
 		return $data;
 		
 	}
-	
+	function setEmailTea()
+	{
+		$this->db->select('teaId,teaName,teaEmail,teaLastname');
+		$this->db->where('teaId ',$this->getTeaId()); // แต่ค่าที่จะนำไปใช้ ต้องมาจาก Id ของนักศึกษาคนนั้น
+		$data = $this->db->get('teacher')->result_array();// เรียกใช่ database student เก็บค่าไว้ที่ $data
+		return $data;
+	}
 }
 
 ?>

@@ -186,7 +186,7 @@ body{
     </div>
     
     <div id="bodyInfo"><br><br>
-    <table width="71%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
+    <table width="80%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
   <tr>
     <td align="center">รหัสอาจารย์ที่ปรึกษา</td>
     <td align="center">ชื่ออาจารย์ที่ปรึกษา</td>
@@ -194,6 +194,7 @@ body{
     <td align="center">ที่อยู่อาจารย์ที่ปรึกษา</td>
     <td align="center">เบอร์โทรอาจารย์ที่ปรึกษา</td>
     <td align="center">อีเมล์</td>
+    <td align="center">ส่งข้อความหาอาจารย์ที่ปรึกษา</td>
   </tr>
   <?php foreach($stuinfo as $s){?>
   <!-- $stuinfo มาจาก Controller students Function stuInfoMatch -->
@@ -203,7 +204,8 @@ body{
     <td align="center"><br><?php echo $s['teaLastname']?></td>
     <td align="center"><br><?php echo $s['teaAddress']?></td>
     <td align="center"><br><?php echo $s['teaTel']?></td>
-    <td align="center"><br><a href="mailto:<?php $s['teaEmail'] ?>"><?php echo $s['teaEmail']?></td>
+    <td align="center"><br><?php echo $s['teaEmail']?></td>
+    <td align="center"><br><a href='<?php echo base_url();?>index.php/teachers/getemailtea/<?php echo $s['teaId']?>/<?php echo $s['teaName']?>'>ส่งข้อความ</td>
   </tr>
   <?php }?>
 </table>

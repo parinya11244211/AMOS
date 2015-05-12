@@ -350,5 +350,14 @@ class Student extends CI_Model {
 		$data = $this->db->get('student')->result_array();// เรียกใช่ database student เก็บค่าไว้ที่ $data
 		return $data;
 	}
+	function getEmailTea(){
+		 
+		$datalogin = $this->session->userdata('loginData');
+		$this->db->select('stuId,stuName,stuEmail,stuLastname');
+		$this->db->where('student.stuId',$datalogin['id']);
+		$data = $this->db->get('student')->result_array();
+		return $data;
+		
+	}
 }
 ?>

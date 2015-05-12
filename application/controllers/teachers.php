@@ -230,6 +230,21 @@ class Teachers extends CI_Controller {
 			$this->load->view('teaemail',$dataEmail);
 			
 	}
+	function getemailtea($teaId,$teaName){//ลบรายการนัดหมายของนักศึกษา
+
+			$this->session->unset_userdata('mail');
+	
+			$this->Teacher->setTeaId($teaId);
+			$this->Teacher->setTeaName($teaName);
+			$teaData = $this->Teacher->setEmailTea();
+			$data = $this->Student->getEmailTea();
+			$dataEmail['tea'] = $teaData[0];
+			$dataEmail['stu'] = $data[0];
+			
+			$this->session->set_userdata('mail',$dataEmail);
+			$this->load->view('stuemail',$dataEmail);
+			
+	}
 	function mails(){
 		
 		$mail = $this->session->userdata('mail');
@@ -260,6 +275,34 @@ class Teachers extends CI_Controller {
 				$this->email->send();
 				 echo "<script>alert('ได้ทำการส่ง Email เรียบร้อบแล้ว');window.location.href = '".base_url()."index.php/teachers/teainfomatch';</script>";
 	}
-	
+	function mailsTea(){
+		
+		$mail = $this->session->userdata('mail');
+		
+			$subject = $this->input->post('subject');
+			$message = $this->input->post('message');
+		
+				$this->load->library('email');
+				$config['protocol'] = 'SMTP';
+				$config['smtp_host'] = 'mail.cmhost.me';
+				$config['smtp_port'] = 25;
+				$config['smtp_user'] = 'amos@amos.cmhost.me';
+				$config['smtp_pass'] = '1234';
+				$config['wordwrap'] = FALSE;
+				$config['mailtype'] = 'html';
+				$config['charset'] = 'utf-8';
+				$config['newline'] = '\n';
+
+				$this->email->initialize($config);
+				
+				$this->email->from($mail['stu']['stuEmail'], "นศ.".$mail['stu']['stuName']."  ".$mail['stu']['stuLastname']);
+				$this->email->to($mail['tea']['teaEmail']); 
+				
+				$this->email->subject($subject);
+				$this->email->message($message);	
+				
+				$this->email->send();
+				 echo "<script>alert('ได้ทำการส่ง Email เรียบร้อบแล้ว');window.location.href = '".base_url()."index.php/students/stuinfomatch';</script>";
+	}
 }
 ?>
