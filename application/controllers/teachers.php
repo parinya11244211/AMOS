@@ -215,5 +215,51 @@ class Teachers extends CI_Controller {
 		
 	}
 
+	function getEmail($stuId,$stuName){//ลบรายการนัดหมายของนักศึกษา
+	
+			$this->session->unset_userdata('mail');
+	
+			$this->Student->setStuId($stuId);
+			$this->Student->setStuName($stuName);
+			$stuData = $this->Student->setEmail();
+			$data = $this->Teacher->getEmail();
+			$dataEmail['stu'] = $stuData[0];
+			$dataEmail['tea'] = $data[0];
+			
+			$this->session->set_userdata('mail',$dataEmail);
+			$this->load->view('teaemail',$dataEmail);
+			
+	}
+	function mails(){
+		
+		$mail = $this->session->userdata('mail');
+		
+			$subject = $this->input->post('subject');
+			$message = $this->input->post('message');
+		
+				$this->load->library('email');
+				$config['protocol'] = 'SMTP';
+				$config['smtp_host'] = 'mail.cmhost.me';
+				$config['smtp_port'] = 25;
+				$config['smtp_user'] = 'amos@amos.cmhost.me';
+				$config['smtp_pass'] = '1234';
+				$config['wordwrap'] = FALSE;
+				$config['mailtype'] = 'html';
+				$config['charset'] = 'utf-8';
+				$config['newline'] = '\n';
+
+				$this->email->initialize($config);
+				
+				
+				$this->email->from($mail['tea']['teaEmail'], "อ.".$mail['tea']['teaName']."  ".$mail['tea']['teaLastname']);
+				$this->email->to($mail['stu']['stuEmail']); 
+				
+				$this->email->subject($subject);
+				$this->email->message($message);	
+				
+				$this->email->send();
+				 echo "<script>alert('ได้ทำการส่ง Email เรียบร้อบแล้ว');window.location.href = '".base_url()."index.php/teachers/teainfomatch';</script>";
+	}
+	
 }
 ?>

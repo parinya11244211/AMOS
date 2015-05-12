@@ -406,6 +406,16 @@ class Teacher extends CI_Model {
 		$this->db->where('teaevent.teaEventId',$this->getTeaEventId());//update status จาก table teaevent จาก teaEventId เท่านั้น
 		$this->db->update('teaevent',$data);
 	}
+	function getEmail(){
+		 
+		$datalogin = $this->session->userdata('loginData');
+		$this->db->select('teaId,teaName,teaEmail,teaLastname');
+		$this->db->where('teacher.teaId',$datalogin['id']);
+		$data = $this->db->get('teacher')->result_array();
+		return $data;
+		
+	}
+	
 }
 
 ?>

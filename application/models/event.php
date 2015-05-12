@@ -21,6 +21,8 @@ class Event extends CI_Model {
 	var $s;
 	var $id;
 	var $teaEventStatus;
+	var $teaEventDay;
+	
 	
 
 ###### End Attribute  ###### 
@@ -205,6 +207,17 @@ class Event extends CI_Model {
 
     function getTeaId(){
         return $this->teaId; 
+     }
+###### End Attribute  ###### 
+    function setTeaEventDay($teaEventDay){
+        $this->teaEventDay = $teaEventDay; 
+     }
+###### End SET : $eventId ###### 
+
+
+###### GET : $eventId ######
+    function getTeaEventDay(){
+        return $this->teaEventDay; 
      }
 
 	function addEvent(){
@@ -436,6 +449,23 @@ class Event extends CI_Model {
 		$this->db->where('teaevent.teaEventId',$this->getTeaEventId());
 		$this->db->update('teaevent',$data);
 
+	}
+	function showEditEvent(){
+		
+		$this->db->join('student','student.stuId = event.stuId');
+		$this->db->where('event.eventId',$this->getEventId());
+		$data = $this->db->get('event')->result_array();
+		return $data;
+	}
+	function teaEditEvent(){
+		
+		$data = array(
+			'eventTime' => $this->getEventTime(),
+			'eventRoom' => $this->getEventRoom()
+			);
+
+		$this->db->where('event.eventId',$this->getEventId());
+		$data = $this->db->update('event',$data);
 	}
 }
 ?>

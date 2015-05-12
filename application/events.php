@@ -112,26 +112,14 @@ class Events extends CI_Controller {
 		$data = $this->Event->addEvent();
 		header( 'Location: '.base_url().'index.php/students/stuevent' );
 	}
-	function editevent($eventId,$eventTime,$eventRoom){
+	function editevent($eventId,$teaEventId){
 			
 		$this->Event->setEventId($eventId);
-		$this->Event->setEventTime($eventTime);
-		$this->Event->setEventRoom($eventRoom);
+		$this->Event->setTeaEventId($teaEventId);
 		
 		$data['editevent'] = $this->Event->showEditEvent();
 
 		$this->load->view('teaevents',$data);
-
-	}
-	function teaeditevent($eventId){
-
-		$eventTime = $this->input->post('eventTime');
-		$eventRoom = $this->input->post('eventRoom');
-
-		$this->Event->setEventId($eventId);
-		$this->Event->setEventTime($eventTime);
-		$this->Event->setEventRoom($eventRoom);
-		$this->Event->teaEditEvent();
 
 	}
 }

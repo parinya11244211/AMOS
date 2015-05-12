@@ -221,7 +221,7 @@ body{
           <td align="center"><textarea name="message" cols="60" rows="10" id="message" required></textarea></td>
         </tr>
         <tr>
-          <td colspan="2" align="center"><input type="submit" name="button" id="button" value="ส่งเมล์"></td>
+          <td colspan="2" align="center"><input type="submit" name="button" id="button" value="d"></td>
         </tr>
       </table>
       </form>

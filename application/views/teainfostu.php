@@ -184,34 +184,17 @@ body{
     
     <div id="bodyInfo"><br><br>
     <h2 align="center">ค้นหานักศึกษา<br></h2>
-    <form method="post" action="<?php echo base_url();?>index.php/teachers/teasearch">
-    <!-- เมื่อกดปุ่ม ค้นหา ให้เรียกใช้ Controller teacher Function teasearch -->
-    <h5 align="center">
-    <input type="text" name="teaSearch" id="teaSearch" required />
-    <input type="submit" value="ค้นหาจากชื่อ" /></h5></form>
-    <form method="post" action="<?php echo base_url();?>index.php/teachers/teasearchcode">
-    <!-- เมื่อกดปุ่ม ค้นหา ให้เรียกใช้ Controller teacher Function teasearch -->
-    <h5 align="center">
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input type="text" name="teaSearchCode" id="teaSearchCode" required />
-    <input type="submit" value="ค้นหาจากรหัสนักศึกษา" /></h5></form>
-    <form method="post" action="<?php echo base_url();?>index.php/teachers/teasearchemail">
-    <!-- เมื่อกดปุ่ม ค้นหา ให้เรียกใช้ Controller teacher Function teasearch -->
-    <h5 align="center">
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input type="text" name="teaSearchEmail" id="teaSearchEmail" required />
-    <input type="submit" value="ค้นหาจากอีเมล์" /></h5></form>
-    
-    <form ><h5 align="center">
-    <select name="value" id="value" >
-            <option value="stuName">ค้นหาจากชื่อ</option>
+  
+    <form method="post"  id="formSearchChange" action="<?php echo base_url();?>index.php/teachers/teasearch"><h5 align="center">
+    <select name="value" onChange="changeLink(this.value)"  >
+            <option value="stuName"  selected>ค้นหาจากชื่อ</option>
             <option value="stuCode">ค้นหาจากรหัส</option>
             <option value="stuEmail">คนหาจากอีเมล์</option>
     </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input type="text" name="teaSearchEmail" id="teaSearchEmail" required />
+    <input type="text" name="teaSearch" id="textbox" required />
    	<input type="submit" value="ค้นหา" /></h5>
      </form>
-	<br><br>
+    <br>
     <table width="71%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
   <tr>
     <td align="center">รหัสนักศึกษา</td>
@@ -220,6 +203,7 @@ body{
     <td align="center">ที่อยู่นักศึกษา</td>
     <td align="center">เบอร์โทรนักศึกษา</td>
     <td align="center">อีเมล์นักศึกษา</td>
+    <td align="center">ส่งข้อความหานักศึกษา</td>
   </tr>
   <?php foreach($teainfo as $t){?>
   <!-- $teainfo มาจาก Controller teachers Function teaInfoMatch -->
@@ -229,10 +213,38 @@ body{
     <td align="center"><br><?php echo $t['stuLastname']?></td>
     <td align="center"><br><?php echo $t['stuAddress']?></td>
     <td align="center"><br><?php echo $t['stuTel']?></td>
-    <td align="center"><br><a href="mailto:"><?php echo $t['stuEmail']?></td>
+    <td align="center"><br><?php echo $t['stuEmail']?></td>
+    <td align="center"><br><a href='<?php echo base_url();?>index.php/teachers/getEmail/<?php echo $t['stuId']?>/<?php echo $t['stuName']?>'>ส่งข้อความ</td>
   </tr>
   <?php }?>
 </table>
     </div>
+    <script>
+	
+
+	function changeLink(value){
+		var row = 0;
+		var links = Array(3);
+		if(value=="stuName"){
+			row = 0;
+			document.getElementById('textbox').setAttribute('name',"teaSearch");
+		}else if(value=="stuCode"){
+			row = 1;
+			document.getElementById('textbox').setAttribute('name',"teaSearchCode");
+		}else if(value=="stuEmail"){
+			row = 2;
+			document.getElementById('textbox').setAttribute('name',"teaSearchEmail");
+		}else{
+			row = 0;
+			document.getElementById('textbox').setAttribute('name',"teaSearch");
+		}
+	links[0] = "<?php echo base_url();?>index.php/teachers/teasearch";
+	links[1] = "<?php echo base_url();?>index.php/teachers/teasearchcode";
+	links[2] = "<?php echo base_url();?>index.php/teachers/teasearchemail";
+
+		document.getElementById('formSearchChange').setAttribute('action',links[row]);
+		
+	}
+	</script>
 </body>
 </html>

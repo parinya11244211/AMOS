@@ -239,6 +239,7 @@ body{
     <td align="center">เบอร์นักศึกษา</td>
     <td align="center">สถานะ</td>
     <td align="center">รับการปรึกษา</td>
+    <td align="center">แก้ไขกิจกรรม</td>
     <td align="center">ยกเลิกการปรึกษา</td>
   </tr> 
   <?php foreach($stuevent as $s){
@@ -256,6 +257,7 @@ body{
         <td align="center"><?php echo $s['stuTel']?></td>
         <td align="center"><?php echo $status[$s['teaEventStatus']]?></td>
          <td align="center"><a href='<?php echo base_url();?>index.php/events/completeevent/<?php echo $s['eventId']; ?>/<?php echo $s['teaEventStatus']; ?>/<?php echo $s['teaEventId'];?>' onClick="return confirme()">รับการปรึกษา</a></td>
+          <td align="center"><a href='<?php echo base_url();?>index.php/events/editevent/<?php echo $s['eventId']; ?>/<?php echo $s['eventTime'];?>/<?php echo $s['eventRoom'];?>' onClick="return confirme()">แก้ไขข้อมูล</a></td>
          <!-- เมื่อกดปุ่มปรึกษา เก็บค่า eventId teaEventStatus teaEventId ไปใช้ใน Controller events Function completeevent -->
         <td align="center"><a href="<?php echo base_url();?>index.php/teachers/deleventstu/<?php echo $s['eventId'];?>/<?php echo $s['teaEventStatus'];?>/<?php echo $s['teaEventId'];?>" onClick="return confirme()">ยกเลิก</a></td>
          <!-- เมื่อกดปุ่มปรึกษา เก็บค่า eventId teaEventStatus teaEventId ไปใช้ใน Controller teachers Function deleventstu -->

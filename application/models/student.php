@@ -343,6 +343,12 @@ class Student extends CI_Model {
 		return $data;
 		//เช็คดูว่านักศึกษามีกิจกรรมที่ status ไม่เท่ากับ 1 และ 6 หรือไม่ 1 = สามารถนัดได้ 6 = เสร็จสิ้น จะดูเฉพาะนักศึกษาคนนั้นๆ และรายการทำได้เพียงรายการเดียว
 	}
-	
+	function setEmail()
+	{
+		$this->db->select('stuId,stuName,stuEmail,stuLastname');
+		$this->db->where('stuId ',$this->getStuId()); // แต่ค่าที่จะนำไปใช้ ต้องมาจาก Id ของนักศึกษาคนนั้น
+		$data = $this->db->get('student')->result_array();// เรียกใช่ database student เก็บค่าไว้ที่ $data
+		return $data;
+	}
 }
 ?>

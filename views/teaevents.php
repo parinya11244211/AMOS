@@ -71,8 +71,7 @@ input[type=text]{
 }
 
 input[type=text]:hover,input[type=text]:focus{
-	background-color: #C0E380;
-	text-align: left;
+	background-color:#C0E380;
 }
 
 .body-side{
@@ -92,6 +91,11 @@ $(document).ready(function(){
 	slideBoxy(imgName,50,399,600,1,'3'); 
 	// การเรียกใช้ slideBoxy(  picName  ,  ขนาดลูกศร  ,  ความสูงของรูปทั้งหมด  ,  ความกว้างของรูปทั้งหมด  ,  ขนาดของเฟรม ใส่เป็น เท่า  , วินาทีที่จะเปลี่ยนรูปอัตโนมัติ);
 		 });
+		 
+		 function confirme(){
+	var x = confirm("ยืนยันการทำงานนี้หรือไม่");
+	return x;
+}
 </script>
 
 </header>
@@ -129,7 +133,6 @@ body{
 #herderBody{
 		height:120px;
 		float:left;
-
 		padding-bottom:10px;
 		margin-left:10%;
 		margin-right:10%;
@@ -156,6 +159,17 @@ body{
 	}
 </style>
 <?php 
+
+	$time[1] = "8.00-9.00 น.";
+	$time[2] = "9.00-10.00 น.";
+	$time[3] = "10.00-11.00 น.";
+	$time[4] = "11.00-12.00 น.";
+	$time[5] = "12.00-13.00 น.";
+	$time[6] = "13.00-14.00 น.";
+	$time[7] = "14.00-15.00 น.";
+	$time[8] = "15.00-16.00 น.";
+	$time[9] = "16.00-17.00 น.";
+
 	$date[1] = "จันทร์";
 	$date[2] = "อัง‬คาร";
 	$date[3] = "พุธ";
@@ -179,12 +193,14 @@ body{
 	$topic[2] = "กิจกรรม";
 	$topic[3] = "กยศ";
 	$topic[4] = "ครอบครัว"
+
 	
 	 ?>
 <body>
     <div class="herderTop">
 	<div id="innerTop">
-       <a href="<?php echo base_url();?>index.php/home/logout"> <input id="logout" name="" type="Button" value="Logout" class="myButton"> </a>
+       <a href="<?php echo base_url();?>index.php/home/logout"> 
+       <input id="logout" name="" type="Button" value="Logout" class="myButton"> </a>
     &nbsp;&nbsp;&nbsp;&nbsp;<?php
 	$loginData=$this->session->userdata('loginData');
 	echo "ยินดีต้อนรับอาจารย์&nbsp;&nbsp;&nbsp;";
@@ -208,25 +224,44 @@ body{
 		</ul>
 	</div>	
     </div>
-    
-    <div id="bodyInfo"><br><br>
-    <form action="<?php echo base_url();?>index.php/teachers/mails" method="post">
-    <table width="40%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
-        <tr>
-          <th nowrap="nowrap">หัวเรื่อง</th>
-          <th align="left" nowrap="nowrap"><input type="text" name="subject" id="subject" required></th>
-        </tr>
-        <tr>
-          <td align="center"><label for="textfield">ข้อความ </label></td>
-          <td align="center"><textarea name="message" cols="60" rows="10" id="message" required></textarea></td>
-        </tr>
-        <tr>
-          <td colspan="2" align="center"><input type="submit" name="button" id="button" value="ส่งเมล์"></td>
-        </tr>
-      </table>
-      </form>
+   
+    <div id="bodyInfo">
+     <br><br><br>
+    <table width="90%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
+  <tr>
+  	<td align="center">หัวข้อ</td>
+    <td align="center">วัน</td>
+    <td align="center">เวลา</td>
+    <td align="center">ห้อง</td>
+    <td align="center">ชื่อนักศึกษา</td>
+    <td align="center">นามสกุลนักศึกษา</td>
+    <td align="center">รหัสนักศึกษา</td>
+    <td align="center">เบอร์นักศึกษา</td>
+    <td align="center">สถานะ</td>
+    <td align="center">รับการปรึกษา</td>
+    <td align="center">ยกเลิกการปรึกษา</td>
+  </tr> 
+  <?php foreach($stuevent as $s){
+	  
+	  if($s['teaEventStatus'] == 2){
+	  ?><!-- $stuevent ได้มาจาก Controller teachers Function teaEvent ให้แสดงรายการที่มี status 2 เท่านั้น -->
+    <tr>
+        <td align="center"><?php echo $topic[$s['eventTopic']]?></td>
+        <td align="center"><?php echo $s['teaEventDay']?></td>
+        <td align="center"><?php echo $time[$s['eventTime']]?></td>
+        <td align="center"><?php echo $s['eventRoom']?></td>
+        <td align="center"><?php echo $s['stuName']?></td>
+        <td align="center"><?php echo $s['stuLastname']?></td>
+        <td align="center"><?php echo $s['stuCode']?></td>
+        <td align="center"><?php echo $s['stuTel']?></td>
+        <td align="center"><?php echo $status[$s['teaEventStatus']]?></td>
+         <td align="center"><a href='<?php echo base_url();?>index.php/events/completeevent/<?php echo $s['eventId']; ?>/<?php echo $s['teaEventStatus']; ?>/<?php echo $s['teaEventId'];?>' onClick="return confirme()">รับการปรึกษา</a></td>
+         <!-- เมื่อกดปุ่มปรึกษา เก็บค่า eventId teaEventStatus teaEventId ไปใช้ใน Controller events Function completeevent -->
+        <td align="center"><a href="<?php echo base_url();?>index.php/teachers/deleventstu/<?php echo $s['eventId'];?>/<?php echo $s['teaEventStatus'];?>/<?php echo $s['teaEventId'];?>" onClick="return confirme()">ยกเลิก</a></td>
+         <!-- เมื่อกดปุ่มปรึกษา เก็บค่า eventId teaEventStatus teaEventId ไปใช้ใน Controller teachers Function deleventstu -->
+    </tr>
+     <?php } }?>
+       </table>
     </div>
 </body>
-</html>      
-          
-         
+</html>

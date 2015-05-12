@@ -192,6 +192,7 @@ body{
     <td align="center">ที่อยู่นักศึกษา</td>
     <td align="center">เบอร์โทรนักศึกษา</td>
     <td align="center">อีเมล์นักศึกษา</td>
+    <td align="center">ส่งข้อความหานักศึกษา</td>
   </tr>
   <?php foreach($stuName as $n){?>
   <!-- $stuName มาจาก Controller teachers Function teaSearch -->
@@ -201,7 +202,8 @@ body{
     <td align="left"><br><?php echo $n['stuLastname']?></td>
     <td align="center"><br><?php echo $n['stuAddress']?></td>
     <td align="center"><br><?php echo $n['stuTel']?></td>
-    <td align="center"><br><a href="mailto:"><?php echo $n['stuEmail']?></td>
+    <td align="center"><br><?php echo $n['stuEmail']?></td>
+    <td align="center"><br><a href='<?php echo base_url();?>index.php/teachers/getEmail/<?php echo $n['stuId']?>/<?php echo $n['stuName']?>'>ส่งข้อความ</td>
   </tr>
   <?php }?>
 </table>

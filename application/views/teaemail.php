@@ -61,7 +61,7 @@
 input[type=text]{
 	width:200px;
 	height:20px;
-	background-color:#336600;
+	
 	border-radius:5px;
 	border:0;
 	box-shadow:2px 2px 2px #333333;
@@ -71,7 +71,8 @@ input[type=text]{
 }
 
 input[type=text]:hover,input[type=text]:focus{
-	background-color:#C0E380;
+	background-color: #C0E380;
+	text-align: left;
 }
 
 .body-side{
@@ -128,6 +129,7 @@ body{
 #herderBody{
 		height:120px;
 		float:left;
+
 		padding-bottom:10px;
 		margin-left:10%;
 		margin-right:10%;
@@ -208,65 +210,25 @@ body{
     </div>
     
     <div id="bodyInfo"><br><br>
-    
-    <table width="40%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
+    <form action="<?php echo base_url();?>index.php/teachers/mails" method="post">
+    <table width="50%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
         <tr>
-          <th nowrap="nowrap">หัวข้อ</th>
-          <th nowrap="nowrap">คะแนนเฉลี่ย</th>
-        </tr>
-        <?php foreach ($showAllStar as $s){?>
-        <!-- $showAllStar มาจาก Controller teachers Function teaReport showAllStar คือ แสดงค่าเฉลี่ยทั้งหมด -->
+          <td align="center">หัวเรื่อง</td>
+          <td align="left"><p>&nbsp;</p>
+          <p>
+           &nbsp;&nbsp;&nbsp; <input type="text" name="subject" id="subject" required>
+          </p>
+          <p>&nbsp;</p></td>
+      </tr>
         <tr>
-          <td align="center"><?php echo 'คะแนนเฉลี่ยรวมทั้งสี่หัวข้อ';?></td>
-          <td align="center"><?php echo number_format($s['divde'], 2, '.', '')?></td>
-        </tr>
-        <?php } ?>
-      </table>
-   
-      <br><br>
-      
-      <table width="40%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
-        <tr>
-          <th nowrap="nowrap">หัวข้อ</th>
-          <th nowrap="nowrap">คะแนนเฉลี่ย</th>
-        </tr>
-        <?php foreach ($showAll as $s){?>
-        <!-- $showAll มาจาก Controller teachers Function teaReport showAll คือ แสดงค่าเฉลี่ยตามหัวข้อ -->
-        <tr>
-          <td align="center"><?php echo $topic[$s['eventTopic']];?></td>
-          <td align="center"><?php echo number_format($s['divde'], 2, '.', '')?></td>
-        </tr>
-        <?php } ?>
-      </table>
-      
-      <br><br>
-      
-      <table width="40%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
-        <tr>
-          <th nowrap="nowrap">หัวข้อ</th>
-          <th nowrap="nowrap">ดูรายละเอียด</th>
+          <td align="center"><label for="textfield">ข้อความ </label></td>
+          <td align="left">&nbsp;&nbsp;&nbsp;<textarea name="message" cols="60" rows="10" id="message" required></textarea></td>
         </tr>
         <tr>
-          <td align="center"><?php echo 'การเรียน';?></td>
-          <td align="center"><a href='<?php echo base_url();?>index.php/teachers/getEventTopicLearning'>การเรียน</a></td>
-          <!-- เรียกใช้ Controller teachers Function getEventTopicLearning -->
-        </tr>
-         <tr>
-           <td align="center"><?php echo 'กิจกรรม';?></td>
-          <td align="center"><a href='<?php echo base_url();?>index.php/teachers/getEventTopicEvent'>กิจกรรม</a></td>
-          <!-- เรียกใช้ Controller teachers Function getEventTopicEvent -->
-        </tr>
-        <tr>
-           <td align="center"><?php echo 'กยศ';?></td>
-          <td align="center"><a href='<?php echo base_url();?>index.php/teachers/getEventTopicRecover'>กยศ</a></td>
-          <!-- เรียกใช้ Controller teachers Function getEventTopicRecover -->
-        </tr>
-        <tr>
-           <td align="center"><?php echo 'ครอบครัว';?></td>
-          <td align="center"><a href='<?php echo base_url();?>index.php/teachers/getEventTopicFamily'>ครอบครัว</a></td>
-          <!-- เรียกใช้ Controller teachers Function getEventTopicFamily -->
+          <td colspan="2" align="center"><input type="submit" name="button" id="button" value="ส่งเมล์"></td>
         </tr>
       </table>
+      </form>
     </div>
 </body>
 </html>      

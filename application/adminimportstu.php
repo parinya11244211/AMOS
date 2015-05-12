@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Wlecome Teacher</title>
+<title>Wlecome Admin</title>
     <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 	<script src="<?php echo base_url()?>js/jquery-1.11.1.min.js" type="text/javascript"></script>
     <script src="<?php echo base_url()?>js/script.js"></script>
@@ -71,8 +71,7 @@ input[type=text]{
 }
 
 input[type=text]:hover,input[type=text]:focus{
-	background-color: #C0E380;
-	text-align: left;
+	background-color:#C0E380;
 }
 
 .body-side{
@@ -129,10 +128,10 @@ body{
 #herderBody{
 		height:120px;
 		float:left;
-
 		padding-bottom:10px;
 		margin-left:10%;
 		margin-right:10%;
+
 		padding-top:10px;
 	}
 #menu{
@@ -154,79 +153,55 @@ body{
 		margin-top:15px;
 		margin-left:5px;
 	}
+#wlecome{
+		font-size:24px;
+		color:#F09;
+		padding:10px;
+	}
 </style>
-<?php 
-	$date[1] = "จันทร์";
-	$date[2] = "อัง‬คาร";
-	$date[3] = "พุธ";
-	$date[4] = "พฤหัสบดี";
-	$date[5] = "ศุกร์";
-	
-	$status[1] = "สามารถนัดได้";
-	$status[2] = "รอการตอบรับ";
-	$status[3] = "รอคำแนะนำ";
-	$status[4] = "ยกเลิกนัด";
-	$status[5] = "รอคะแนน";
-	$status[6] = "เสร็จสิ้น";
-	
-	$color[1] = "tableyellow";
-	$color[2] = "tablepink";
-	$color[3] = "tablegreen";
-	$color[4] = "tableshirts";
-	$color[5] = "tableblue";
-	
-	$topic[1] = "การเรียน";
-	$topic[2] = "กิจกรรม";
-	$topic[3] = "กยศ";
-	$topic[4] = "ครอบครัว"
-	
-	 ?>
+
 <body>
     <div class="herderTop">
 	<div id="innerTop">
-       <a href="<?php echo base_url();?>index.php/home/logout"> <input id="logout" name="" type="Button" value="Logout" class="myButton"> </a>
+         <a href="<?php echo base_url();?>index.php/home/logout"> <input id="logout" name="" type="Button" value="Logout" class="myButton"> </a>
     &nbsp;&nbsp;&nbsp;&nbsp;<?php
 	$loginData=$this->session->userdata('loginData');
-	echo "ยินดีต้อนรับอาจารย์&nbsp;&nbsp;&nbsp;";
+	 echo "ยินดีต้อนรับคุณ&nbsp;&nbsp;&nbsp;";
 	 echo $loginData['name']; ?>
-	&nbsp;&nbsp;&nbsp;&nbsp;<?php if( $loginData['status']=='t'){
-	echo "สถานะ&nbsp;&nbsp;&nbsp;";
-		echo 'Teacher';
+	&nbsp;&nbsp;&nbsp;&nbsp;<?php 
+		echo "สถานะ&nbsp;&nbsp;&nbsp;";
+	if( $loginData['status']=='a'){
+		echo 'Admin';
 		} ?></div>
 	</div>
+
     <div id="herderBody">	
         <img src="<?php echo base_url();?>img/ncuIcon2.png">
     <div id='cssmenu'>
 		<ul>
-      		<li><a href='<?php echo base_url();?>index.php/teachers'>หน้าแรก</a></li>
-			<li><a href='<?php echo base_url();?>index.php/teachers/teainfo'>ข้อมูลส่วนตัว</a></li>
-			<li><a href='<?php echo base_url();?>index.php/teachers/teainfomatch'>ข้อมูลนักศึกษา</a></li>
-			<li><a href='<?php echo base_url();?>index.php/teachers/teatime'>เวลานัดหมาย</a></li>
-            <li><a href='<?php echo base_url();?>index.php/teachers/teaevent'>การนัดหมายของนักศึกษา</a></li>
-            <li><a href='<?php echo base_url();?>index.php/events/infoevent'>ใส่รายละเอียดข้อมูลการให้ปรึกษา</a></li>
-            <li><a href='<?php echo base_url();?>index.php/teachers/teareport'>รายงาน</a></li>
+       		<li><a href='<?php echo base_url();?>index.php/admins'>หน้าแรก</a></li>
+            <!-- เมนูสั่งไป Controller admins -->
+			<li><a href='<?php echo base_url();?>index.php/admins/importtea'>นำเข้าข้อมูลอาจารน์ที่ปรึษา</a></li>
+            <!-- เมนูสั่งไป Controller admins ใน Function importtea -->
+			<li><a href='<?php echo base_url();?>index.php/admins/importstu'>นำเข้าข้อมูลนักศึกษา</a></li>
+            <!-- เมนูสั่งไป Controller admins ใน Function importstu -->
+			<li><a href='<?php echo base_url();?>index.php/admins/mast'>กำหนดนักศึกษาให้อาจารย์ที่ปรึกษา</a></li>
+            <!-- เมนูสั่งไป Controller admins ใน Function mast -->
 		</ul>
 	</div>	
     </div>
     
-    <div id="bodyInfo"><br><br>
-    <form action="<?php echo base_url();?>index.php/teachers/mails" method="post">
-    <table width="40%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
-        <tr>
-          <th nowrap="nowrap">หัวเรื่อง</th>
-          <th align="left" nowrap="nowrap"><input type="text" name="subject" id="subject" required></th>
-        </tr>
-        <tr>
-          <td align="center"><label for="textfield">ข้อความ </label></td>
-          <td align="center"><textarea name="message" cols="60" rows="10" id="message" required></textarea></td>
-        </tr>
-        <tr>
-          <td colspan="2" align="center"><input type="submit" name="button" id="button" value="ส่งเมล์"></td>
-        </tr>
-      </table>
-      </form>
+   <div id="bodyInfo" align="center">
+    <br><br>
+    <h2>นำเข้าข้อมูลนักศึกษา</h2>
+    <br>
+<form id="form1" name="form1" method="post" action="<?php echo base_url();?>index.php/admins/importstudent" enctype="multipart/form-data"><!-- เมื่อกดปุ่ม นำเข้าข้อมูล ส่งค่าไปที่ Controller admins ใน Function importstudent -->
+  <p>
+    <input type="file" name="exc" id="exc" required/><!-- type="file" เพื่อเก็บค่าเฉพาะไฟล์ เรียกใช่ในชื่อ exc -->
+    <input type="submit" name="button" id="button" value="นำเข้าข้อมูล" />
+  </p>
+  <p><font size="-1">กรุณาเลือกไฟล์ Excal สำหรับข้อมูลนักศึกษา ที่มีนามสกุล .xls เท่านั้น</font></p>
+</form>
     </div>
 </body>
-</html>      
-          
-         
+</html>
