@@ -100,12 +100,14 @@ class Events extends CI_Controller {
 		 $eventTopic = $this->input->post('eventTopic');
 		 $eventTime = $this->input->post('teaEventTime');
 		 $eventRoom = $this->input->post('teaEventRoom');
+		 $eventTopicEtc = $this->input->post('eventTopicEtc');
 		 $stuId = $loginData['id'];
 		 $teaEventId = $this->input->post('teaEventId');
 		
 		$this->Event->setEventTopic($eventTopic);
 		$this->Event->setEventTime($eventTime);
 		$this->Event->setEventRoom($eventRoom);
+		$this->Event->setEventTopicEtc($eventTopicEtc);
 		$this->Event->setStuId($stuId);
 		$this->Event->setTeaEventId($teaEventId);
 		//นำค่าที่เข้ามาทำเป็นตัวแปล เอาตัวแปลไป set แล้วใช้ Model Event Function addEvent

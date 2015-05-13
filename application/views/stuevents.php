@@ -96,11 +96,22 @@ $(document).ready(function(){
 	// การเรียกใช้ slideBoxy(  picName  ,  ขนาดลูกศร  ,  ความสูงของรูปทั้งหมด  ,  ความกว้างของรูปทั้งหมด  ,  ขนาดของเฟรม ใส่เป็น เท่า  , วินาทีที่จะเปลี่ยนรูปอัตโนมัติ);
 		 });
 		 
-function confirme(){
+$(document).ready(function(){				
+	$('#eventTopicEtc').hide();
+	
+	$('#eventTopic').change(function(){
+		if ($(this).val()=="5")
+		{
+	$('#eventTopicEtc').show();
+		} else {
+		$('#eventTopicEtc').hide();
+		}
+	});
+});
+	function confirme(){
 	var x = confirm("คุณต้องการลบหรือไม่");
 	return x;
 }
-
 </script>
 
 </header>
@@ -191,7 +202,8 @@ body{
 	$topic[1] = "การเรียน";
 	$topic[2] = "กิจกรรม";
 	$topic[3] = "กยศ";
-	$topic[4] = "ครอบครัว"
+	$topic[4] = "ครอบครัว";
+	$topic[5] = "อื่นๆ";
 	
 	 ?>
 
@@ -237,12 +249,15 @@ body{
         <tr>
         	<td>&nbsp;&nbsp;&nbsp;เลือกหัวข้อ</td>
             <td>&nbsp;
-    <select name="eventTopic">
-		<option value="1">การเรียน</option>
-		<option value="2">กิจกรรม</option>
-		<option value="3">กยศ.</option>
-		<option value="4">ครอบครัว</option>
-	</select></td>
+    <select name="eventTopic" id="eventTopic">
+		<option value="1" >การเรียน</option>
+		<option value="2" >กิจกรรม</option>
+		<option value="3" >กยศ.</option>
+		<option value="4" >ครอบครัว</option>
+        <option value="5" >อื่นๆ</option>
+	</select> <br> 
+      <input type="text" value="" name="eventTopicEtc" id="eventTopicEtc" />
+     </td>
         </tr>
         <tr>
         	<td>&nbsp;&nbsp;&nbsp;วัน</td>

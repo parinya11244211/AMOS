@@ -201,6 +201,12 @@ class Teachers extends CI_Controller {
 		//เรียกใช้ Model Event Function showReportFamily ได้ค่า $data ชื่อ showTopicFamily
 		$this->load->view('teareportfamily',$data);
 	}
+	function getEventTopicEtc(){
+			
+		$data['showTopicEtc'] = $this->Event->showReportEtc();
+		//เรียกใช้ Model Event Function showReportFamily ได้ค่า $data ชื่อ showTopicFamily
+		$this->load->view('teareportetc',$data);
+	}
 
 	function deleventstuevent($id,$s,$teaEventId){//ลบรายการนัดหมายของนักศึกษา
 			$this->Teacher->setS($s);

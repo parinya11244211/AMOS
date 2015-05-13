@@ -176,7 +176,8 @@ body{
 	$topic[1] = "การเรียน";
 	$topic[2] = "กิจกรรม";
 	$topic[3] = "กยศ";
-	$topic[4] = "ครอบครัว"
+	$topic[4] = "ครอบครัว";
+	$topic[5] = "อื่นๆ";
 	
 	 ?>
 <body>
@@ -264,6 +265,11 @@ body{
         <tr>
            <td align="center"><?php echo 'ครอบครัว';?></td>
           <td align="center"><a href='<?php echo base_url();?>index.php/teachers/getEventTopicFamily'>ครอบครัว</a></td>
+          <!-- เรียกใช้ Controller teachers Function getEventTopicFamily -->
+        </tr>
+         <tr>
+           <td align="center"><?php echo 'อื่นๆ';?></td>
+          <td align="center"><a href='<?php echo base_url();?>index.php/teachers/getEventTopicEtc'>อื่นๆ</a></td>
           <!-- เรียกใช้ Controller teachers Function getEventTopicFamily -->
         </tr>
       </table>

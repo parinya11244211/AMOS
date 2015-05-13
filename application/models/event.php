@@ -22,6 +22,7 @@ class Event extends CI_Model {
 	var $id;
 	var $teaEventStatus;
 	var $teaEventDay;
+	var $eventTopicEtc;
 	
 	
 
@@ -216,6 +217,20 @@ class Event extends CI_Model {
 
 
 ###### GET : $eventId ######
+ ###### SET : $eventRoom ######
+    function setEventTopicEtc($eventTopicEtc){
+        $this->eventTopicEtc = $eventTopicEtc; 
+     }
+###### End SET : $eventRoom ###### 
+
+
+###### GET : $eventRoom ######
+    function getEventTopicEtc(){
+        return $this->eventTopicEtc; 
+     }
+###### End GET : $eventRoom ###### 
+
+
     function getTeaEventDay(){
         return $this->teaEventDay; 
      }
@@ -225,6 +240,7 @@ class Event extends CI_Model {
 		'eventTopic' => $this->getEventTopic(),
 		'eventTime' => $this->getEventTime(),
 		'eventRoom' => $this->getEventRoom(),
+		'eventTopicEtc' => $this->getEventTopicEtc(),
 		'stuId' => $this->getStuId(),
 		'teaEventId' => $this->getTeaEventId());
 		//นำค่าที่รับมาเทียบกับฟิวว่าตรงกันหรือไม่ ถ้าตรงก็เพิ่มเข้า table event
@@ -409,6 +425,19 @@ class Event extends CI_Model {
 		$this->db->join('student','student.stuId = point.stuId');
 		$this->db->where('teaId',$teaId);//ใช้งานเฉพาะ teaId นั้นๆ
 		$this->db->where('eventTopic',4);//ใช้งานเฉาะหัวข้อที่มีค่า 4 เท่านั้น 4 = ครอบครัว
+		$this->db->order_by('teaEventDay','ASC');//เรียงจากวันน้อยไปวันมาก
+		$data = $this->db->get('point')->result_array();
+		return $data;
+	}
+	function showReportEtc()
+	{
+		$datalogin = $this->session->userdata('loginData');
+		$teaId = $datalogin['id'];//เอา id อาจารย์ที่เข้าสู่ระบบ เป็นค่า $teaId
+		$this->db->join('event','event.teaEventId = point.teaEventId');
+		$this->db->join('teaevent','teaevent.teaEventId = event.teaEventId');
+		$this->db->join('student','student.stuId = point.stuId');
+		$this->db->where('teaId',$teaId);//ใช้งานเฉพาะ teaId นั้นๆ
+		$this->db->where('eventTopic',5);//ใช้งานเฉาะหัวข้อที่มีค่า 4 เท่านั้น 4 = ครอบครัว
 		$this->db->order_by('teaEventDay','ASC');//เรียงจากวันน้อยไปวันมาก
 		$data = $this->db->get('point')->result_array();
 		return $data;

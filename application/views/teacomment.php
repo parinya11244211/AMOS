@@ -38,7 +38,8 @@ function confirme(){
 	$topic[1] = "การเรียน";
 	$topic[2] = "กิจกรรม";
 	$topic[3] = "กยศ";
-	$topic[4] = "ครอบครัว"
+	$topic[4] = "ครอบครัว";
+	$topic[5] = "อื่นๆ";
 	
 ?>
 <?php foreach($comment as $s){
