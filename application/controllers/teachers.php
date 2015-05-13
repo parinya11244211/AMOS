@@ -260,7 +260,7 @@ class Teachers extends CI_Controller {
 		
 				$this->load->library('email');
 				$config['protocol'] = 'SMTP';
-				$config['smtp_host'] = 'mail.cmhost.me';
+				$config['smtp_host'] = 'amos.cmhost.me';
 				$config['smtp_port'] = 25;
 				$config['smtp_user'] = 'amos@amos.cmhost.me';
 				$config['smtp_pass'] = '1234';
@@ -290,7 +290,7 @@ class Teachers extends CI_Controller {
 		
 				$this->load->library('email');
 				$config['protocol'] = 'SMTP';
-				$config['smtp_host'] = 'mail.cmhost.me';
+				$config['smtp_host'] = 'amos.cmhost.me';
 				$config['smtp_port'] = 25;
 				$config['smtp_user'] = 'amos@amos.cmhost.me';
 				$config['smtp_pass'] = '1234';
