@@ -235,6 +235,9 @@ class Event extends CI_Model {
     function getTeaEventDay(){
         return $this->teaEventDay; 
      }
+###### End SET : $eventRoom ###### 
+
+
 
 	function addEvent(){
 		$data = array(
