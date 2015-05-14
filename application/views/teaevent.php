@@ -160,15 +160,25 @@ body{
 </style>
 <?php 
 
-	$time[1] = "8.00-9.00 น.";
-	$time[2] = "9.00-10.00 น.";
-	$time[3] = "10.00-11.00 น.";
-	$time[4] = "11.00-12.00 น.";
-	$time[5] = "12.00-13.00 น.";
-	$time[6] = "13.00-14.00 น.";
-	$time[7] = "14.00-15.00 น.";
-	$time[8] = "15.00-16.00 น.";
-	$time[9] = "16.00-17.00 น.";
+	$time[1] = "8.00 น.";
+	$time[2] = "9.00 น.";
+	$time[3] = "10.00 น.";
+	$time[4] = "11.00 น.";
+	$time[5] = "12.00 น.";
+	$time[6] = "13.00 น.";
+	$time[7] = "14.00 น.";
+	$time[8] = "15.00 น.";
+	$time[9] = "16.00 น.";
+	
+	$timeEnd[1] = "9.00 น.";
+	$timeEnd[2] = "10.00 น.";
+	$timeEnd[3] = "11.00 น.";
+	$timeEnd[4] = "12.00 น.";
+	$timeEnd[5] = "13.00 น.";
+	$timeEnd[6] = "14.00 น.";
+	$timeEnd[7] = "15.00 น.";
+	$timeEnd[8] = "16.00 น.";
+	$timeEnd[9] = "17.00 น.";
 
 	$date[1] = "จันทร์";
 	$date[2] = "อัง‬คาร";
@@ -232,7 +242,8 @@ body{
   <tr>
   	<td align="center">หัวข้อ</td>
     <td align="center">วัน</td>
-    <td align="center">เวลา</td>
+    <td align="center">เวลาเริ่ม</td>
+    <td align="center">เวลาสิ้นสุด</td>
     <td align="center">ห้อง</td>
     <td align="center">ชื่อนักศึกษา</td>
     <td align="center">นามสกุลนักศึกษา</td>
@@ -251,6 +262,7 @@ body{
         <td align="center"><?php echo $topic[$s['eventTopic']]?></td>
         <td align="center"><?php echo $s['teaEventDay']?></td>
         <td align="center"><?php echo $time[$s['eventTime']]?></td>
+        <td align="center"><?php echo $timeEnd[$s['eventTimeEnd']]?></td>
         <td align="center"><?php echo $s['eventRoom']?></td>
         <td align="center"><?php echo $s['stuName']?></td>
         <td align="center"><?php echo $s['stuLastname']?></td>
@@ -258,7 +270,7 @@ body{
         <td align="center"><?php echo $s['stuTel']?></td>
         <td align="center"><?php echo $status[$s['teaEventStatus']]?></td>
          <td align="center"><a href='<?php echo base_url();?>index.php/events/completeevent/<?php echo $s['eventId']; ?>/<?php echo $s['teaEventStatus']; ?>/<?php echo $s['teaEventId'];?>' onClick="return confirme()">รับการปรึกษา</a></td>
-          <td align="center"><a href='<?php echo base_url();?>index.php/events/editevent/<?php echo $s['eventId']; ?>/<?php echo $s['eventTime'];?>/<?php echo $s['eventRoom'];?>' onClick="return confirme()">แก้ไขข้อมูล</a></td>
+          <td align="center"><a href='<?php echo base_url();?>index.php/events/editevent/<?php echo $s['eventId']; ?>/<?php echo $s['eventTime'];?>/<?php echo $s['eventTimeEnd'];?>/<?php echo $s['eventRoom'];?>' onClick="return confirme()">แก้ไขข้อมูล</a></td>
          <!-- เมื่อกดปุ่มปรึกษา เก็บค่า eventId teaEventStatus teaEventId ไปใช้ใน Controller events Function completeevent -->
         <td align="center"><a href="<?php echo base_url();?>index.php/teachers/deleventstu/<?php echo $s['eventId'];?>/<?php echo $s['teaEventStatus'];?>/<?php echo $s['teaEventId'];?>" onClick="return confirme()">ยกเลิก</a></td>
          <!-- เมื่อกดปุ่มปรึกษา เก็บค่า eventId teaEventStatus teaEventId ไปใช้ใน Controller teachers Function deleventstu -->

@@ -10,6 +10,7 @@ class Event extends CI_Model {
     var $eventTopic ; ######  หัวข้อ  ######
     var $eventDay ; ######  วัน  ######
     var $eventTime ; ######  เวลา  ######
+	var $eventTimeEnd ; ######  เวลา  ######
     var $eventRoom ; ######  ห้อง  ######
 	var $stuId;
 	var $teaEventId;
@@ -17,7 +18,6 @@ class Event extends CI_Model {
 	var $pointId;
 	var $star;
 	var $teaId ; ######  ลำดับ  #####
-	var $e;
 	var $s;
 	var $id;
 	var $teaEventStatus;
@@ -93,6 +93,18 @@ class Event extends CI_Model {
      }
 ###### End GET : $eventTime ###### 
 
+ ###### SET : $eventTime ######
+    function setEventTimeEnd($eventTimeEnd){
+        $this->eventTimeEnd = $eventTimeEnd; 
+     }
+###### End SET : $eventTime ###### 
+
+
+###### GET : $eventTime ######
+    function getEventTimeEnd(){
+        return $this->eventTimeEnd; 
+     }
+###### End GET : $eventTime ###### 
 
  ###### SET : $eventRoom ######
     function setEventRoom($eventRoom){
@@ -175,17 +187,6 @@ class Event extends CI_Model {
 ###### End SET : $teaId ###### 
 
 ###### GET : $eventRoom ######
-    function getE(){
-        return $this->e; 
-     }
-###### End GET : $eventRoom ###### 
-###### SET : $teaId ######
-    function setE($e){
-        $this->e = $e; 
-     }
-###### End SET : $teaId ###### 
-
-###### GET : $eventRoom ######
     function getS(){
         return $this->s; 
      }
@@ -239,6 +240,7 @@ class Event extends CI_Model {
 		$data = array(
 		'eventTopic' => $this->getEventTopic(),
 		'eventTime' => $this->getEventTime(),
+		'eventTimeEnd' => $this->getEventTimeEnd(),
 		'eventRoom' => $this->getEventRoom(),
 		'eventTopicEtc' => $this->getEventTopicEtc(),
 		'stuId' => $this->getStuId(),
@@ -447,7 +449,7 @@ class Event extends CI_Model {
 		$data = array(
 			'teaEventStatus' => 2);
 			
-		$this->db->where('teaEventId',$this->getE());	
+		$this->db->where('teaEventId',$this->getTeaEventId());	
 		$this->db->update('teaevent',$data);
 		//update status จาก table teaevent จาก teaEventId เท่านั้น
 	}
@@ -490,6 +492,7 @@ class Event extends CI_Model {
 		
 		$data = array(
 			'eventTime' => $this->getEventTime(),
+			'eventTimeEnd' => $this->getEventTimeEnd(),
 			'eventRoom' => $this->getEventRoom()
 			);
 

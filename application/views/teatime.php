@@ -83,6 +83,7 @@ input[type=text]:hover,input[type=text]:focus{
 <script>
 $(document).ready(function(){				
 	$('#teaEventTime').hide();
+	$('#teaEventTimeEnd').hide();
 	$('#teaEventRoom').hide();
 	$('#teasave').hide();
 	
@@ -90,6 +91,10 @@ $(document).ready(function(){
 	$('#teaEventTime').show();
 	});
 	$('#teaEventTime').change(function(){
+	$('#teaEventTimeEnd').show();
+	
+	});
+	$('#teaEventTimeEnd').change(function(){
 	$('#teaEventRoom').show();
 	
 	});
@@ -665,15 +670,25 @@ body{
 	$color[4] = "tableshirts";
 	$color[5] = "tableblue";
 	
-	$time[1] = "8.00-9.00 น.";
-	$time[2] = "9.00-10.00 น.";
-	$time[3] = "10.00-11.00 น.";
-	$time[4] = "11.00-12.00 น.";
-	$time[5] = "12.00-13.00 น.";
-	$time[6] = "13.00-14.00 น.";
-	$time[7] = "14.00-15.00 น.";
-	$time[8] = "15.00-16.00 น.";
-	$time[9] = "16.00-17.00 น.";
+	$time[1] = "8.00 น.";
+	$time[2] = "9.00 น.";
+	$time[3] = "10.00 น.";
+	$time[4] = "11.00 น.";
+	$time[5] = "12.00 น.";
+	$time[6] = "13.00 น.";
+	$time[7] = "14.00 น.";
+	$time[8] = "15.00 น.";
+	$time[9] = "16.00 น.";
+	
+	$timeEnd[1] = "9.00 น.";
+	$timeEnd[2] = "10.00 น.";
+	$timeEnd[3] = "11.00 น.";
+	$timeEnd[4] = "12.00 น.";
+	$timeEnd[5] = "13.00 น.";
+	$timeEnd[6] = "14.00 น.";
+	$timeEnd[7] = "15.00 น.";
+	$timeEnd[8] = "16.00 น.";
+	$timeEnd[9] = "17.00 น.";
 	
 	$topic[1] = "การเรียน";
 	$topic[2] = "กิจกรรม";
@@ -716,17 +731,34 @@ body{
             <input type="date" name="teaEventDay" id="teaEventDay" />
 			
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <?php echo "เวลาเริ่ม";  ?>
+            &nbsp;
             <select name="teaEventTime" id="teaEventTime">
-            <option value="1">8.00-9.00 น.</option>
-            <option value="2">9.00-10.00 น.</option>
-            <option value="3">10.00-11.00 น.</option>
-            <option value="4">11.00-12.00 น.</option>
-            <option value="5">12.00-13.00 น.</option>
-            <option value="6">13.00-14.00 น.</option>
-            <option value="7">14.00-15.00 น.</option>
-            <option value="8">15.00-16.00 น.</option>
-            <option value="9">16.00-17.00 น.</option>
+            <option value="1">8.00 น.</option>
+            <option value="2">9.00 น.</option>
+            <option value="3">10.00 น.</option>
+            <option value="4">11.00 น.</option>
+            <option value="5">12.00 น.</option>
+            <option value="6">13.00 น.</option>
+            <option value="7">14.00 น.</option>
+            <option value="8">15.00 น.</option>
+            <option value="9">16.00 น.</option>
             </select>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <?php echo "เวลาสิ้นสุด";  ?>
+            &nbsp;
+            <select name="teaEventTimeEnd" id="teaEventTimeEnd">
+            <option value="1">9.00 น.</option>
+            <option value="2">10.00 น.</option>
+            <option value="3">11.00 น.</option>
+            <option value="4">12.00 น.</option>
+            <option value="5">13.00 น.</option>
+            <option value="6">14.00 น.</option>
+            <option value="7">15.00 น.</option>
+            <option value="8">16.00 น.</option>
+            <option value="9">17.00 น.</option>
+            </select>
+            
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input type="text" value="" name="teaEventRoom" id="teaEventRoom" placeholder="เพิ่มสถานที่" required/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -738,7 +770,8 @@ body{
 <table width="71%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
   <tr>
     <td align="center">วัน/เดือน/ปี</td>
-    <td align="center">เวลา</td>
+    <td align="center">เวลาเริ่ม</td>
+    <td align="center">เวลาสิ้นสุด</td>
     <td align="center">ห้อง</td>
     <td align="center">ยกเลิก</td>
   </tr>
@@ -747,6 +780,7 @@ body{
   <tr>
     <td align="center"><br><?php echo $t['teaEventDay']?></td>
     <td align="center"><br><?php echo $time[$t['teaEventTime']]?></td>
+    <td align="center"><br><?php echo $timeEnd[$t['teaEventTimeEnd']]?></td>
     <td align="center"><br><?php echo $t['teaEventRoom']?></td>
     <td align="center"><a onClick="return confirme()" href="<?php echo base_url();?>index.php/teachers/deleventtea/
 	<?php echo $t['teaEventId'];?>">ยกเลิก</a> </td>

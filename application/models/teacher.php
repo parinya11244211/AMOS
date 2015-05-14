@@ -25,6 +25,7 @@ class Teacher extends CI_Model {
 	var $s;
 	var $eventId;
 	var $teaEventId;
+	var $teaEventTimeEnd;
 	
 ###### End Attribute  ###### 
 
@@ -276,6 +277,16 @@ class Teacher extends CI_Model {
         $this->eventId = $eventId; 
      }
 ###### End SET : $teaId ###### 
+###### GET : $eventRoom ######
+    function getTeaEventTimeEnd(){
+        return $this->teaEventTimeEnd; 
+     }
+###### End GET : $eventRoom ###### 
+###### SET : $teaId ######
+    function setTeaEventTimeEnd($teaEventTimeEnd){
+        $this->teaEventTimeEnd = $teaEventTimeEnd; 
+     }
+###### End SET : $teaId ###### 
 
 	function login(){
 		$this->db->where('teaUsername',$this->getTeaUsername());//เช็คค่า TeaUsername ว่าตรงตาม databas teacher ใน field teaUsername หรือไม่
@@ -357,6 +368,7 @@ class Teacher extends CI_Model {
 	 $data = array(
 	 	'teaEventDay' => $this->getTeaEventDay(),
 		'teaEventTime' => $this->getTeaEventTime(),
+		'teaEventTimeEnd' => $this->getTeaEventTimeEnd(),
 		'teaEventRoom' => $this->getTeaEventRoom(),
 		'teaId' => $this->getTeaId()//เพิ่มค่าที่รับมาที่ teaId คนนั้นๆ
 		);

@@ -5,6 +5,10 @@ class Students extends CI_Controller {
 	{
 		$this->load->view('homestu');
 	}
+	function stuEventWith()
+	{
+		$this->load->view('stushoweventwith');
+	}
 	function stuInfo()
 	{
 		$datalogin = $this->session->userdata('loginData');//นำค่าที่ login เข้ามาใช้
@@ -33,7 +37,9 @@ class Students extends CI_Controller {
 			//เรียกใช้ Model Student Function getByTeaEvent ได้ค่า $data ชื่อ getByTeaEvent
 			$this->load->view('stuevent',$data);
 		}else{//ถ้านักศึกษามีกิจกรรมที่มี status 1 และ 6 หรือไม่ 1 = สามารถนัดได้ 6 = เสร็จสิ้น
-			$this->load->view('stuerror');
+			echo "<script>alert('คุณมีการนัดหมายอยู่แล้ว');</script>";
+			echo "<script>window.location.href='".base_url()."index.php/students/showeventwith';</script>";
+		
 		}
 	}
 	function stuEdit($stuId){//รับค่า $stuId มาจาก Function stuEditPass

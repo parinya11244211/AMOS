@@ -127,6 +127,7 @@ body{
 		background-color:#FFF;
 		opacity:0.9;
 		border-radius:7px;
+		font-size:24px;
 	}
 	
 #herderBody{
@@ -158,7 +159,43 @@ body{
 		padding:10px;
 	}
 </style>
+<?php 
+	$time[1] = "8.00-9.00 น.";
+	$time[2] = "9.00-10.00 น.";
+	$time[3] = "10.00-11.00 น.";
+	$time[4] = "11.00-12.00 น.";
+	$time[5] = "12.00-13.00 น.";
+	$time[6] = "13.00-14.00 น.";
+	$time[7] = "14.00-15.00 น.";
+	$time[8] = "15.00-16.00 น.";
+	$time[9] = "16.00-17.00 น.";
 
+	$date[1] = "จันทร์";
+	$date[2] = "อัง‬คาร";
+	$date[3] = "พุธ";
+	$date[4] = "พฤหัสบดี";
+	$date[5] = "ศุกร์";
+	
+	$status[1] = "สามารถนัดได้";
+	$status[2] = "รอการตอบรับ";
+	$status[3] = "รอคำแนะนำ";
+	$status[4] = "ยกเลิกนัด";
+	$status[5] = "รอคะแนน";
+	$status[6] = "เสร็จสิ้น";
+	
+	$color[1] = "tableyellow";
+	$color[2] = "tablepink";
+	$color[3] = "tablegreen";
+	$color[4] = "tableshirts";
+	$color[5] = "tableblue";
+	
+	$topic[1] = "การเรียน";
+	$topic[2] = "กิจกรรม";
+	$topic[3] = "กยศ";
+	$topic[4] = "ครอบครัว";
+	$topic[5] = "อื่นๆ";
+	
+	 ?>
 <body>
     <div class="herderTop">
 	<div id="innerTop">
@@ -185,27 +222,13 @@ body{
 		</ul>
 	</div>	
     </div>
-    
-    <div id="bodyInfo"><br><br>
-     <form action="<?php echo base_url();?>index.php/teachers/mailstea" method="post">
-    <table width="50%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
-        <tr>
-          <td align="center">หัวเรื่อง</td>
-          <td align="left"><p>&nbsp;</p>
-          <p>
-           &nbsp;&nbsp;&nbsp; <input type="text" name="subject" id="subject" required>
-          </p>
-          <p>&nbsp;</p></td>
-      </tr>
-        <tr>
-          <td align="center"><label for="textfield">ข้อความ </label></td>
-          <td align="left">&nbsp;&nbsp;&nbsp;<textarea name="message" cols="60" rows="10" id="message" required></textarea></td>
-        </tr>
-        <tr>
-          <td colspan="2" align="center"><input type="submit" name="button" id="button" value="ส่งเมล์"></td>
-        </tr>
-      </table>
-      </form>
+  
+    <div id="bodyInfo" align="center" >
+    <br>
+    <br>
+
+ 	<br>
+ 	<br>
     </div>
 </body>
 </html>

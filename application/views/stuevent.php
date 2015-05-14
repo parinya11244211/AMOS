@@ -178,16 +178,26 @@ body{
 	$color[4] = "tableshirts";
 	$color[5] = "tableblue";
 	
-	$time[1] = "8.00-9.00 น.";
-	$time[2] = "9.00-10.00 น.";
-	$time[3] = "10.00-11.00 น.";
-	$time[4] = "11.00-12.00 น.";
-	$time[5] = "12.00-13.00 น.";
-	$time[6] = "13.00-14.00 น.";
-	$time[7] = "14.00-15.00 น.";
-	$time[8] = "15.00-16.00 น.";
-	$time[9] = "16.00-17.00 น.";
+	$time[1] = "8.00 น.";
+	$time[2] = "9.00 น.";
+	$time[3] = "10.00 น.";
+	$time[4] = "11.00 น.";
+	$time[5] = "12.00 น.";
+	$time[6] = "13.00 น.";
+	$time[7] = "14.00 น.";
+	$time[8] = "15.00 น.";
+	$time[9] = "16.00 น.";
 	
+	$timeEnd[1] = "9.00 น.";
+	$timeEnd[2] = "10.00 น.";
+	$timeEnd[3] = "11.00 น.";
+	$timeEnd[4] = "12.00 น.";
+	$timeEnd[5] = "13.00 น.";
+	$timeEnd[6] = "14.00 น.";
+	$timeEnd[7] = "15.00 น.";
+	$timeEnd[8] = "16.00 น.";
+	$timeEnd[9] = "17.00 น.";
+
 	$topic[1] = "การเรียน";
 	$topic[2] = "กิจกรรม";
 	$topic[3] = "กยศ";
@@ -217,6 +227,7 @@ body{
 			<li><a href='<?php echo base_url();?>index.php/students/stuinfo'>ข้อมูลส่วนตัว</a></li>
 			<li><a href='<?php echo base_url();?>index.php/students/stuinfomatch'>ข้อมูลอาจารย์ที่ปรึกษา</a></li>
 			<li><a href='<?php echo base_url();?>index.php/students/stuevent'>ทำรายการการนัดหมาย</a></li>
+            <li><a href='<?php echo base_url();?>index.php/students/showeventwith'>รายการนัดหมายที่มีอยู่</a></li>
             <li><a href='<?php echo base_url();?>index.php/events/infostar'>ให้คะแนน</a></li>
 		</ul>
 	</div>	
@@ -243,7 +254,8 @@ body{
 <table class="" width="71%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
   <tr>
     <th align="center" nowrap="nowrap">วัน</th>
-    <th align="center" nowrap="nowrap">เวลา</th>
+    <th align="center" nowrap="nowrap">เวลาเริ่ม</th>
+    <th align="center" nowrap="nowrap">เวลาสิ้นสุด</th>
     <th align="center" nowrap="nowrap">ห้อง</th>
     <th align="center" nowrap="nowrap">สถานะ</th>
     <th align="center" nowrap="nowrap">เลือกหัวข้อปรึกษา</th>
@@ -254,6 +266,7 @@ body{
     <tr>
     <td align="center"><?php echo $e['teaEventDay'];?></td>
     <td align="center"><?php echo $time[$e['teaEventTime']];?></td>
+    <td align="center"><?php echo $timeEnd[$e['teaEventTimeEnd']];?></td>
     <td align="center"><?php echo $e['teaEventRoom'];?></td>
     <td align="center"><?php echo $status[$e['teaEventStatus']];?></td>
     <td align="center"><a href='<?php echo base_url();?>index.php/events/selecttopic/<?php echo $e['teaEventId'] ?>'>ดูหัวข้อปรึกษา</a></td>

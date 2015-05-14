@@ -131,8 +131,9 @@ class Teachers extends CI_Controller {
 			$teaId = $datalogin['id'];//เอา id อาจารย์ที่เข้าสู่ระบบ เป็นค่า $teaId
 			$teaEventDay = $this->input->post('teaEventDay');//ค่าที่เก็บมาจากหน้า View teatime teaEventDay ให้เป็นค่า $teaEventDay
 			$teaEventTime = $this->input->post('teaEventTime');
+			$teaEventTimeEnd = $this->input->post('teaEventTimeEnd');
 			$teaEventRoom = $this->input->post('teaEventRoom');
-			
+
 			$repeat = $this->Teacher->showEventTea();//เรียกใช้ Model Teacher Function showEventTea ได้ค่า $repeat ออกมา
 			$cseck = 0;//ตั้งตัวแปล $cseck ให้มีค่าเป็น 0
 			foreach ($repeat as $r){
@@ -146,6 +147,7 @@ class Teachers extends CI_Controller {
 					$this->Teacher->setTeaId($teaId);
 					$this->Teacher->setTeaEventDay($teaEventDay);
 					$this->Teacher->setTeaEventTime($teaEventTime);
+					$this->Teacher->setTeaEventTimeEnd($teaEventTimeEnd);
 					$this->Teacher->setTeaEventRoom($teaEventRoom);
 					//เมื่อนำค่าไป set แล้ว เรียกใช้ Mode Teacher addEventTea
 					$this->Teacher->addEventTea();	

@@ -177,15 +177,25 @@ body{
 </style>
 <?php 
 
-	$time[1] = "8.00-9.00 น.";
-	$time[2] = "9.00-10.00 น.";
-	$time[3] = "10.00-11.00 น.";
-	$time[4] = "11.00-12.00 น.";
-	$time[5] = "12.00-13.00 น.";
-	$time[6] = "13.00-14.00 น.";
-	$time[7] = "14.00-15.00 น.";
-	$time[8] = "15.00-16.00 น.";
-	$time[9] = "16.00-17.00 น.";
+	$time[1] = "8.00 น.";
+	$time[2] = "9.00 น.";
+	$time[3] = "10.00 น.";
+	$time[4] = "11.00 น.";
+	$time[5] = "12.00 น.";
+	$time[6] = "13.00 น.";
+	$time[7] = "14.00 น.";
+	$time[8] = "15.00 น.";
+	$time[9] = "16.00 น.";
+	
+	$timeEnd[1] = "9.00 น.";
+	$timeEnd[2] = "10.00 น.";
+	$timeEnd[3] = "11.00 น.";
+	$timeEnd[4] = "12.00 น.";
+	$timeEnd[5] = "13.00 น.";
+	$timeEnd[6] = "14.00 น.";
+	$timeEnd[7] = "15.00 น.";
+	$timeEnd[8] = "16.00 น.";
+	$timeEnd[9] = "17.00 น.";
 
 	$date[1] = "จันทร์";
 	$date[2] = "อัง‬คาร";
@@ -228,6 +238,7 @@ body{
 			<li><a href='<?php echo base_url();?>index.php/students/stuinfo'>ข้อมูลส่วนตัว</a></li>
 			<li><a href='<?php echo base_url();?>index.php/students/stuinfomatch'>ข้อมูลอาจารย์ที่ปรึกษา</a></li>
 			<li><a href='<?php echo base_url();?>index.php/students/stuevent'>ทำรายการการนัดหมาย</a></li>
+            <li><a href='<?php echo base_url();?>index.php/students/showeventwith'>รายการนัดหมายที่มีอยู่</a></li>
             <li><a href='<?php echo base_url();?>index.php/events/infostar'>ให้คะแนน</a></li>
 		</ul>
 	</div>	
@@ -241,7 +252,7 @@ body{
      <!-- $showevent ได้มาจาก Controller events Function selectTopic แต่กิจกรรมต้องมี status 1 เท่านั้น 1 = สามารถนัดได้ -->
      <form method="post" action="<?php echo base_url();?>index.php/events/updatestatus/<?php echo $e['teaEventId']; ?>" >
      <!-- เก็บค่า teaEventId ไปใช้ใน Controller events Function updatestatus -->
-      <table width="30%" height="63" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
+      <table width="50%" height="70" align="center" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0">
 		<tr>
         	<td>&nbsp;&nbsp;&nbsp;อาจารย์ที่ปรึกษา</td>
             <td>&nbsp;&nbsp;&nbsp;<?php echo $e['teaName'];?>&nbsp;&nbsp;&nbsp;<?php echo $e['teaLastname'];?></td>
@@ -264,8 +275,12 @@ body{
             <td>&nbsp;&nbsp;&nbsp;<?php echo $e['teaEventDay'];?></td>
         </tr>
         <tr>
-        	<td>&nbsp;&nbsp;&nbsp;เวลา</td>
+        	<td>&nbsp;&nbsp;&nbsp;เวลาเริ่ม</td>
             <td>&nbsp;&nbsp;&nbsp;<?php echo $time[$e['teaEventTime']];?></td>
+        </tr>
+        <tr>
+        	<td>&nbsp;&nbsp;&nbsp;เวลาสิ้นสุด</td>
+            <td>&nbsp;&nbsp;&nbsp;<?php echo $timeEnd[$e['teaEventTimeEnd']];?></td>
         </tr>
         <tr>
         	<td>&nbsp;&nbsp;&nbsp;ห้อง</td>
@@ -276,6 +291,7 @@ body{
             <td align="left">&nbsp;&nbsp;&nbsp;<input type="submit" value="บันทึก" onClick="return confirme()">
     <input name="teaEventDay" type="hidden" value="<?php echo $e['teaEventDay'];?>">
     <input name="teaEventTime" type="hidden" value="<?php echo $e['teaEventTime'];?>">
+    <input name="teaEventTimeEnd" type="hidden" value="<?php echo $e['teaEventTimeEnd'];?>">
     <input name="teaEventRoom" type="hidden" value="<?php echo $e['teaEventRoom'];?>">
     <input name="teaEventId" type="hidden" value="<?php echo $e['teaEventId'];?>"></td>
         </tr><?php } }?>

@@ -90,15 +90,16 @@ class Events extends CI_Controller {
 		header('Location:'.base_url().'index.php/students/index');
 		
 	}
-		function updateStatus($e){
+		function updateStatus($teaEventId){
 			
-		$this->Event->setE($e);
+		$this->Event->setTeaEventId($teaEventId);
 		$this->Event->getPkStatus();
 		//เมื่อ update status แล้ว
 		$loginData = $this->session->userdata('loginData');
 		
 		 $eventTopic = $this->input->post('eventTopic');
 		 $eventTime = $this->input->post('teaEventTime');
+		 $eventTimeEnd = $this->input->post('teaEventTimeEnd');
 		 $eventRoom = $this->input->post('teaEventRoom');
 		 $eventTopicEtc = $this->input->post('eventTopicEtc');
 		 $stuId = $loginData['id'];
@@ -106,6 +107,7 @@ class Events extends CI_Controller {
 		
 		$this->Event->setEventTopic($eventTopic);
 		$this->Event->setEventTime($eventTime);
+		$this->Event->setEventTimeEnd($eventTimeEnd);
 		$this->Event->setEventRoom($eventRoom);
 		$this->Event->setEventTopicEtc($eventTopicEtc);
 		$this->Event->setStuId($stuId);
@@ -114,10 +116,11 @@ class Events extends CI_Controller {
 		$data = $this->Event->addEvent();
 		header( 'Location: '.base_url().'index.php/students/stuevent' );
 	}
-	function editevent($eventId,$eventTime,$eventRoom){
+	function editevent($eventId,$eventTime,$eventTimeEnd,$eventRoom){
 			
 		$this->Event->setEventId($eventId);
 		$this->Event->setEventTime($eventTime);
+		$this->Event->setEventTimeEnd($eventTimeEnd);
 		$this->Event->setEventRoom($eventRoom);
 		
 		$data['editevent'] = $this->Event->showEditEvent();
@@ -128,10 +131,12 @@ class Events extends CI_Controller {
 	function teaeditevent($eventId){
 
 		$eventTime = $this->input->post('eventTime');
+		$eventTimeEnd = $this->input->post('eventTimeEnd');
 		$eventRoom = $this->input->post('eventRoom');
 
 		$this->Event->setEventId($eventId);
 		$this->Event->setEventTime($eventTime);
+		$this->Event->setEventTimeEnd($eventTimeEnd);
 		$this->Event->setEventRoom($eventRoom);
 		$this->Event->teaEditEvent();
 
