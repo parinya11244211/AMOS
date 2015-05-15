@@ -133,7 +133,8 @@ class Teachers extends CI_Controller {
 			$teaEventTime = $this->input->post('teaEventTime');
 			$teaEventTimeEnd = $this->input->post('teaEventTimeEnd');
 			$teaEventRoom = $this->input->post('teaEventRoom');
-
+			
+			
 			$repeat = $this->Teacher->showEventTea();//เรียกใช้ Model Teacher Function showEventTea ได้ค่า $repeat ออกมา
 			$cseck = 0;//ตั้งตัวแปล $cseck ให้มีค่าเป็น 0
 			foreach ($repeat as $r){
@@ -150,11 +151,19 @@ class Teachers extends CI_Controller {
 					$this->Teacher->setTeaEventTimeEnd($teaEventTimeEnd);
 					$this->Teacher->setTeaEventRoom($teaEventRoom);
 					//เมื่อนำค่าไป set แล้ว เรียกใช้ Mode Teacher addEventTea
-					$this->Teacher->addEventTea();	
-					
-					echo "<script>
+					if($teaEventTime < $teaEventTimeEnd){
+						$this->Teacher->addEventTea();
+						echo "<script>
 				window.location.href='".base_url()."index.php/teachers/teaTime';
 				</script>";	//เพิ่มเวลานัดหมายได้ จะกลับไปหน้าเดิม
+					}
+						else{
+							echo "<script>alert('กรุณาใส่เวลาที่ถูกต้อง');
+				window.location.href='".base_url()."index.php/teachers/teaTime';
+				</script>";
+						}
+					
+					
 			} else {
 				echo "<script>alert('DATE REPEAT');
 				window.location.href='".base_url()."index.php/teachers/teaTime';
