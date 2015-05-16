@@ -10,7 +10,7 @@ class Events extends CI_Controller {
 
 	function completeEvent($id,$s,$teaEventId){//รับค่ามาจากหน้า View teaevent
 		
-		$this->Event->setS($s);
+		$this->Event->setTeaEventStatus($s);
 		$this->Event->setEventId($id);
 		$this->Event->setTeaEventId($teaEventId);
 		
@@ -26,7 +26,7 @@ class Events extends CI_Controller {
 	}
 	function comment($id,$s,$teaEventId)
 	{
-		$this->Event->setS($s);
+		$this->Event->setTeaEventStatus($s);
 		$this->Event->setEventId($id);
 		$this->Event->setTeaEventId($teaEventId);
 		$data['id'] = $id;
@@ -138,9 +138,18 @@ class Events extends CI_Controller {
 		$this->Event->setEventTime($eventTime);
 		$this->Event->setEventTimeEnd($eventTimeEnd);
 		$this->Event->setEventRoom($eventRoom);
-		$this->Event->teaEditEvent();
-
-		header( 'Location: '.base_url().'index.php/teachers/teaevent' );
+		
+		if($eventTime < $eventTimeEnd){
+						$this->Event->teaEditEvent();
+						echo "<script>
+				window.location.href='".base_url()."index.php/teachers/teaevent';
+				</script>";	//เพิ่มเวลานัดหมายได้ จะกลับไปหน้าเดิม
+					}
+						else{
+							echo "<script>alert('กรุณาใส่เวลาที่ถูกต้อง');
+				window.location.href='".base_url()."index.php/teachers/teaevent';
+				</script>";
+						}
 	}
 }
 ?>

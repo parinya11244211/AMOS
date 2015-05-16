@@ -23,7 +23,7 @@ class Teacher extends CI_Model {
 	var $teaEventTimeEnd ; ######  เพิ่มเวลา  ######
     var $teaEventRoom ; ######  เพิ่มห้อ  ######
 	var $stuId ; ######  เพิ่มห้อ  ######
-	var $s;
+	var $teaEventStatus;
 	var $eventId;
 	var $teaEventId;
 	
@@ -269,13 +269,13 @@ class Teacher extends CI_Model {
      }
 ###### End GET : $stuId ######
 ###### GET : $eventRoom ######
-    function getS(){
-        return $this->s; 
+    function getTeaEventStatus(){
+        return $this->teaEventStatus; 
      }
 ###### End GET : $eventRoom ###### 
 ###### SET : $teaId ######
-    function setS($s){
-        $this->s = $s; 
+    function setTeaEventStatus($teaEventStatus){
+        $this->teaEventStatus = $teaEventStatus; 
      }
 ###### End SET : $teaId ###### 
 

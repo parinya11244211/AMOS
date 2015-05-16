@@ -18,8 +18,6 @@ class Event extends CI_Model {
 	var $pointId;
 	var $star;
 	var $teaId ; ######  ลำดับ  #####
-	var $s;
-	var $id;
 	var $teaEventStatus;
 	var $teaEventDay;
 	var $eventTopicEtc;
@@ -183,27 +181,6 @@ class Event extends CI_Model {
 ###### SET : $teaId ######
     function setTeaId($teaId){
         $this->teaId = $teaId; 
-     }
-###### End SET : $teaId ###### 
-
-###### GET : $eventRoom ######
-    function getS(){
-        return $this->s; 
-     }
-###### End GET : $eventRoom ###### 
-###### SET : $teaId ######
-    function setS($s){
-        $this->s = $s; 
-     }
-###### End SET : $teaId ###### 
-###### GET : $eventRoom ######
-    function getId(){
-        return $this->id; 
-     }
-###### End GET : $eventRoom ###### 
-###### SET : $teaId ######
-    function setId($id){
-        $this->id = $id; 
      }
 ###### End SET : $teaId ###### 
 

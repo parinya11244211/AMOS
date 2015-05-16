@@ -176,7 +176,7 @@ class Teachers extends CI_Controller {
 		header( 'Location: '.base_url().'index.php/teachers/teaTime' );
 	}
 		function deleventstu($id,$s,$teaEventId){//ลบรายการนัดหมายของนักศึกษา
-			$this->Teacher->setS($s);
+			$this->Teacher->setTeaEventStatus($s);
 			$this->Teacher->setEventId($id);
 			$this->Teacher->setTeaEventId($teaEventId);
 			//เอาค่าที่รับมาไปใช้กับ Model Teacher Function updataStatusDel
@@ -220,7 +220,7 @@ class Teachers extends CI_Controller {
 	}
 
 	function deleventstuevent($id,$s,$teaEventId){//ลบรายการนัดหมายของนักศึกษา
-			$this->Teacher->setS($s);
+			$this->Teacher->setTeaEventStatus($s);
 			$this->Teacher->setEventId($id);
 			$this->Teacher->setTeaEventId($teaEventId);
 			//เอาค่าที่รับมาไปใช้กับ Model Teacher Function updataStatusDel
